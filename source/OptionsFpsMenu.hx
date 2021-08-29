@@ -23,10 +23,8 @@ class OptionsFpsMenu extends MusicBeatState
 	var selector:FlxText;
 	var curSelected:Int = 0;
 
-	var options:Array<OptionCategory> = [
-		new OptionCategory("Thing", [
-			new FPSCapOption("Cap your FPS")
-		])
+	var options:Array<Option> = [
+		new FPSCapOption("Cap your FPS")
 	];
 
 	public var acceptInput:Bool = true;
