@@ -15,7 +15,7 @@ IF YOU MAKE A MOD AND DISTRIBUTE A MODIFIED / RECOMPILED VERSION, YOU MUST OPEN 
 - [Kawaisprite](https://twitter.com/kawaisprite) - Musician
 
 ## Credits of JWB Engine
--[Juanen100](https://twitter.com/Juanen1001) - Engine Programmer
+- [Juanen100](https://twitter.com/Juanen1001) - Engine Programmer
 
 This game was made with love to Newgrounds and its community. Extra love to Tom Fulp.
 
