@@ -19,7 +19,7 @@ This game was made with love to Newgrounds and its community. Extra love to Tom 
 ## Credits of JSW Engine
 - [Juanen100](https://twitter.com/Juanen1001) - Engine Programmer
 
-## Previews ([skip](#Build instructions))
+## Previews
 
 [Milf (Hard) on Upscroll](https://raw.githubusercontent.com/Juanen100/JSW-Engine/main/.github/images/2021-08-30%2019-58-40_Trim.gif)
 
