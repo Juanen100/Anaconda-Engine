@@ -39,7 +39,7 @@ class MainMenuState extends MusicBeatState
 
 	var menuChar:Character;
 
-	public static var versionlol:String = "0.0.4";
+	public static var versionlol:String = "0.0.5";
 	public var fnfVer:String = "0.2.7.1";
 	var versionShit:FlxText;
 
