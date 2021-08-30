@@ -194,7 +194,7 @@ class TitleState extends MusicBeatState
 
 		credTextShit.visible = false;
 
-		ngSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('newgrounds_logo'));
+		ngSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('juliano'));
 		add(ngSpr);
 		ngSpr.visible = false;
 		ngSpr.setGraphicSize(Std.int(ngSpr.width * 0.8));
@@ -375,8 +375,8 @@ class TitleState extends MusicBeatState
 			case 5:
 				createCoolText(['JSW Engine', 'by']);
 			case 7:
-				addMoreText('Juanen');
-				ngSpr.visible = false;
+				addMoreText('A dumbass');
+				ngSpr.visible = true;
 			// credTextShit.text += '\nNewgrounds';
 			case 8:
 				deleteCoolText();

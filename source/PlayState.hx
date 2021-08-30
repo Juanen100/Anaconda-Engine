@@ -1921,6 +1921,7 @@ class PlayState extends MusicBeatState
 	
 			var pixelShitPart1:String = "";
 			var pixelShitPart2:String = '';
+			var pixelShitPart3:String = null;
 	
 			if (curStage.startsWith('school'))
 			{
@@ -1928,11 +1929,11 @@ class PlayState extends MusicBeatState
 				pixelShitPart2 = '-pixel';
 			}
 
-			rating.loadGraphic(Paths.image(pixelShitPart1 + daRating + pixelShitPart2));
+			rating.loadGraphic(Paths.image(pixelShitPart1 + daRating + pixelShitPart2, pixelShitPart3));
 			rating.screenCenter();
 			rating.y -= 50;
 			rating.x = coolText.x - 125;
-			
+
 			if (FlxG.save.data.changedHit)
 			{
 				rating.x = FlxG.save.data.changedHitX;
