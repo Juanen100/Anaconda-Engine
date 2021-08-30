@@ -1,5 +1,7 @@
 package;
 
+//Shitty Weird Test
+
 import lime.app.Application;
 import lime.system.DisplayMode;
 import flixel.util.FlxColor;
@@ -51,6 +53,10 @@ class Option
 	public final function getDisplay():String
 	{
 		return display;
+	}
+	private var _name:String = "E";
+	public final function getName() {
+		return _name;
 	}
 
 	public final function getAccept():Bool

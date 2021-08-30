@@ -786,7 +786,7 @@ class PlayState extends MusicBeatState
 		botPlaytext.scrollFactor.set();
 		
 		if(FlxG.save.data.botplay) 
-			add(botPlaytext);
+			//add(botPlaytext);
 
 		iconP1 = new HealthIcon(SONG.player1, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
@@ -1385,8 +1385,6 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
-		if (FlxG.save.data.botplay && FlxG.keys.justPressed.ONE)
-			camHUD.visible = !camHUD.visible;
 
 		#if !debug
 		perfectMode = false;
@@ -1777,8 +1775,7 @@ class PlayState extends MusicBeatState
 
 		if (isStoryMode)
 		{
-			if(!FlxG.save.data.botplay)
-				campaignScore += songScore;
+			campaignScore += songScore;
 
 			storyPlaylist.remove(storyPlaylist[0]);
 
@@ -2084,7 +2081,7 @@ class PlayState extends MusicBeatState
 		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
 
 		// FlxG.watch.addQuick('asdfa', upP);
-		if ((upP || rightP || downP || leftP) && !boyfriend.stunned && generatedMusic || FlxG.save.data.botplay && noteDiff > Conductor.safeZoneOffset * 0.01)
+		if ((upP || rightP || downP || leftP) && !boyfriend.stunned && generatedMusic)
 			{
 				repPresses++;
 				boyfriend.holdTimer = 0;
@@ -2348,7 +2345,7 @@ class PlayState extends MusicBeatState
 						totalNotesHit += 1;
 		
 					if (note.noteData >= 0)
-						health += 0.065;
+						health += 0.045;
 					else
 						health += 0.004;
 

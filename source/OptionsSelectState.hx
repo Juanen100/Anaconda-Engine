@@ -73,7 +73,6 @@ class OptionsSelectState extends MusicBeatState
 		addWeek(['Gameplay'], 1, ['dad']);
 		addWeek(['Apperance'], 1, ['dad']);
 		addWeek(['Misc'], 1, ['dad']);
-		addWeek(['FPS Thing'], 1, ['dad']);
 
 		// LOAD MUSIC
 
@@ -223,12 +222,6 @@ class OptionsSelectState extends MusicBeatState
 							trace("Misc Random lol");
 							FlxG.switchState(new OptionsMisc());
 						}
-				case 'FPS Thing':
-					if(accepted)
-					{
-						trace("Set FPS to S H I T");
-						FlxG.switchState(new OptionsFpsMenu());
-					}
 			}
 			
 			var songFormat = StringTools.replace(songs[curSelected].songName, " ", "-");
