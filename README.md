@@ -21,7 +21,7 @@ This game was made with love to Newgrounds and its community. Extra love to Tom 
 
 ## Previews
 
-[Milf (Hard) on Upscroll](https://raw.githubusercontent.com/Juanen100/JSW-Engine/main/.github/images/2021-08-30%2019-58-40_Trim.gif)
+![2021-08-30 19-58-40_Trim](https://user-images.githubusercontent.com/65170591/131385724-8db235b5-1935-4a4a-b4e9-a219ffb62080.gif)
 
 ## Build instructions
 
