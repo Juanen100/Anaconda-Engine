@@ -38,7 +38,7 @@ class OptionsMenu extends MusicBeatState
 			(FlxG.save.data.dfjk ? 'DFJK' : 'WASD') + 
 			"\n" + (FlxG.save.data.newInput ? "New input" : "Old Input") + 
 			"\n" + (FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll') +
-			"\nSong Position " + (FlxG.save.data.songPosition ? 'On' : 'Off') +
+			//"\nSong Position " + (FlxG.save.data.songPosition ? 'On' : 'Off') +
 			"\n" + ("Customize Gameplay"));
 			trace("Gameplay Settings: " + controlsStrings);
 
@@ -101,12 +101,13 @@ class OptionsMenu extends MusicBeatState
 						ctrl.isMenuItem = true;
 						ctrl.targetY = curSelected - 2;
 						grpControls.add(ctrl);
+					/*
 					case 3:
 						FlxG.save.data.songPosition = !FlxG.save.data.songPosition;
 						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, "Song Position " + (!FlxG.save.data.songPosition ? "off" : "on"), true, false);
 						ctrl.isMenuItem = true;
 						ctrl.targetY = curSelected - 4;
-						grpControls.add(ctrl);
+						grpControls.add(ctrl);*/
 					case 4:
 						FlxG.switchState(new GameplayCustomizeState());
 						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, "Customize Gameplay");

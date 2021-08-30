@@ -706,17 +706,12 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.save.data.songPosition) // I dont wanna talk about this code :(
 		{
-			songPosBG = new FlxSprite(0, strumLine.y - 15).loadGraphic(Paths.image('healthBar'));
+			songPosBG = new FlxSprite(0, 10).loadGraphic(Paths.image('healthBar'));
 			if (FlxG.save.data.downscroll)
 				songPosBG.y = FlxG.height * 0.9 + 45; 
 			songPosBG.screenCenter(X);
 			songPosBG.scrollFactor.set();
 			add(songPosBG);
-	
-			if (curStage.contains("school") && FlxG.save.data.downscroll)
-				songPosBG.y -= 45;
-			if (!curStage.contains("school") && !FlxG.save.data.downscroll)
-				songPosBG.y -= 45;
 			
 			songPosBar = new FlxBar(songPosBG.x + 4, songPosBG.y + 4, LEFT_TO_RIGHT, Std.int(songPosBG.width - 8), Std.int(songPosBG.height - 8), this,
 				'songPositionBar', 0, 90000);
@@ -727,11 +722,10 @@ class PlayState extends MusicBeatState
 			var songName = new FlxText(songPosBG.x + (songPosBG.width / 2) - 20,songPosBG.y,0,SONG.song, 16);
 			if (FlxG.save.data.downscroll)
 				songName.y -= 3;
-			if (!curStage.contains("school"))
-				songName.x -= 15;
 			songName.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 			songName.scrollFactor.set();
 			add(songName);
+			songName.cameras = [camHUD];
 		}
 
 		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
@@ -803,6 +797,11 @@ class PlayState extends MusicBeatState
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
+		if (FlxG.save.data.songPosition)
+		{
+			songPosBG.cameras = [camHUD];
+			songPosBar.cameras = [camHUD];
+		}
 		doof.cameras = [camHUD];
 
 		// if (SONG.song == 'South')
@@ -1496,19 +1495,23 @@ class PlayState extends MusicBeatState
 		#end
 
 		if (startingSong)
-		{
-			if (startedCountdown)
 			{
-				Conductor.songPosition += FlxG.elapsed * 1000;
-				if (Conductor.songPosition >= 0)
-					startSong();
+				if (startedCountdown)
+				{
+					Conductor.songPosition += FlxG.elapsed * 1000;
+					if (Conductor.songPosition >= 0)
+						startSong();
+				}
 			}
-		}
-		else
-		{
-			// Conductor.songPosition = FlxG.sound.music.time;
-			Conductor.songPosition += FlxG.elapsed * 1000;
-
+			else
+			{
+				// Conductor.songPosition = FlxG.sound.music.time;
+				Conductor.songPosition += FlxG.elapsed * 1000;
+				/*@:privateAccess
+				{
+					FlxG.sound.music._channel.
+				}*/
+				songPositionBar = Conductor.songPosition;
 			if (!paused)
 			{
 				songTime += FlxG.game.ticks - previousFrameTime;
@@ -1516,12 +1519,12 @@ class PlayState extends MusicBeatState
 
 				// Interpolation type beat
 				if (Conductor.lastSongPos != Conductor.songPosition)
-				{
-					songTime = (songTime + Conductor.songPosition) / 2;
-					Conductor.lastSongPos = Conductor.songPosition;
-					// Conductor.songPosition += FlxG.elapsed * 1000;
-					// trace('MISSED FRAME');
-				}
+					{
+						songTime = (songTime + Conductor.songPosition) / 2;
+						Conductor.lastSongPos = Conductor.songPosition;
+						// Conductor.songPosition += FlxG.elapsed * 1000;
+						// trace('MISSED FRAME');
+					}
 			}
 
 			// Conductor.lastSongPos = FlxG.sound.music.time;
@@ -1658,13 +1661,13 @@ class PlayState extends MusicBeatState
 		if (unspawnNotes[0] != null)
 		{
 			if (unspawnNotes[0].strumTime - Conductor.songPosition < 1500)
-			{
-				var dunceNote:Note = unspawnNotes[0];
-				notes.add(dunceNote);
-
-				var index:Int = unspawnNotes.indexOf(dunceNote);
-				unspawnNotes.splice(index, 1);
-			}
+				{
+					var dunceNote:Note = unspawnNotes[0];
+					notes.add(dunceNote);
+	
+					var index:Int = unspawnNotes.indexOf(dunceNote);
+					unspawnNotes.splice(index, 1);
+				}
 		}
 
 		if (generatedMusic)
@@ -2472,9 +2475,9 @@ class PlayState extends MusicBeatState
 	{
 		super.stepHit();
 		if (FlxG.sound.music.time > Conductor.songPosition + 20 || FlxG.sound.music.time < Conductor.songPosition - 20)
-		{
-			resyncVocals();
-		}
+			{
+				resyncVocals();
+			}
 
 		if (dad.curCharacter == 'spooky' && curStep % 4 == 2)
 		{
