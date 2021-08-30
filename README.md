@@ -19,6 +19,10 @@ This game was made with love to Newgrounds and its community. Extra love to Tom 
 ## Credits of JSW Engine
 - [Juanen100](https://twitter.com/Juanen1001) - Engine Programmer
 
+## Previews
+
+![2021-08-30 19-58-40_Trim](https://user-images.githubusercontent.com/65170591/131385724-8db235b5-1935-4a4a-b4e9-a219ffb62080.gif)
+
 ## Build instructions
 
 THESE INSTRUCTIONS ARE FOR COMPILING THE GAME'S SOURCE CODE!!!
