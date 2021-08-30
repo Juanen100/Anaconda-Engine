@@ -87,7 +87,7 @@ class OptionsMenu extends MusicBeatState
 						if (FlxG.save.data.dfjk)
 							controls.setKeyboardScheme(KeyboardScheme.Solo, true);
 						else
-							controls.setKeyboardScheme(KeyboardScheme.Duo(false), true);
+							controls.setKeyboardScheme(KeyboardScheme.Duo(true), true);
 						
 					case 1:
 						FlxG.save.data.newInput = !FlxG.save.data.newInput;
