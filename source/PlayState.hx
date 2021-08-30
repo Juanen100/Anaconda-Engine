@@ -773,10 +773,10 @@ class PlayState extends MusicBeatState
 			jswEngine.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 			jswEngine.scrollFactor.set();
 			add(jswEngine);
-		}
 
-		if (FlxG.save.data.downscroll)
-			jswEngine.y = FlxG.height * 0.9 + 45;
+			if (FlxG.save.data.downscroll)
+				jswEngine.y = FlxG.height * 0.9 + 45;	
+		}
 
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 50, 0, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
