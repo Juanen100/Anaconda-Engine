@@ -23,6 +23,9 @@ This game was made with love to Newgrounds and its community. Extra love to Tom 
 
 ![2021-08-30 19-58-40_Trim](https://user-images.githubusercontent.com/65170591/131385724-8db235b5-1935-4a4a-b4e9-a219ffb62080.gif)
 ![Tutorial (Hard) on Upscroll](https://user-images.githubusercontent.com/65170591/131388160-d341189a-734a-4ec5-a167-1dd7553e0f63.gif)
+![MainMenuThingLel](https://raw.githubusercontent.com/Juanen100/JSW-Engine/main/.github/images/MainMenuThingLel.png)
+![JAJASenpaiAngry](https://raw.githubusercontent.com/Juanen100/JSW-Engine/main/.github/images/JAJASenpaiAngry.png)
+![FreeplayWeird](https://raw.githubusercontent.com/Juanen100/JSW-Engine/main/.github/images/FreeplayWeird.png)
 
 ## Build instructions
 
