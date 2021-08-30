@@ -37,7 +37,7 @@ class OptionsMisc extends MusicBeatState
 		controlsStrings = CoolUtil.coolStringFile(
 			(FlxG.save.data.health ? 'Full Health On' : 'Full Health Off')); //+
 			//"\nBot Mode " + (!FlxG.save.data.botplay ? 'Off' : 'On'));
-		trace("Apperance Settings: " + controlsStrings);
+		trace("Misc Settings: " + controlsStrings);
 
 		
 		grpControls = new FlxTypedGroup<Alphabet>();
@@ -64,6 +64,7 @@ class OptionsMisc extends MusicBeatState
 
 		if(controls.BACK)
 			FlxG.switchState(new OptionsSelectState());
+			trace("Misc Settings: " + controlsStrings);
 		if (controls.UP_P)
 			changeSelection(-1);
 		if (controls.DOWN_P)

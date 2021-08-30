@@ -82,6 +82,7 @@ class PlayState extends MusicBeatState
 
 	private var strumLineNotes:FlxTypedGroup<FlxSprite>;
 	private var playerStrums:FlxTypedGroup<FlxSprite>;
+	public static var cpuStrums:FlxTypedGroup<FlxSprite> = null;
 
 	private var camZooming:Bool = false;
 	private var curSong:String = "";
@@ -676,6 +677,7 @@ class PlayState extends MusicBeatState
 		add(strumLineNotes);
 
 		playerStrums = new FlxTypedGroup<FlxSprite>();
+		cpuStrums = new FlxTypedGroup<FlxSprite>();
 
 		// startCountdown();
 
@@ -1309,14 +1311,22 @@ class PlayState extends MusicBeatState
 
 			babyArrow.ID = i;
 
-			if (player == 1)
+			switch (player)
 			{
-				playerStrums.add(babyArrow);
+				case 0:
+					cpuStrums.add(babyArrow);
+				case 1:
+					playerStrums.add(babyArrow);
 			}
 
 			babyArrow.animation.play('static');
 			babyArrow.x += 50;
 			babyArrow.x += ((FlxG.width / 2) * player);
+			
+			cpuStrums.forEach(function(spr:FlxSprite)
+			{					
+				spr.centerOffsets(); //CPU arrows start out slightly off-center
+			});
 
 			strumLineNotes.add(babyArrow);
 		}
@@ -1632,7 +1642,7 @@ class PlayState extends MusicBeatState
 		if (controls.RESET)
 		{
 			health = 0;
-			trace("RESET = True");
+			trace("U Reseted lel");
 		}
 
 		// CHEAT = brandon's a pussy
@@ -1640,7 +1650,7 @@ class PlayState extends MusicBeatState
 		if (controls.CHEAT)
 		{
 			health += 1;
-			trace("User is cheating!");
+			trace(":O UR CHEATING :OOOOOOOOOOO!");
 		}
 		#end
 
@@ -1711,6 +1721,24 @@ class PlayState extends MusicBeatState
 							case 0:
 								dad.playAnim('singLEFT' + altAnim, true);
 						}
+						if (FlxG.save.data.cpuStrums)
+							{
+								cpuStrums.forEach(function(spr:FlxSprite)
+								{
+									if (Math.abs(daNote.noteData) == spr.ID)
+									{
+										spr.animation.play('confirm', true);
+									}
+									if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
+									{
+										spr.centerOffsets();
+										spr.offset.x -= 13;
+										spr.offset.y -= 13;
+									}
+									else
+										spr.centerOffsets();
+								});
+							}
 	
 						dad.holdTimer = 0;
 	
@@ -1756,6 +1784,17 @@ class PlayState extends MusicBeatState
 				});
 			}
 
+		if (FlxG.save.data.cpuStrums)
+			{
+				cpuStrums.forEach(function(spr:FlxSprite)
+				{
+					if (spr.animation.finished)
+					{
+						spr.animation.play('static');
+						spr.centerOffsets();
+					}
+				});
+			}
 
 		if (!inCutscene)
 			keyShit();
