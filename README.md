@@ -14,10 +14,10 @@ IF YOU MAKE A MOD AND DISTRIBUTE A MODIFIED / RECOMPILED VERSION, YOU MUST OPEN 
 - [PhantomArcade3K](https://twitter.com/phantomarcade3k) and [Evilsk8r](https://twitter.com/evilsk8r) - Art
 - [Kawaisprite](https://twitter.com/kawaisprite) - Musician
 
+This game was made with love to Newgrounds and its community. Extra love to Tom Fulp.
+
 ## Credits of JWB Engine
 - [Juanen100](https://twitter.com/Juanen1001) - Engine Programmer
-
-This game was made with love to Newgrounds and its community. Extra love to Tom Fulp.
 
 ## Build instructions
 
