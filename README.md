@@ -1,4 +1,4 @@
-# Friday Night Funkin' JWB Engine
+# Friday Night Funkin' JSW Engine
 
 This is the repository for a mod of Friday Night Funkin, a game originally made for Ludum Dare 47 "Stuck In a Loop".
 
@@ -14,10 +14,10 @@ IF YOU MAKE A MOD AND DISTRIBUTE A MODIFIED / RECOMPILED VERSION, YOU MUST OPEN 
 - [PhantomArcade3K](https://twitter.com/phantomarcade3k) and [Evilsk8r](https://twitter.com/evilsk8r) - Art
 - [Kawaisprite](https://twitter.com/kawaisprite) - Musician
 
-## Credits of JWB Engine
-- [Juanen100](https://twitter.com/Juanen1001) - Engine Programmer
-
 This game was made with love to Newgrounds and its community. Extra love to Tom Fulp.
+
+## Credits of JSW Engine
+- [Juanen100](https://twitter.com/Juanen1001) - Engine Programmer
 
 ## Build instructions
 
