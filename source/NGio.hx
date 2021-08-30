@@ -38,23 +38,24 @@ class NGio
 		trace('INIT NOLOGIN');
 		GAME_VER = "v" + Application.current.meta.get('version');
 
-		NG.create(api);
-
-		new FlxTimer().start(2, function(tmr:FlxTimer)
+		if (api.length != 0)
 		{
-			var call = NG.core.calls.app.getCurrentVersion(GAME_VER).addDataHandler(function(response:Response<GetCurrentVersionResult>)
+			NG.create(api);
+
+			new FlxTimer().start(2, function(tmr:FlxTimer)
 			{
-				if (response.result != null)
+				var call = NG.core.calls.app.getCurrentVersion(GAME_VER).addDataHandler(function(response:Response<GetCurrentVersionResult>)
 				{
 					GAME_VER = response.result.data.currentVersion;
 					GAME_VER_NUMS = GAME_VER.split(" ")[0].trim();
 					trace('CURRENT NG VERSION: ' + GAME_VER);
 					trace('CURRENT NG VERSION: ' + GAME_VER_NUMS);
 					gotOnlineVer = true;
-				}
-		});
-			call.send();
-		});
+				});
+
+				call.send();
+			});
+		}
 	}
 
 	public function new(api:String, encKey:String, ?sessionId:String)
@@ -111,7 +112,6 @@ class NGio
 				var medal = NG.core.medals.get(id);
 				trace('loaded medal id:$id, name:${medal.name}, description:${medal.description}');
 			}
-
 			// Unlocking medals
 			var unlockingMedal = NG.core.medals.get(54352);// medal ids are listed in your NG project viewer
 			if (!unlockingMedal.unlocked)
@@ -171,7 +171,6 @@ class NGio
 			for (score in NG.core.scoreBoards.get(8737).scores)
 			{
 				trace('score loaded user:${score.user.name}, score:${score.formatted_value}');
-
 			}
 		 */
 

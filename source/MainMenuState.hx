@@ -39,8 +39,8 @@ class MainMenuState extends MusicBeatState
 
 	var menuChar:Character;
 
-	var versionlol:String = "0.0.5";
-	var fnfVer:String = "0.2.7.1";
+	public static var versionlol:String = "0.0.4";
+	public var fnfVer:String = "0.2.7.1";
 	var versionShit:FlxText;
 
 	var magenta:FlxSprite;
@@ -125,7 +125,7 @@ class MainMenuState extends MusicBeatState
 
 		if(FlxG.save.data.watermark)
 			{
-				versionShit = new FlxText(5, FlxG.height - 18, 0, fnfVer + " FNF - " + versionlol + " JWS Engine", 12);
+				versionShit = new FlxText(5, FlxG.height - 18, 0, fnfVer + " FNF - " + versionlol + " JSW Engine", 12);
 				versionShit.scrollFactor.set();
 				versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 				add(versionShit);

@@ -286,21 +286,33 @@ class TitleState extends MusicBeatState
 			// FlxG.sound.music.stop();
 
 			new FlxTimer().start(2, function(tmr:FlxTimer)
-			{
-				// Check if version is outdated
-
-				var version:String = "v" + Application.current.meta.get('version');
-
-				if (version.trim() != NGio.GAME_VER_NUMS.trim() && !OutdatedSubState.leftState)
 				{
-					trace("Changed temporaly");
-					FlxG.switchState(new MainMenuState());
-				}
-				else
-				{
-					FlxG.switchState(new MainMenuState());
-				}
-			});
+					// Get current version of Kade Engine
+					
+					var http = new haxe.Http("https://raw.githubusercontent.com/Juanen100/JSW-Engine/main/version.ver");
+					var returnedData:Array<String> = [];
+					
+					http.onData = function (data:String)
+					{
+						returnedData[0] = data.substring(0, data.indexOf(';'));
+						  if (!MainMenuState.versionlol.contains(returnedData[0].trim()) && !OutdatedSubState.leftState)
+						{
+							trace ("ur updated?, no");
+							OutdatedSubState.needVer = returnedData[0];
+							FlxG.switchState(new OutdatedSubState());
+						}
+						else
+						{
+							FlxG.switchState(new MainMenuState());
+						}
+					}
+					http.onError = function (error) {
+					  trace('error: $error');
+					  FlxG.switchState(new MainMenuState()); // fail but we go anyway lel
+					}
+					
+					http.request();
+				});
 			// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
 		}
 
