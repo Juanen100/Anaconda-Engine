@@ -38,7 +38,7 @@ class OutdatedSubState extends MusicBeatState
 			"Your JSW Engine is outdated!\nYou are on "
 			+ MainMenuState.versionlol
 			+ "\nwhile the most recent version is " + needVer + "."
-			+ "\n\nPress Space to view the full changelog and update\nor ESCAPE to ignore this",
+			+ "\n\nPress Space to go to Github\nor ESCAPE to ignore this",
 			32);
 		
 		txt.setFormat("VCR OSD Mono", 32, FlxColor.fromRGB(200, 200, 200), CENTER);
