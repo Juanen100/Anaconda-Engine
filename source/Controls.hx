@@ -489,42 +489,42 @@ class Controls extends FlxActionSet
 
 	public function setKeyboardScheme(scheme:KeyboardScheme, reset = true)
 	{
-		if (reset)
-			removeKeyboard();
 
+		loadKeyBinds();
+		/*if (reset)
+			removeKeyboard();
 		keyboardScheme = scheme;
 		
 		#if (haxe >= "4.0.0")
 		switch (scheme)
 		{
 			case Solo:
-				inline bindKeys(Control.UP, [J, FlxKey.UP]);
-				inline bindKeys(Control.DOWN, [F, FlxKey.DOWN]);
-				inline bindKeys(Control.LEFT, [D, FlxKey.LEFT]);
-				inline bindKeys(Control.RIGHT, [K, FlxKey.RIGHT]);
+				inline bindKeys(Control.UP, [FlxKey.fromString("W"), FlxKey.UP]);
+				inline bindKeys(Control.DOWN, [FlxKey.fromString("S"), FlxKey.DOWN]);
+				inline bindKeys(Control.LEFT, [FlxKey.fromString("A"), FlxKey.LEFT]);
+				inline bindKeys(Control.RIGHT, [FlxKey.fromString("D"), FlxKey.RIGHT]);
 				inline bindKeys(Control.ACCEPT, [Z, SPACE, ENTER]);
 				inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
 				inline bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
-				inline bindKeys(Control.RESET, [R]);
-				inline bindKeys(Control.CHEAT, [A]);
+				inline bindKeys(Control.RESET, [FlxKey.fromString("R")]);
 			case Duo(true):
-				inline bindKeys(Control.UP, [W, FlxKey.UP]);
-				inline bindKeys(Control.DOWN, [S, FlxKey.DOWN]);
-				inline bindKeys(Control.LEFT, [A, FlxKey.LEFT]);
-				inline bindKeys(Control.RIGHT, [D, FlxKey.RIGHT]);
-				inline bindKeys(Control.ACCEPT, [Z, SPACE, ENTER]);
-				inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
-				inline bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
+				inline bindKeys(Control.UP, [W, K]);
+				inline bindKeys(Control.DOWN, [S, J]);
+				inline bindKeys(Control.LEFT, [A, H]);
+				inline bindKeys(Control.RIGHT, [D, L]);
+				inline bindKeys(Control.ACCEPT, [Z]);
+				inline bindKeys(Control.BACK, [X]);
+				inline bindKeys(Control.PAUSE, [ONE]);
 				inline bindKeys(Control.RESET, [R]);
 			case Duo(false):
-				inline bindKeys(Control.UP, [W, FlxKey.UP]);
-				inline bindKeys(Control.DOWN, [S, FlxKey.DOWN]);
-				inline bindKeys(Control.LEFT, [A, FlxKey.LEFT]);
-				inline bindKeys(Control.RIGHT, [D, FlxKey.RIGHT]);
-				inline bindKeys(Control.ACCEPT, [Z, SPACE, ENTER]);
-				inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
-				inline bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
-				inline bindKeys(Control.RESET, [R]);
+				inline bindKeys(Control.UP, [FlxKey.UP]);
+				inline bindKeys(Control.DOWN, [FlxKey.DOWN]);
+				inline bindKeys(Control.LEFT, [FlxKey.LEFT]);
+				inline bindKeys(Control.RIGHT, [FlxKey.RIGHT]);
+				inline bindKeys(Control.ACCEPT, [O]);
+				inline bindKeys(Control.BACK, [P]);
+				inline bindKeys(Control.PAUSE, [ENTER]);
+				inline bindKeys(Control.RESET, [BACKSPACE]);
 			case None: // nothing
 			case Custom: // nothing
 		}
@@ -532,23 +532,23 @@ class Controls extends FlxActionSet
 		switch (scheme)
 		{
 			case Solo:
-				bindKeys(Control.UP, [W, FlxKey.UP]);
-				bindKeys(Control.DOWN, [S, FlxKey.DOWN]);
-				bindKeys(Control.LEFT, [A, FlxKey.LEFT]);
-				bindKeys(Control.RIGHT, [D, FlxKey.RIGHT]);
+				bindKeys(Control.UP, [W, K, FlxKey.UP]);
+				bindKeys(Control.DOWN, [S, J, FlxKey.DOWN]);
+				bindKeys(Control.LEFT, [A, H, FlxKey.LEFT]);
+				bindKeys(Control.RIGHT, [D, L, FlxKey.RIGHT]);
 				bindKeys(Control.ACCEPT, [Z, SPACE, ENTER]);
 				bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
 				bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
 				bindKeys(Control.RESET, [R]);
 			case Duo(true):
-				bindKeys(Control.UP, [FlxKey.UP]);
-				bindKeys(Control.DOWN, [FlxKey.DOWN]);
-				bindKeys(Control.LEFT, [FlxKey.LEFT]);
-				bindKeys(Control.RIGHT, [FlxKey.RIGHT]);
-				bindKeys(Control.ACCEPT, [O]);
-				bindKeys(Control.BACK, [P]);
-				bindKeys(Control.PAUSE, [ENTER]);
-				bindKeys(Control.RESET, [BACKSPACE]);
+				bindKeys(Control.UP, [W, K]);
+				bindKeys(Control.DOWN, [S, J]);
+				bindKeys(Control.LEFT, [A, H]);
+				bindKeys(Control.RIGHT, [D, L]);
+				bindKeys(Control.ACCEPT, [Z]);
+				bindKeys(Control.BACK, [X]);
+				bindKeys(Control.PAUSE, [ONE]);
+				bindKeys(Control.RESET, [R]);
 			case Duo(false):
 				bindKeys(Control.UP, [FlxKey.UP]);
 				bindKeys(Control.DOWN, [FlxKey.DOWN]);
@@ -561,7 +561,24 @@ class Controls extends FlxActionSet
 			case None: // nothing
 			case Custom: // nothing
 		}
-		#end
+		#end*/
+	}
+
+	public function loadKeyBinds()
+	{
+
+		//trace(FlxKey.fromString(FlxG.save.data.upBind));
+
+		removeKeyboard();
+	
+		inline bindKeys(Control.UP, [FlxKey.fromString(FlxG.save.data.upBind), FlxKey.UP]);
+		inline bindKeys(Control.DOWN, [FlxKey.fromString(FlxG.save.data.downBind), FlxKey.DOWN]);
+		inline bindKeys(Control.LEFT, [FlxKey.fromString(FlxG.save.data.leftBind), FlxKey.LEFT]);
+		inline bindKeys(Control.RIGHT, [FlxKey.fromString(FlxG.save.data.rightBind), FlxKey.RIGHT]);
+		inline bindKeys(Control.ACCEPT, [Z, SPACE, ENTER]);
+		inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
+		inline bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
+		inline bindKeys(Control.RESET, [FlxKey.fromString(FlxG.save.data.killBind)]);
 	}
 
 	function removeKeyboard()

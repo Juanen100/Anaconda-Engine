@@ -1651,11 +1651,14 @@ class PlayState extends MusicBeatState
 		}
 		// better streaming of shit
 
-		// RESET = Quick Game Over Screen
-		if (controls.RESET)
+		if(FlxG.save.data.reset)
 		{
-			health = 0;
-			trace("U Reseted lel");
+			// RESET = Quick Game Over Screen
+			if (controls.RESET)
+				{
+					health = 0;
+					trace("U Reseted lol");
+				}
 		}
 
 		// CHEAT = brandon's a pussy
