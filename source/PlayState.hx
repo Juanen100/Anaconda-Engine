@@ -777,8 +777,8 @@ class PlayState extends MusicBeatState
 				jswEngine.y = FlxG.height * 0.9 + 45;	
 		}
 
-		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 50, 0, "", 20);
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		scoreTxt = new FlxText(healthBarBG.x - 105, (FlxG.height * 0.9) + 36, 800, "", 22);
+		scoreTxt.setFormat("assets/fonts/vcr.ttf", 22, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
 
@@ -1234,6 +1234,8 @@ class PlayState extends MusicBeatState
 		{
 			// FlxG.log.add(i);
 			var babyArrow:FlxSprite = new FlxSprite(0, strumLine.y);
+			if(FlxG.save.data.middlescroll && player==0)
+				babyArrow.visible=false;
 
 			switch (curStage)
 			{
@@ -1330,6 +1332,10 @@ class PlayState extends MusicBeatState
 			babyArrow.animation.play('static');
 			babyArrow.x += 50;
 			babyArrow.x += ((FlxG.width / 2) * player);
+		
+
+			if (FlxG.save.data.middlescroll)
+				babyArrow.x -= 275;
 			
 			cpuStrums.forEach(function(spr:FlxSprite)
 			{					
@@ -1707,6 +1713,21 @@ class PlayState extends MusicBeatState
 						daNote.visible = true;
 						daNote.active = true;
 					}
+
+					if (daNote.y > FlxG.height+300 || daNote.y < -300)
+						{
+							daNote.active = false;
+	
+							daNote.visible = false;
+						}
+						else
+						{
+							if((daNote.mustPress || !daNote.mustPress && !FlxG.save.data.middlescroll)){
+								daNote.visible = true;
+							}
+	
+							daNote.active = true;
+						}
 	
 					if (!daNote.mustPress && daNote.wasGoodHit)
 					{
@@ -1791,6 +1812,10 @@ class PlayState extends MusicBeatState
 						daNote.kill();
 						notes.remove(daNote, true);
 						daNote.destroy();
+					}
+
+					if(!daNote.mustPress && FlxG.save.data.middlescroll){
+						daNote.visible=false;
 					}
 				});
 			}
