@@ -2334,7 +2334,7 @@ class PlayState extends MusicBeatState
 				});
 			}
 	
-			if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true) || PlayStateConfig.botPlay))
+			if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true)))
 			{
 				if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
 					boyfriend.playAnim('idle');
@@ -2342,7 +2342,7 @@ class PlayState extends MusicBeatState
 	
 			playerStrums.forEach(function(spr:FlxSprite)
 			{
-				//This makes that looks lime you AREN'T pressing notes when botPlay is activated
+				//This makes that looks like you AREN'T pressing notes when botPlay is activated
 				switch (spr.ID)
 				{
 					case 0:
