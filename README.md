@@ -1,4 +1,4 @@
-![lelogo](https://raw.githubusercontent.com/Juanen100/JSW-Engine/main/.github/images/lelogo.png?token=APRGZHYENLZJXX4DKA3YB5LBFZMQ4)
+![lelogo](https://user-images.githubusercontent.com/65170591/131541948-3d792876-8f49-4430-9892-0e317cb77c93.png)
 
 # Friday Night Funkin' JSW Engine
 
@@ -26,10 +26,10 @@ This game was made with love to Newgrounds and its community. Extra love to Tom 
 ## Previews
 
 ![2021-08-30 19-58-40_Trim](https://user-images.githubusercontent.com/65170591/131385724-8db235b5-1935-4a4a-b4e9-a219ffb62080.gif)
-![Tutorial (Hard) on Upscroll](https://raw.githubusercontent.com/Juanen100/JSW-Engine/main/.github/images/Tutorial%20(Hard)%20on%20Upscroll.gif?token=APRGZH5VSBGEJRYNNNMFP7LBFZMO4)
-![MainMenuThingLel](https://raw.githubusercontent.com/Juanen100/JSW-Engine/main/.github/images/MainMenuThingLel.png?token=APRGZH7ZEN6CIUOPJ4HXJILBFZMT2)
-![JAJASenpaiAngry](https://raw.githubusercontent.com/Juanen100/JSW-Engine/main/.github/images/JAJASenpaiAngry.png?token=APRGZH2VVT2KEGIFQFQOL5LBFZMTC)
-![FreeplayWeird](https://raw.githubusercontent.com/Juanen100/JSW-Engine/main/.github/images/FreeplayWeird.png?token=APRGZH2QJIFHDRU5E66AGJDBFZMRU)
+![Tutorial (Hard) on Upscroll](https://user-images.githubusercontent.com/65170591/131541953-582da4c6-19af-4882-8299-2783a8b79f74.gif)
+![MainMenuThingLel](https://user-images.githubusercontent.com/65170591/131541950-a27f8e4a-6769-424a-a049-001e323e8e9c.png)
+![JAJASenpaiAngry](https://user-images.githubusercontent.com/65170591/131541945-b2515555-e3e6-486b-aaf4-11e8193a8db1.png)
+![FreeplayWeird](https://user-images.githubusercontent.com/65170591/131541934-bdf0df39-a9fa-4662-98df-f984f603ab9d.png)
 
 ## Build instructions
 
