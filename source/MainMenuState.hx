@@ -37,7 +37,7 @@ class MainMenuState extends MusicBeatState
 	var newGaming2:FlxText;
 	public static var firstStart:Bool = true;
 
-	var menuChar:Character;
+	var titleText:FlxSprite;
 
 	public static var versionlol:String = "0.0.5";
 	public var fnfVer:String = "0.2.7.1";
@@ -85,13 +85,17 @@ class MainMenuState extends MusicBeatState
 		add(magenta);
 		// magenta.scrollFactor.set();
 
-		menuChar = new Character(-250, 0, "bf");
-		menuChar.screenCenter(Y);
-		menuChar.scrollFactor.set(0);
-		menuChar.x = 700;
-		menuChar.y += 50;
-		menuChar.playAnim("idle", true, false, 0);
-		add(menuChar);
+		var bf = Paths.getSparrowAtlas('bfMainMenu', 'shared');
+
+		titleText = new FlxSprite(750, 0);
+		titleText.frames = bf;
+		titleText.animation.addByPrefix('idle', "BF idle dance", 24);
+		titleText.animation.addByPrefix('pressa', "BF HEY!!", 24);
+		titleText.antialiasing = true;
+		titleText.animation.play('idle');
+		titleText.updateHitbox();
+		titleText.screenCenter(Y);
+		add(titleText);
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
@@ -189,7 +193,7 @@ class MainMenuState extends MusicBeatState
 				{
 					selectedSomethin = true;
 					FlxG.sound.play(Paths.sound('confirmMenu'));
-					menuChar.playAnim("hey", true);
+					titleText.animation.play("pressa");
 					
 					if (FlxG.save.data.flashing)
 						FlxFlicker.flicker(magenta, 1.1, 0.15, false);
