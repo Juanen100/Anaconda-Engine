@@ -1949,6 +1949,7 @@ class PlayState extends MusicBeatState
 					score = -3000;
 					ss = false;
 					shits++;
+					misses++;
 				}
 				else if (noteDiff < Conductor.safeZoneOffset * -2)
 				{
@@ -1958,6 +1959,7 @@ class PlayState extends MusicBeatState
 					score = -3000;
 					ss = false;
 					shits++;
+					misses++;
 				}
 				else if (noteDiff > Conductor.safeZoneOffset * 0.45)
 				{

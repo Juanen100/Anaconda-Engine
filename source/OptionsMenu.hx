@@ -109,8 +109,8 @@ class OptionsMenu extends MusicBeatState
 						grpControls.add(ctrl);
 					/*
 					case 4:
-						FlxG.save.data.reset = !FlxG.save.data.reset;
-						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (!FlxG.save.data.reset ? 'Reset Button Off' : 'Reset Button On'), true, false);
+						FlxG.save.data.middlescroll = !FlxG.save.data.middlescroll;
+						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (!FlxG.save.data.middlescroll ? 'Middlescroll Off' : 'Middlescroll On'), true, false);
 						ctrl.isMenuItem = true;
 						ctrl.targetY = curSelected - 4;
 						grpControls.add(ctrl);
