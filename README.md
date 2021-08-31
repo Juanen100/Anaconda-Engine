@@ -10,6 +10,8 @@ Support the project on the itch.io page: https://ninja-muffin24.itch.io/funkin
 
 IF YOU MAKE A MOD AND DISTRIBUTE A MODIFIED / RECOMPILED VERSION, YOU MUST OPEN SOURCE YOUR MOD AS WELL
 
+This Engine is highly inspired on Kade Engine
+
 ## Credits / shoutouts
 
 - [ninjamuffin99](https://twitter.com/ninja_muffin99) - Programmer
@@ -24,7 +26,7 @@ This game was made with love to Newgrounds and its community. Extra love to Tom 
 ## Previews
 
 ![2021-08-30 19-58-40_Trim](https://user-images.githubusercontent.com/65170591/131385724-8db235b5-1935-4a4a-b4e9-a219ffb62080.gif)
-![Tutorial (Hard) on Upscroll](https://user-images.githubusercontent.com/65170591/131388160-d341189a-734a-4ec5-a167-1dd7553e0f63.gif)
+![Tutorial (Hard) on Upscroll](https://raw.githubusercontent.com/Juanen100/JSW-Engine/main/.github/images/Tutorial%20(Hard)%20on%20Upscroll.gif)
 ![MainMenuThingLel](https://raw.githubusercontent.com/Juanen100/JSW-Engine/main/.github/images/MainMenuThingLel.png)
 ![JAJASenpaiAngry](https://raw.githubusercontent.com/Juanen100/JSW-Engine/main/.github/images/JAJASenpaiAngry.png)
 ![FreeplayWeird](https://raw.githubusercontent.com/Juanen100/JSW-Engine/main/.github/images/FreeplayWeird.png)
