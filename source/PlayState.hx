@@ -112,7 +112,7 @@ class PlayState extends MusicBeatState
 	private var camHUD:FlxCamera;
 	private var camGame:FlxCamera;
 
-	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
+	var dialogue:Array<String> = ['dad: im a bad guy', 'bf: im epok'];
 
 	var halloweenBG:FlxSprite;
 	var isHalloween:Bool = false;
@@ -139,7 +139,6 @@ class PlayState extends MusicBeatState
 	var talking:Bool = true;
 	var songScore:Int = 0;
 	var scoreTxt:FlxText;
-	var replayTxt:FlxText;
 
 	
 	public static var campaignScore:Int = 0;
@@ -772,7 +771,7 @@ class PlayState extends MusicBeatState
 			jswEngine = new FlxText(4,healthBarBG.y + 50,0,SONG.song + " " + (storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + " - JWS " + MainMenuState.versionlol , 16);
 			jswEngine.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 			jswEngine.scrollFactor.set();
-			add(jswEngine);
+			//add(jswEngine); lol
 
 			if (FlxG.save.data.downscroll)
 				jswEngine.y = FlxG.height * 0.9 + 45;	
@@ -783,19 +782,15 @@ class PlayState extends MusicBeatState
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
 
+		/* Shitty Kade Dev replay
 		replayTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (FlxG.save.data.downscroll ? 100 : -100), 0, "REPLAY", 20);
 		replayTxt.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		replayTxt.scrollFactor.set();
 		if (loadRep)
 			{
-				add(replayTxt);
+				//add(replayTxt);
 			}
-		botPlaytext = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (FlxG.save.data.downscroll ? 100 : -100), 0, "BOT MODE", 20);
-		botPlaytext.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
-		botPlaytext.scrollFactor.set();
-		
-		if(FlxG.save.data.botplay) 
-			//add(botPlaytext);
+		*/
 
 		iconP1 = new HealthIcon(SONG.player1, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
@@ -1439,8 +1434,8 @@ class PlayState extends MusicBeatState
 		}
 
 		super.update(elapsed);
-
-		scoreTxt.text = "Score:" + songScore;
+	
+		scoreTxt.text = "Score:" + songScore + " | Misses:" + misses;
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{

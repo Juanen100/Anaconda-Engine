@@ -1,7 +1,7 @@
 package;
 
 /// Code created by Rozebud for FPS Plus (thanks rozebud)
-// modified by KadeDev for use in Kade Engine/Tricky
+// modified by KadeDev for use in Kade Engine/Tricky (Kade, dont kill me if you watch this)
 
 import flixel.util.FlxAxes;
 import flixel.FlxSubState;
@@ -67,7 +67,7 @@ class KeyBindMenu extends FlxSubState
 
         keyTextDisplay = new FlxText(-10, 0, 1280, "", 72);
 		keyTextDisplay.scrollFactor.set(0, 0);
-		keyTextDisplay.setFormat("VCR OSD Mono", 42, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		keyTextDisplay.setFormat("Funkin-Bold", 42, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		keyTextDisplay.borderSize = 2;
 		keyTextDisplay.borderQuality = 3;
 
