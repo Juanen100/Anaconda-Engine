@@ -25,6 +25,8 @@ class OptionsMisc extends MusicBeatState
 
 	override function create()
 	{
+		TheData.saveLoad();
+
 		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		controlsStrings = CoolUtil.coolTextFile(Paths.txt('controls'));
 		menuBG.color = 0xFFea71fd;
@@ -35,8 +37,7 @@ class OptionsMisc extends MusicBeatState
 		add(menuBG);
 
 		controlsStrings = CoolUtil.coolStringFile(
-			(FlxG.save.data.health ? 'Full Health On' : 'Full Health Off')); //+
-			//"\nBot Mode " + (!FlxG.save.data.botplay ? 'Off' : 'On'));
+			(FlxG.save.data.health ? 'Full Health On' : 'Full Health Off'));
 		trace("Misc Settings: " + controlsStrings);
 
 		
@@ -82,14 +83,6 @@ class OptionsMisc extends MusicBeatState
 						ctrl.isMenuItem = true;
 						ctrl.targetY = curSelected - 1;
 						grpControls.add(ctrl);
-					/*
-					case 1:
-						FlxG.save.data.botplay = !FlxG.save.data.botplay;
-						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, "Bot Mode " + (!FlxG.save.data.botplay ? "off" : "on"), true, false);
-						ctrl.isMenuItem = true;
-						ctrl.targetY = curSelected - 4;
-						grpControls.add(ctrl);
-					*/
 				}
 			}
 		FlxG.save.flush();
