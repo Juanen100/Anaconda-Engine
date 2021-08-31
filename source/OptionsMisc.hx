@@ -37,7 +37,8 @@ class OptionsMisc extends MusicBeatState
 		add(menuBG);
 
 		controlsStrings = CoolUtil.coolStringFile(
-			(FlxG.save.data.health ? 'Full Health On' : 'Full Health Off'));
+			(FlxG.save.data.health ? 'Full Health On' : 'Full Health Off') +
+			"\n" + (FlxG.save.data.botplay ? "Botplay On" : "Botplay Off"));
 		trace("Misc Settings: " + controlsStrings);
 
 		
@@ -80,6 +81,12 @@ class OptionsMisc extends MusicBeatState
 					case 0:
 						FlxG.save.data.health = !FlxG.save.data.health;
 						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (!FlxG.save.data.health ? 'Full Health Off' : 'Full Health On'), true, false);
+						ctrl.isMenuItem = true;
+						ctrl.targetY = curSelected - 1;
+						grpControls.add(ctrl);
+					case 1:
+						FlxG.save.data.botplay = !FlxG.save.data.botplay;
+						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (!FlxG.save.data.botplay ? 'Botplay Off' : 'Botplay On'), true, false);
 						ctrl.isMenuItem = true;
 						ctrl.targetY = curSelected - 1;
 						grpControls.add(ctrl);

@@ -72,6 +72,7 @@ class PlayState extends MusicBeatState
 
 	private var notes:FlxTypedGroup<Note>;
 	private var unspawnNotes:Array<Note> = [];
+	private var hittableNotes:Array<Note> = [];
 
 	private var strumLine:FlxSprite;
 	private var curSection:Int = 0;
@@ -111,6 +112,10 @@ class PlayState extends MusicBeatState
 	private var iconP2:HealthIcon;
 	private var camHUD:FlxCamera;
 	private var camGame:FlxCamera;
+
+	public var botplayPressTimes:Array<Float> = [0,0,0,0];
+	public var botplayHoldTimes:Array<Float> = [0,0,0,0];
+	public var botplayHoldMaxTimes:Array<Float> = [0,0,0,0];
 
 	var dialogue:Array<String> = ['dad: im a bad guy', 'bf: im epok'];
 
@@ -782,15 +787,13 @@ class PlayState extends MusicBeatState
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
 
-		/* Shitty Kade Dev replay
-		replayTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (FlxG.save.data.downscroll ? 100 : -100), 0, "REPLAY", 20);
-		replayTxt.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
-		replayTxt.scrollFactor.set();
-		if (loadRep)
+		botPlaytext = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (FlxG.save.data.downscroll ? 100 : -100), 0, "(BOTPLAY)", 20);
+		botPlaytext.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		botPlaytext.scrollFactor.set();
+		if (FlxG.save.data.botplay)
 			{
-				//add(replayTxt);
+				add(botPlaytext);
 			}
-		*/
 
 		iconP1 = new HealthIcon(SONG.player1, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
@@ -1339,7 +1342,7 @@ class PlayState extends MusicBeatState
 			
 			cpuStrums.forEach(function(spr:FlxSprite)
 			{					
-				spr.centerOffsets(); //CPU arrows start out slightly off-center
+				spr.centerOffsets();
 			});
 
 			strumLineNotes.add(babyArrow);
@@ -1855,7 +1858,8 @@ class PlayState extends MusicBeatState
 
 		if (isStoryMode)
 		{
-			campaignScore += songScore;
+			if(!FlxG.save.data.botplay)
+				campaignScore += songScore;
 
 			storyPlaylist.remove(storyPlaylist[0]);
 
@@ -1941,47 +1945,51 @@ class PlayState extends MusicBeatState
 	
 			var daRating:String = "sick";
 	
-			if (noteDiff > Conductor.safeZoneOffset * 2)
-				{
-					daRating = 'shit';
-					totalNotesHit -= 2;
-					noteMiss(0);
-					score = -3000;
-					ss = false;
-					shits++;
-					misses++;
-				}
-				else if (noteDiff < Conductor.safeZoneOffset * -2)
-				{
-					daRating = 'shit';
-					totalNotesHit -= 2;
-					noteMiss(0);
-					score = -3000;
-					ss = false;
-					shits++;
-					misses++;
-				}
-				else if (noteDiff > Conductor.safeZoneOffset * 0.45)
-				{
-					daRating = 'bad';
-					score = -1000;
-					totalNotesHit += 0.2;
-					ss = false;
-					bads++;
-				}
-				else if (noteDiff > Conductor.safeZoneOffset * 0.25)
-				{
-					daRating = 'good';
-					totalNotesHit += 0.65;
-					score = 200;
-					ss = false;
-					goods++;
-				}
-			if (daRating == 'sick')
+			if(!FlxG.save.data.botplay)
 			{
-				totalNotesHit += 1;
-				sicks++;
+				if (noteDiff > Conductor.safeZoneOffset * 2)
+					{
+						daRating = 'shit';
+						totalNotesHit -= 2;
+						noteMiss(0);
+						score = -3000;
+						ss = false;
+						shits++;
+						misses++;
+					}
+					else if (noteDiff < Conductor.safeZoneOffset * -2)
+					{
+						daRating = 'shit';
+						totalNotesHit -= 2;
+						noteMiss(0);
+						score = -3000;
+						ss = false;
+						shits++;
+						misses++;
+					}
+					else if (noteDiff > Conductor.safeZoneOffset * 0.45)
+					{
+						daRating = 'bad';
+						score = -1000;
+						totalNotesHit += 0.2;
+						ss = false;
+						bads++;
+					}
+					else if (noteDiff > Conductor.safeZoneOffset * 0.25)
+					{
+						daRating = 'good';
+						totalNotesHit += 0.65;
+						score = 200;
+						ss = false;
+						goods++;
+					}
+				if (daRating == 'sick')
+				{
+					totalNotesHit += 1;
+					sicks++;
+				}
 			}
+			
 		
 	
 			if (daRating != 'shit' || daRating != 'bad')
@@ -2144,6 +2152,39 @@ class PlayState extends MusicBeatState
 		var downR = controls.DOWN_R;
 		var leftR = controls.LEFT_R;
 
+		var holdArray:Array<Bool> = [left,down,up,right];
+		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
+
+		if(FlxG.save.data.botplay){
+			holdArray=[false,false,false,false];
+			controlArray=[false,false,false,false];
+		}
+
+		if(FlxG.save.data.botplay){
+			for(note in hittableNotes){
+				if(note.mustPress && note.canBeHit && note.strumTime<=Conductor.songPosition){
+					if(note.sustainLength>0 && botplayHoldMaxTimes[note.noteData]<note.sustainLength){
+						controlArray[note.noteData]=true;
+						botplayHoldTimes[note.noteData] = (note.sustainLength/1000)+.2;
+					}else if(note.isSustainNote && botplayHoldMaxTimes[note.noteData]==0){
+						holdArray[note.noteData] = true;
+					}
+					if(!note.isSustainNote){
+						controlArray[note.noteData]=true;
+						if(botplayHoldTimes[note.noteData]<=.2){
+							botplayHoldTimes[note.noteData] = .2;
+						}
+					}
+				}
+			}
+			for(idx in 0...botplayHoldTimes.length){
+				if(botplayHoldTimes[idx]>0){
+					holdArray[idx]=true;
+					botplayHoldTimes[idx]-=FlxG.elapsed;
+				}
+			}
+		}
+
 		if (loadRep) // replay code
 		{
 			// disable input
@@ -2164,9 +2205,8 @@ class PlayState extends MusicBeatState
 		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
 
 		// FlxG.watch.addQuick('asdfa', upP);
-		if ((upP || rightP || downP || leftP) && !boyfriend.stunned && generatedMusic)
+		if ((upP || rightP || downP || leftP) && !boyfriend.stunned && generatedMusic || FlxG.save.data.botplay && noteDiff > Conductor.safeZoneOffset * 0.01)
 			{
-				repPresses++;
 				boyfriend.holdTimer = 0;
 	
 				var possibleNotes:Array<Note> = [];
@@ -2200,7 +2240,7 @@ class PlayState extends MusicBeatState
 						{
 							for (coolNote in possibleNotes)
 							{
-								if (controlArray[coolNote.noteData] || FlxG.save.data.botMode && noteDiff > Conductor.safeZoneOffset * 0.01)
+								if (controlArray[coolNote.noteData] || FlxG.save.data.botplay && noteDiff > Conductor.safeZoneOffset * 0.01)
 									goodNoteHit(coolNote);
 								else
 								{
@@ -2304,7 +2344,7 @@ class PlayState extends MusicBeatState
 	
 			if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && !up && !down && !right && !left)
 			{
-				if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
+				if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss') || FlxG.save.data.botplay)
 				{
 					boyfriend.playAnim('idle');
 				}
@@ -2317,22 +2357,22 @@ class PlayState extends MusicBeatState
 					case 0:
 						if (leftP && spr.animation.curAnim.name != 'confirm')
 							spr.animation.play('pressed');
-						if (leftR || FlxG.save.data.botMode)
+						if (leftR || FlxG.save.data.botplay)
 							spr.animation.play('static');
 					case 1:
 						if (downP && spr.animation.curAnim.name != 'confirm')
 							spr.animation.play('pressed');
-						if (downR || FlxG.save.data.botMode)
+						if (downR || FlxG.save.data.botplay)
 							spr.animation.play('static');
 					case 2:
 						if (upP && spr.animation.curAnim.name != 'confirm')
 							spr.animation.play('pressed');
-						if (upR || FlxG.save.data.botMode)
+						if (upR || FlxG.save.data.botplay)
 							spr.animation.play('static');
 					case 3:
 						if (rightP && spr.animation.curAnim.name != 'confirm')
 							spr.animation.play('pressed');
-						if (rightR || FlxG.save.data.botMode)
+						if (rightR || FlxG.save.data.botplay)
 							spr.animation.play('static');
 				}
 				
@@ -2382,7 +2422,7 @@ class PlayState extends MusicBeatState
 
 	function badNoteCheck()
 		{
-			if(!FlxG.save.data.botMode)
+			if(!FlxG.save.data.botplay)
 			{
 				// just double pasting this shit cuz fuk u
 				//REDO THIS SYSTEM
@@ -2405,7 +2445,7 @@ class PlayState extends MusicBeatState
 
 	function noteCheck(keyP:Bool, note:Note):Void // sorry lol
 		{
-			if (keyP || FlxG.save.data.botMode && noteDiff > Conductor.safeZoneOffset * 0.01)
+			if (keyP || FlxG.save.data.botplay && noteDiff > Conductor.safeZoneOffset * 0.01)
 			{
 				goodNoteHit(note);
 			}
