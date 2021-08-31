@@ -72,6 +72,16 @@ At the moment, you can optionally fix the transition bug in songs with zoomed-ou
 
 Because, I added directly the APISTuff.hx on the Github repository, this section is basically useless lol
 
+## New Stuff
+
+- BotPlay (WIP, the idle doesn't work)
+- Full Health Option if you are bad
+- KeyBinds
+- Health Bar Color by Character (Example: Pico = green)
+- Better Icons (Winning Icons and Lose Icons to characters doens't have one)
+- Light CPU Strums (imitate the Player notes)
+- New Input and Old Input
+
 ### Compiling game
 
 Once you have all those installed, it's pretty easy to compile the game. You just need to run 'lime test html5 -debug' in the root of the project to build and run the HTML5 version. (command prompt navigation guide can be found here: [https://ninjamuffin99.newgrounds.com/news/post/1090480](https://ninjamuffin99.newgrounds.com/news/post/1090480))
