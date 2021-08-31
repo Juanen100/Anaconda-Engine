@@ -1663,7 +1663,7 @@ class PlayState extends MusicBeatState
 		if (controls.CHEAT)
 		{
 			health += 1;
-			trace(":O UR CHEATING :OOOOOOOOOOO!");
+			trace("Yeah u are in debug");
 		}
 		#end
 
