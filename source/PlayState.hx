@@ -2156,6 +2156,20 @@ class PlayState extends MusicBeatState
 		var downR = controls.DOWN_R;
 		var leftR = controls.LEFT_R;
 
+		var holdArray:Array<Bool> = [controls.LEFT, controls.DOWN, controls.UP, controls.RIGHT];
+				var pressArray:Array<Bool> = [
+					controls.LEFT_P,
+					controls.DOWN_P,
+					controls.UP_P,
+					controls.RIGHT_P
+				];
+				var releaseArray:Array<Bool> = [
+					controls.LEFT_R,
+					controls.DOWN_R,
+					controls.UP_R,
+					controls.RIGHT_R
+				];
+
 		if (loadRep) // replay code
 		{
 			// disable input
@@ -2174,6 +2188,13 @@ class PlayState extends MusicBeatState
 			//timeCurrentlyR = Math.abs(rep.replay.keyReleases[repReleases].time - Conductor.songPosition);
 		}
 		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
+
+		if(FlxG.save.data.botplay)
+			{
+				holdArray = [false, false, false, false];
+				pressArray = [false, false, false, false];
+				releaseArray = [false, false, false, false];
+			} 
 
 		// FlxG.watch.addQuick('asdfa', upP);
 		if ((upP || rightP || downP || leftP) && !boyfriend.stunned && generatedMusic || PlayStateConfig.botPlay && noteDiff > Conductor.safeZoneOffset * 0.01)
@@ -2313,14 +2334,15 @@ class PlayState extends MusicBeatState
 				});
 			}
 	
-			if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && !up && !down && !right && !left)
-				{
-					if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
-						boyfriend.playAnim('idle');
-				}
+			if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true) || PlayStateConfig.botPlay))
+			{
+				if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
+					boyfriend.playAnim('idle');
+			}
 	
 			playerStrums.forEach(function(spr:FlxSprite)
 			{
+				//This makes that looks lime you AREN'T pressing notes when botPlay is activated
 				switch (spr.ID)
 				{
 					case 0:
@@ -2414,6 +2436,7 @@ class PlayState extends MusicBeatState
 
 	function noteCheck(keyP:Bool, note:Note):Void // sorry lol
 		{
+			//This forces to botplay, to be a good note
 			if (keyP || PlayStateConfig.botPlay && noteDiff > Conductor.safeZoneOffset * 0.01)
 			{
 				goodNoteHit(note);

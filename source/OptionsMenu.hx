@@ -115,7 +115,7 @@ class OptionsMenu extends MusicBeatState
 						ctrl.targetY = curSelected - 4;
 						grpControls.add(ctrl);
 					*/
-					case 5:
+					case 4:
 						FlxG.switchState(new GameplayCustomizeState());
 						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, "Customize Gameplay");
 						ctrl.isMenuItem = true;
