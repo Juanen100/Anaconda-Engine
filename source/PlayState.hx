@@ -177,6 +177,8 @@ class PlayState extends MusicBeatState
 		shits = 0;
 		goods = 0;
 
+		misses = 0;
+
 		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = new FlxCamera();
 		camHUD = new FlxCamera();
@@ -195,6 +197,8 @@ class PlayState extends MusicBeatState
 
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
+
+		PlayStateConfig.botPlay = FlxG.save.data.botplay;
 
 		switch (SONG.song.toLowerCase())
 		{
@@ -790,7 +794,7 @@ class PlayState extends MusicBeatState
 		botPlaytext = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (FlxG.save.data.downscroll ? 100 : -100), 0, "(BOTPLAY)", 20);
 		botPlaytext.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		botPlaytext.scrollFactor.set();
-		if (FlxG.save.data.botplay)
+		if (PlayStateConfig.botPlay)
 			{
 				add(botPlaytext);
 			}
@@ -1858,7 +1862,7 @@ class PlayState extends MusicBeatState
 
 		if (isStoryMode)
 		{
-			if(!FlxG.save.data.botplay)
+			if(!PlayStateConfig.botPlay)
 				campaignScore += songScore;
 
 			storyPlaylist.remove(storyPlaylist[0]);
@@ -1945,7 +1949,7 @@ class PlayState extends MusicBeatState
 	
 			var daRating:String = "sick";
 	
-			if(!FlxG.save.data.botplay)
+			if(!PlayStateConfig.botPlay)
 			{
 				if (noteDiff > Conductor.safeZoneOffset * 2)
 					{
@@ -2152,39 +2156,6 @@ class PlayState extends MusicBeatState
 		var downR = controls.DOWN_R;
 		var leftR = controls.LEFT_R;
 
-		var holdArray:Array<Bool> = [left,down,up,right];
-		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
-
-		if(FlxG.save.data.botplay){
-			holdArray=[false,false,false,false];
-			controlArray=[false,false,false,false];
-		}
-
-		if(FlxG.save.data.botplay){
-			for(note in hittableNotes){
-				if(note.mustPress && note.canBeHit && note.strumTime<=Conductor.songPosition){
-					if(note.sustainLength>0 && botplayHoldMaxTimes[note.noteData]<note.sustainLength){
-						controlArray[note.noteData]=true;
-						botplayHoldTimes[note.noteData] = (note.sustainLength/1000)+.2;
-					}else if(note.isSustainNote && botplayHoldMaxTimes[note.noteData]==0){
-						holdArray[note.noteData] = true;
-					}
-					if(!note.isSustainNote){
-						controlArray[note.noteData]=true;
-						if(botplayHoldTimes[note.noteData]<=.2){
-							botplayHoldTimes[note.noteData] = .2;
-						}
-					}
-				}
-			}
-			for(idx in 0...botplayHoldTimes.length){
-				if(botplayHoldTimes[idx]>0){
-					holdArray[idx]=true;
-					botplayHoldTimes[idx]-=FlxG.elapsed;
-				}
-			}
-		}
-
 		if (loadRep) // replay code
 		{
 			// disable input
@@ -2205,7 +2176,7 @@ class PlayState extends MusicBeatState
 		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
 
 		// FlxG.watch.addQuick('asdfa', upP);
-		if ((upP || rightP || downP || leftP) && !boyfriend.stunned && generatedMusic || FlxG.save.data.botplay && noteDiff > Conductor.safeZoneOffset * 0.01)
+		if ((upP || rightP || downP || leftP) && !boyfriend.stunned && generatedMusic || PlayStateConfig.botPlay && noteDiff > Conductor.safeZoneOffset * 0.01)
 			{
 				boyfriend.holdTimer = 0;
 	
@@ -2240,7 +2211,7 @@ class PlayState extends MusicBeatState
 						{
 							for (coolNote in possibleNotes)
 							{
-								if (controlArray[coolNote.noteData] || FlxG.save.data.botplay && noteDiff > Conductor.safeZoneOffset * 0.01)
+								if (controlArray[coolNote.noteData] || PlayStateConfig.botPlay && noteDiff > Conductor.safeZoneOffset * 0.01)
 									goodNoteHit(coolNote);
 								else
 								{
@@ -2343,12 +2314,10 @@ class PlayState extends MusicBeatState
 			}
 	
 			if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && !up && !down && !right && !left)
-			{
-				if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss') || FlxG.save.data.botplay)
 				{
-					boyfriend.playAnim('idle');
+					if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
+						boyfriend.playAnim('idle');
 				}
-			}
 	
 			playerStrums.forEach(function(spr:FlxSprite)
 			{
@@ -2357,22 +2326,22 @@ class PlayState extends MusicBeatState
 					case 0:
 						if (leftP && spr.animation.curAnim.name != 'confirm')
 							spr.animation.play('pressed');
-						if (leftR || FlxG.save.data.botplay)
+						if (leftR || PlayStateConfig.botPlay)
 							spr.animation.play('static');
 					case 1:
 						if (downP && spr.animation.curAnim.name != 'confirm')
 							spr.animation.play('pressed');
-						if (downR || FlxG.save.data.botplay)
+						if (downR || PlayStateConfig.botPlay)
 							spr.animation.play('static');
 					case 2:
 						if (upP && spr.animation.curAnim.name != 'confirm')
 							spr.animation.play('pressed');
-						if (upR || FlxG.save.data.botplay)
+						if (upR || PlayStateConfig.botPlay)
 							spr.animation.play('static');
 					case 3:
 						if (rightP && spr.animation.curAnim.name != 'confirm')
 							spr.animation.play('pressed');
-						if (rightR || FlxG.save.data.botplay)
+						if (rightR || PlayStateConfig.botPlay)
 							spr.animation.play('static');
 				}
 				
@@ -2422,7 +2391,7 @@ class PlayState extends MusicBeatState
 
 	function badNoteCheck()
 		{
-			if(!FlxG.save.data.botplay)
+			if(!PlayStateConfig.botPlay)
 			{
 				// just double pasting this shit cuz fuk u
 				//REDO THIS SYSTEM
@@ -2445,7 +2414,7 @@ class PlayState extends MusicBeatState
 
 	function noteCheck(keyP:Bool, note:Note):Void // sorry lol
 		{
-			if (keyP || FlxG.save.data.botplay && noteDiff > Conductor.safeZoneOffset * 0.01)
+			if (keyP || PlayStateConfig.botPlay && noteDiff > Conductor.safeZoneOffset * 0.01)
 			{
 				goodNoteHit(note);
 			}
