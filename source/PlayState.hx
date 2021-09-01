@@ -1420,6 +1420,9 @@ class PlayState extends MusicBeatState
 		perfectMode = false;
 		#end
 
+		if (FlxG.save.data.botplay && FlxG.keys.justPressed.ONE)
+			camHUD.visible = !camHUD.visible;
+
 		songPositionBar = Conductor.songPosition;
 
 		if (FlxG.keys.justPressed.NINE)
@@ -1447,8 +1450,16 @@ class PlayState extends MusicBeatState
 		}
 
 		super.update(elapsed);
-	
-		scoreTxt.text = "Score:" + songScore + " | Misses:" + misses;
+
+		if(FlxG.save.data.botplay)
+		{
+			scoreTxt.text = "Score:" + songScore;
+		}
+		else
+		{
+			scoreTxt.text = "Score:" + songScore + " | Misses:" + misses;
+		}
+		
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
@@ -2333,12 +2344,27 @@ class PlayState extends MusicBeatState
 					}
 				});
 			}
+
+			notes.forEachAlive(function(daNote:Note)
+				{
+					if(FlxG.save.data.downscroll && daNote.y > strumLine.y ||
+					!FlxG.save.data.downscroll && daNote.y < strumLine.y)
+					{
+						// Force good note hit regardless if it's too late to hit it or not as a fail safe
+						if(FlxG.save.data.botplay && daNote.canBeHit && daNote.mustPress ||
+						FlxG.save.data.botplay && daNote.tooLate && daNote.mustPress)
+						{
+							goodNoteHit(daNote);
+							boyfriend.holdTimer = daNote.sustainLength;
+						}
+					}
+				});
 	
-			if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true)))
-			{
-				if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
-					boyfriend.playAnim('idle');
-			}
+				if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true) || FlxG.save.data.botplay))
+					{
+						if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
+							boyfriend.playAnim('idle');
+					}
 		
 	
 			playerStrums.forEach(function(spr:FlxSprite)
@@ -2465,41 +2491,18 @@ class PlayState extends MusicBeatState
 					else
 						health += 0.004;
 
-					if (FlxG.save.data.botplay)
-					{
-						if(boyfriend.animation.curAnim.name.startsWith('a') && !boyfriend.animation.curAnim.name.endsWith('miss'))
+					switch (note.noteData)
 						{
-							boyfriend.playAnim('idle');
+							case 2:
+								boyfriend.playAnim('singUP', true);
+							case 3:
+								boyfriend.playAnim('singRIGHT', true);
+							case 1:
+								boyfriend.playAnim('singDOWN', true);
+							case 0:
+								boyfriend.playAnim('singLEFT', true);
 						}
-						else
-						{
-							switch (note.noteData)
-							{
-								case 2:
-									boyfriend.playAnim('singUP', true);
-								case 3:
-									boyfriend.playAnim('singRIGHT', true);
-								case 1:
-									boyfriend.playAnim('singDOWN', true);
-								case 0:
-									boyfriend.playAnim('singLEFT', true);
-							}
-						}
-					}
-					else
-					{
-						switch (note.noteData)
-							{
-								case 2:
-									boyfriend.playAnim('singUP', true);
-								case 3:
-									boyfriend.playAnim('singRIGHT', true);
-								case 1:
-									boyfriend.playAnim('singDOWN', true);
-								case 0:
-									boyfriend.playAnim('singLEFT', true);
-							}
-					}
+				
 		
 					playerStrums.forEach(function(spr:FlxSprite)
 					{
