@@ -83,7 +83,7 @@ class OptionsMenu extends MusicBeatState
 				switch(curSelected)
 				{
 					case 0:
-						openSubState(new KeyBindMenu());
+						FlxG.switchState(new KeyBindMenu());
 						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, "KeyBinds");
 						ctrl.isMenuItem = true;
 						ctrl.targetY = curSelected;

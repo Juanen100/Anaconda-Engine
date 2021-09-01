@@ -2334,7 +2334,7 @@ class PlayState extends MusicBeatState
 				});
 			}
 	
-			if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true)))
+			if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true)) || FlxG.save.data.botplay)
 			{
 				if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
 					boyfriend.playAnim('idle');
@@ -2651,13 +2651,12 @@ class PlayState extends MusicBeatState
 			gf.dance();
 		}
 
-		if(FlxG.save.data.botplay)
-		{
-			if (!boyfriend.animation.curAnim.name.startsWith("sing"))
-				{
-					boyfriend.playAnim('idle');
-				}
-		}
+		
+		if (!boyfriend.animation.curAnim.name.startsWith("sing"))
+			{
+				boyfriend.playAnim('idle');
+			}
+		
 
 		if (curBeat % 8 == 7 && curSong == 'Bopeebo')
 		{
