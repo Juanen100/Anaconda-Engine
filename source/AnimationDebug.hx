@@ -111,6 +111,12 @@ class AnimationDebug extends FlxState
 
 	override function update(elapsed:Float)
 	{
+		if (FlxG.keys.justPressed.ESCAPE)
+			{
+				FlxG.mouse.visible = false;
+				LoadingState.loadAndSwitchState(new PlayState());
+			}
+			
 		textAnim.text = char.animation.curAnim.name;
 
 		if (FlxG.keys.justPressed.E)

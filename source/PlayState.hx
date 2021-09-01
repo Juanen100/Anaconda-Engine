@@ -1924,7 +1924,7 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			trace('WENT BACK TO FREEPLAY??');
+			trace('WENT BACK TO FREEPLAY');
 			FlxG.switchState(new FreeplayState());
 		}
 	}
@@ -2339,6 +2339,7 @@ class PlayState extends MusicBeatState
 				if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
 					boyfriend.playAnim('idle');
 			}
+		
 	
 			playerStrums.forEach(function(spr:FlxSprite)
 			{
@@ -2650,9 +2651,12 @@ class PlayState extends MusicBeatState
 			gf.dance();
 		}
 
-		if (!boyfriend.animation.curAnim.name.startsWith("sing"))
+		if(FlxG.save.data.botplay)
 		{
-			boyfriend.playAnim('idle');
+			if (!boyfriend.animation.curAnim.name.startsWith("sing"))
+				{
+					boyfriend.playAnim('idle');
+				}
 		}
 
 		if (curBeat % 8 == 7 && curSong == 'Bopeebo')
