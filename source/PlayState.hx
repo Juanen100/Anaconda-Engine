@@ -2334,7 +2334,7 @@ class PlayState extends MusicBeatState
 				});
 			}
 	
-			if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true)) || FlxG.save.data.botplay)
+			if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true)))
 			{
 				if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
 					boyfriend.playAnim('idle');
@@ -2465,16 +2465,40 @@ class PlayState extends MusicBeatState
 					else
 						health += 0.004;
 
-					switch (note.noteData)
+					if (FlxG.save.data.botplay)
 					{
-						case 2:
-							boyfriend.playAnim('singUP', true);
-						case 3:
-							boyfriend.playAnim('singRIGHT', true);
-						case 1:
-							boyfriend.playAnim('singDOWN', true);
-						case 0:
-							boyfriend.playAnim('singLEFT', true);
+						if(boyfriend.animation.curAnim.name.startsWith('a') && !boyfriend.animation.curAnim.name.endsWith('miss'))
+						{
+							boyfriend.playAnim('idle');
+						}
+						else
+						{
+							switch (note.noteData)
+							{
+								case 2:
+									boyfriend.playAnim('singUP', true);
+								case 3:
+									boyfriend.playAnim('singRIGHT', true);
+								case 1:
+									boyfriend.playAnim('singDOWN', true);
+								case 0:
+									boyfriend.playAnim('singLEFT', true);
+							}
+						}
+					}
+					else
+					{
+						switch (note.noteData)
+							{
+								case 2:
+									boyfriend.playAnim('singUP', true);
+								case 3:
+									boyfriend.playAnim('singRIGHT', true);
+								case 1:
+									boyfriend.playAnim('singDOWN', true);
+								case 0:
+									boyfriend.playAnim('singLEFT', true);
+							}
 					}
 		
 					playerStrums.forEach(function(spr:FlxSprite)
