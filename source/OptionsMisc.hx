@@ -66,7 +66,7 @@ class OptionsMisc extends MusicBeatState
 
 		if(controls.BACK)
 			FlxG.switchState(new OptionsSelectState());
-			trace("Misc Settings: " + controlsStrings);
+			//trace("Misc Settings: " + controlsStrings);
 		if (controls.UP_P)
 			changeSelection(-1);
 		if (controls.DOWN_P)

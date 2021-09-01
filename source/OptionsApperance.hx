@@ -68,7 +68,7 @@ class OptionsApperance extends MusicBeatState
 
 		if(controls.BACK)
 			FlxG.switchState(new OptionsSelectState());
-			trace("Apperance Settings: " + controlsStrings);
+		//	trace("Apperance Settings: " + controlsStrings);
 		if (controls.UP_P)
 			changeSelection(-1);
 		if (controls.DOWN_P)

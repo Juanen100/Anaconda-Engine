@@ -71,7 +71,6 @@ class OptionsMenu extends MusicBeatState
 
 		if(controls.BACK)
 			FlxG.switchState(new OptionsSelectState());
-			trace("Gameplay Settings: " + controlsStrings);
 		if (controls.UP_P)
 			changeSelection(-1);
 		if (controls.DOWN_P)

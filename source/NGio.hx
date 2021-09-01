@@ -35,7 +35,7 @@ class NGio
 
 	public static function noLogin(api:String)
 	{
-		trace('INIT NOLOGIN');
+		//trace('INIT NOLOGIN');
 		GAME_VER = "v" + Application.current.meta.get('version');
 
 		if (api.length != 0)
