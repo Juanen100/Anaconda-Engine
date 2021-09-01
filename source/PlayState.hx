@@ -1853,10 +1853,12 @@ class PlayState extends MusicBeatState
 		if (!inCutscene)
 			keyShit();
 
+		/*
 		#if debug
 		if (FlxG.keys.justPressed.ONE)
-			endSong();
+			//endSong();
 		#end
+		*/
 	}
 
 	function endSong():Void
@@ -2360,7 +2362,7 @@ class PlayState extends MusicBeatState
 					}
 				});
 	
-				if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true) || FlxG.save.data.botplay))
+				if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true) || PlayStateConfig.botPlay))
 					{
 						if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
 							boyfriend.playAnim('idle');
