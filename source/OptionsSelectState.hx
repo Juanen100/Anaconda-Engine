@@ -61,7 +61,7 @@ class OptionsSelectState extends MusicBeatState
 
 		 #if windows
 		 // Updating Discord Rich Presence
-		 DiscordClient.changePresence("In the Freeplay Menu", null);
+		 DiscordClient.changePresence("Selecting Options", null);
 		 #end
 
 		var isDebug:Bool = false;
@@ -71,7 +71,7 @@ class OptionsSelectState extends MusicBeatState
 		#end
 
 		addWeek(['Gameplay'], 1, ['dad']);
-		addWeek(['Apperance'], 1, ['dad']);
+		addWeek(['Appearance'], 1, ['dad']);
 		addWeek(['Misc'], 1, ['dad']);
 
 		// LOAD MUSIC
@@ -210,7 +210,7 @@ class OptionsSelectState extends MusicBeatState
 							trace("Geimpley");
 							FlxG.switchState(new OptionsMenu());
 						}
-				case 'Apperance':
+				case 'Appearance':
 					if(accepted)
 						{
 							trace("Aperancelol");
