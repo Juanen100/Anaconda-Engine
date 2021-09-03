@@ -35,12 +35,6 @@ class FreeplayState extends MusicBeatState
 	private var iconArray:Array<HealthIcon> = [];
 
 	var bg:FlxSprite;
-	private var intendedColor:Int;
-
-	private static var colorStuff:Array<Dynamic> = [
-		[0xFFFFD94F]
-	];
-
 
 	override function create()
 	{

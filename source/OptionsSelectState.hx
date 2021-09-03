@@ -57,6 +57,7 @@ class OptionsSelectState extends MusicBeatState
 	//	{
 	//		var data:Array<String> = initSonglist[i].split(':');
 	//		songs.push(new SongMetadataa(data[0], Std.parseInt(data[2]), data[1]));
+	//      Im such a loser, this shit isn't necesary XD
 	//	}
 
 		 #if windows

@@ -1460,6 +1460,7 @@ class PlayState extends MusicBeatState
 		if(FlxG.save.data.botplay)
 		{
 			scoreTxt.text = "Score:" + songScore;
+			healthTxt.text = "Health:" + Math.round(health * 50) + "%";
 		}
 		else
 		{
