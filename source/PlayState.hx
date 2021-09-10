@@ -2369,7 +2369,7 @@ class PlayState extends MusicBeatState
 					}
 				});
 	
-				if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true) || PlayStateConfig.botPlay))
+				if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true)))
 					{
 						if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
 							boyfriend.playAnim('idle');
@@ -2524,10 +2524,20 @@ class PlayState extends MusicBeatState
 					note.wasGoodHit = true;
 					vocals.volume = 1;
 		
-					note.kill();
-					notes.remove(note, true);
-					note.destroy();
-					
+					if (!note.isSustainNote)
+					{
+						if(FlxG.save.data.botplay) {
+							boyfriend.holdTimer = 0;
+						}
+						note.kill();
+						notes.remove(note, true);
+						note.destroy();
+					} else if(FlxG.save.data.botplay) {
+						var targetHold:Float = Conductor.stepCrochet * 0.001;
+						if(boyfriend.holdTimer + 0.2 > targetHold) {
+							boyfriend.holdTimer = targetHold - 0.2;
+						}
+					}
 				}
 			}
 		
