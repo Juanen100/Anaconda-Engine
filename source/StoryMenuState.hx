@@ -185,8 +185,10 @@ class StoryMenuState extends MusicBeatState
 
 		txtTracklist = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height + 100, 0, "Tracks", 32);
 		txtTracklist.alignment = CENTER;
-		txtTracklist.font = rankText.font;
+		txtTracklist.setFormat(Paths.font("Funkin.otf"), 32);
 		txtTracklist.color = 0xFFe55777;
+		txtTracklist.scale.x = 1.5;
+		txtTracklist.scale.y = 1.5;
 		add(txtTracklist);
 		// add(rankText);
 		add(scoreText);
