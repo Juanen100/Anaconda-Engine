@@ -21,7 +21,7 @@ This Engine is highly inspired on Kade Engine
 This game was made with love to Newgrounds and its community. Extra love to Tom Fulp.
 
 ## Credits of JSW Engine
-- [Juanen100](https://twitter.com/Juanen1001) - JSW Engine Programmer
+- [Juanen100](https://twitter.com/Juanen1001) - JSW Engine Programmer (and the Logo artist
 
 ## Previews
 
@@ -40,6 +40,8 @@ This game was made with love to Newgrounds and its community. Extra love to Tom 
 - Better Icons (Winning Icons and Lose Icons to characters doens't have one)
 - Light CPU Strums (imitate the Player notes)
 - New Input and Old Input
+- New Freeplay Menu
+- New Pause Menu
 
 ## Build instructions
 
