@@ -780,7 +780,7 @@ class PlayState extends MusicBeatState
 			jswEngine = new FlxText(4,healthBarBG.y + 50,0,SONG.song + " " + (storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + " - JWS " + MainMenuState.versionlol , 16);
 			jswEngine.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 			jswEngine.scrollFactor.set();
-			//add(jswEngine); lol
+			//add(jswEngine); Doesnt work well lol
 
 			if (FlxG.save.data.downscroll)
 				jswEngine.y = FlxG.height * 0.9 + 45;	
@@ -799,11 +799,8 @@ class PlayState extends MusicBeatState
 		botPlaytext = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (FlxG.save.data.downscroll ? 100 : -100), 0, "(BOTPLAY)", 20);
 		botPlaytext.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		botPlaytext.scrollFactor.set();
+		add(botPlaytext);
 		botPlaytext.visible = PlayStateConfig.botPlay;
-		if (PlayStateConfig.botPlay)
-			{
-				add(botPlaytext);
-			}
 
 		iconP1 = new HealthIcon(SONG.player1, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
@@ -1694,7 +1691,7 @@ class PlayState extends MusicBeatState
 		#if debug
 		if (controls.CHEAT)
 		{
-			health += 1;
+			health = 2;
 			trace("Yeah u are in debug");
 		}
 		#end
