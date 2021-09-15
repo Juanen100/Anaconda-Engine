@@ -2671,6 +2671,11 @@ class PlayState extends MusicBeatState
 			{
 				boyfriend.playAnim('idle');
 			}
+
+		if (boyfriend.animation.curAnim.name.startsWith("sing") && PlayStateConfig.botPlay && boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001)
+			{
+				boyfriend.playAnim('idle');
+			}
 		
 
 		if (curBeat % 8 == 7 && curSong == 'Bopeebo')
