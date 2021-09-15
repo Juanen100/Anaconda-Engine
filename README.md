@@ -14,14 +14,14 @@ This Engine is highly inspired on Kade Engine
 
 ## Credits / shoutouts
 
-- [ninjamuffin99](https://twitter.com/ninja_muffin99) - Programmer
-- [PhantomArcade3K](https://twitter.com/phantomarcade3k) and [Evilsk8r](https://twitter.com/evilsk8r) - Art
-- [Kawaisprite](https://twitter.com/kawaisprite) - Musician
+- [ninjamuffin99](https://twitter.com/ninja_muffin99) - Programmer of Friday Night Funkin
+- [PhantomArcade3K](https://twitter.com/phantomarcade3k) and [Evilsk8r](https://twitter.com/evilsk8r) - Artists of Friday Night Funkin
+- [Kawaisprite](https://twitter.com/kawaisprite) - Musician of Friday Night Funkin
 
 This game was made with love to Newgrounds and its community. Extra love to Tom Fulp.
 
 ## Credits of JSW Engine
-- [Juanen100](https://twitter.com/Juanen1001) - Engine Programmer
+- [Juanen100](https://twitter.com/Juanen1001) - JSW Engine Programmer
 
 ## Previews
 
