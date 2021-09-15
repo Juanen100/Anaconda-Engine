@@ -58,9 +58,6 @@ class PlayState extends MusicBeatState
 	public static var songPosBG:FlxSprite;
 	public static var songPosBar:FlxBar;
 
-	public static var rep:Bool = false;
-	public static var loadRep:Bool = false;
-
 	var halloweenLevel:Bool = false;
 	public static var noteDiff:Float;
 
@@ -155,8 +152,6 @@ class PlayState extends MusicBeatState
 	public static var theFunne:Bool = true;
 	var funneEffect:FlxSprite;
 	var inCutscene:Bool = false;
-	public static var repPresses:Int = 0;
-	public static var repReleases:Int = 0;
 
 	public static var timeCurrently:Float = 0;
 	public static var timeCurrentlyR:Float = 0;
@@ -2189,24 +2184,6 @@ class PlayState extends MusicBeatState
 					controls.UP_R,
 					controls.RIGHT_R
 				];
-
-		if (loadRep) // replay code
-		{
-			// disable input
-			up = false;
-			down = false;
-			right = false;
-			left = false;
-
-			// new input
-
-
-			//if (rep.replay.keys[repPresses].time == Conductor.songPosition)
-			//	trace('DO IT!!!!!');
-
-			//timeCurrently = Math.abs(rep.replay.keyPresses[repPresses].time - Conductor.songPosition);
-			//timeCurrentlyR = Math.abs(rep.replay.keyReleases[repReleases].time - Conductor.songPosition);
-		}
 		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
 
 		if(PlayStateConfig.botPlay)
@@ -2269,23 +2246,13 @@ class PlayState extends MusicBeatState
 						}
 						else if (possibleNotes[0].noteData == possibleNotes[1].noteData)
 						{
-							if (loadRep)
-							{
-									noteCheck(controlArray[daNote.noteData], daNote);
-							}
-							else
-								noteCheck(controlArray[daNote.noteData], daNote);
+							noteCheck(controlArray[daNote.noteData], daNote);
 						}
 						else
 						{
 							for (coolNote in possibleNotes)
 							{
-								if (loadRep)
-									{
-											noteCheck(controlArray[daNote.noteData], daNote);
-									}
-								else
-									noteCheck(controlArray[coolNote.noteData], coolNote);
+								noteCheck(controlArray[coolNote.noteData], coolNote);
 							}
 						}
 					}
@@ -2328,7 +2295,7 @@ class PlayState extends MusicBeatState
 				}
 			}
 	
-			if ((up || right || down || left) && generatedMusic || (upHold || downHold || leftHold || rightHold) && loadRep && generatedMusic)
+			if ((up || right || down || left) && generatedMusic || (upHold || downHold || leftHold || rightHold) && generatedMusic)
 			{
 				notes.forEachAlive(function(daNote:Note)
 				{
