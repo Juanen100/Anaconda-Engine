@@ -17,10 +17,11 @@ class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Exit to menu'];
+	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Botplay', 'Exit to menu'];
 	var curSelected:Int = 0;
 
 	var pauseMusic:FlxSound;
+	var botplayText:FlxText;
 
 	public function new(x:Float, y:Float)
 	{
@@ -50,6 +51,14 @@ class PauseSubState extends MusicBeatSubstate
 		levelDifficulty.setFormat(Paths.font('vcr.ttf'), 32);
 		levelDifficulty.updateHitbox();
 		add(levelDifficulty);
+
+		botplayText = new FlxText(20, FlxG.height - 40, 0, "BOTPLAY", 32);
+		botplayText.scrollFactor.set();
+		botplayText.setFormat(Paths.font('vcr.ttf'), 32);
+		botplayText.x = FlxG.width - (botplayText.width + 20);
+		botplayText.updateHitbox();
+		botplayText.visible = FlxG.save.data.botplay;
+		add(botplayText);
 
 		levelDifficulty.alpha = 0;
 		levelInfo.alpha = 0;
@@ -107,6 +116,9 @@ class PauseSubState extends MusicBeatSubstate
 					close();
 				case "Restart Song":
 					FlxG.resetState();
+				case 'Botplay':
+					PlayStateConfig.botPlay = !PlayStateConfig.botPlay;
+					botplayText.visible = PlayStateConfig.botPlay;
 				case "Exit to menu":
 					FlxG.switchState(new MainMenuState());
 			}

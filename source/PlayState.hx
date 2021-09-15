@@ -799,6 +799,7 @@ class PlayState extends MusicBeatState
 		botPlaytext = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (FlxG.save.data.downscroll ? 100 : -100), 0, "(BOTPLAY)", 20);
 		botPlaytext.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		botPlaytext.scrollFactor.set();
+		botPlaytext.visible = PlayStateConfig.botPlay;
 		if (PlayStateConfig.botPlay)
 			{
 				add(botPlaytext);
@@ -1426,7 +1427,7 @@ class PlayState extends MusicBeatState
 		perfectMode = false;
 		#end
 
-		if (FlxG.save.data.botplay && FlxG.keys.justPressed.ONE)
+		if (PlayStateConfig.botPlay && FlxG.keys.justPressed.ONE)
 			camHUD.visible = !camHUD.visible;
 
 		songPositionBar = Conductor.songPosition;
@@ -1457,7 +1458,7 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		if(FlxG.save.data.botplay)
+		if(PlayStateConfig.botPlay)
 		{
 			scoreTxt.text = "Score:" + songScore;
 			healthTxt.text = "Health:" + Math.round(health * 50) + "%";
@@ -1467,6 +1468,8 @@ class PlayState extends MusicBeatState
 			scoreTxt.text = "Score:" + songScore + " | Misses:" + misses;
 			healthTxt.text = "Health:" + Math.round(health * 50) + "%";
 		}
+
+		botPlaytext.visible = PlayStateConfig.botPlay;
 		
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
@@ -2209,7 +2212,7 @@ class PlayState extends MusicBeatState
 		}
 		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
 
-		if(FlxG.save.data.botplay)
+		if(PlayStateConfig.botPlay)
 			{
 				holdArray = [false, false, false, false];
 				pressArray = [false, false, false, false];
@@ -2360,8 +2363,8 @@ class PlayState extends MusicBeatState
 					!FlxG.save.data.downscroll && daNote.y < strumLine.y)
 					{
 						// Force good note hit regardless if it's too late to hit it or not as a fail safe
-						if(FlxG.save.data.botplay && daNote.canBeHit && daNote.mustPress ||
-						FlxG.save.data.botplay && daNote.tooLate && daNote.mustPress)
+						if(PlayStateConfig.botPlay && daNote.canBeHit && daNote.mustPress ||
+						PlayStateConfig.botPlay && daNote.tooLate && daNote.mustPress)
 						{
 							goodNoteHit(daNote);
 							boyfriend.holdTimer = daNote.sustainLength;
@@ -2371,7 +2374,7 @@ class PlayState extends MusicBeatState
 	
 				if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true)))
 					{
-						if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
+						if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss') || PlayStateConfig.botPlay)
 							boyfriend.playAnim('idle');
 					}
 		
@@ -2526,13 +2529,13 @@ class PlayState extends MusicBeatState
 		
 					if (!note.isSustainNote)
 					{
-						if(FlxG.save.data.botplay) {
+						if(PlayStateConfig.botPlay) {
 							boyfriend.holdTimer = 0;
 						}
 						note.kill();
 						notes.remove(note, true);
 						note.destroy();
-					} else if(FlxG.save.data.botplay) {
+					} else if(PlayStateConfig.botPlay) {
 						var targetHold:Float = Conductor.stepCrochet * 0.001;
 						if(boyfriend.holdTimer + 0.2 > targetHold) {
 							boyfriend.holdTimer = targetHold - 0.2;
