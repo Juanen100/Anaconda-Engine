@@ -31,6 +31,16 @@ This game was made with love to Newgrounds and its community. Extra love to Tom 
 ![JAJASenpaiAngry](https://user-images.githubusercontent.com/65170591/131541945-b2515555-e3e6-486b-aaf4-11e8193a8db1.png)
 ![FreeplayWeird](https://user-images.githubusercontent.com/65170591/131541934-bdf0df39-a9fa-4662-98df-f984f603ab9d.png)
 
+## New Stuff
+
+- BotPlay (WIP, the idle doesn't work)
+- Full Health Option if you are bad
+- KeyBinds
+- Health Bar Color by Character (Example: Pico = green)
+- Better Icons (Winning Icons and Lose Icons to characters doens't have one)
+- Light CPU Strums (imitate the Player notes)
+- New Input and Old Input
+
 ## Build instructions
 
 THESE INSTRUCTIONS ARE FOR COMPILING THE GAME'S SOURCE CODE!!!
@@ -70,17 +80,7 @@ At the moment, you can optionally fix the transition bug in songs with zoomed-ou
 
 ### Ignored files
 
-Because, I added directly the APISTuff.hx on the Github repository, this section is basically useless lol
-
-## New Stuff
-
-- BotPlay (WIP, the idle doesn't work)
-- Full Health Option if you are bad
-- KeyBinds
-- Health Bar Color by Character (Example: Pico = green)
-- Better Icons (Winning Icons and Lose Icons to characters doens't have one)
-- Light CPU Strums (imitate the Player notes)
-- New Input and Old Input
+Because, I added directly the APIStuff.hx on the Github repository, this section is basically useless lol
 
 ### Compiling game
 
