@@ -74,6 +74,7 @@ class OptionsSelectState extends MusicBeatState
 		addWeek(['Gameplay'], 1, ['dad']);
 		addWeek(['Appearance'], 1, ['dad']);
 		addWeek(['Misc'], 1, ['dad']);
+		addWeek(['Controls'], 1, ['dad']);
 
 		// LOAD MUSIC
 
@@ -222,6 +223,12 @@ class OptionsSelectState extends MusicBeatState
 						{
 							trace("Misc Random lol");
 							FlxG.switchState(new OptionsMisc());
+						}
+				case 'Controls':
+					if(accepted)
+						{
+							trace("Yeah, the controls");
+							FlxG.switchState(new KeyBindMenu());
 						}
 			}
 			

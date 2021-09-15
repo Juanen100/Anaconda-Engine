@@ -37,7 +37,7 @@ class OptionsMenu extends MusicBeatState
 		add(menuBG);
 
 		controlsStrings = CoolUtil.coolStringFile(
-			("KeyBinds") + 
+			//("KeyBinds") + 
 			"\n" + (FlxG.save.data.newInput ? "New input" : "Old Input") + 
 			"\n" + (FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll') +
 			"\n" + (!FlxG.save.data.cpuStrums ? 'CPU Strums Stay Static' : 'Light CPU Strums'));
@@ -82,25 +82,27 @@ class OptionsMenu extends MusicBeatState
 					grpControls.remove(grpControls.members[curSelected]);
 				switch(curSelected)
 				{
+					/*
 					case 0:
 						FlxG.switchState(new KeyBindMenu());
 						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, "KeyBinds");
 						ctrl.isMenuItem = true;
 						ctrl.targetY = curSelected;
 						grpControls.add(ctrl);
-					case 1:
+						*/
+					case 0:
 						FlxG.save.data.newInput = !FlxG.save.data.newInput;
 						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (FlxG.save.data.newInput ? "New input" : "Old Input"), true, false);
 						ctrl.isMenuItem = true;
 						ctrl.targetY = curSelected - 1;
 						grpControls.add(ctrl);
-					case 2:
+					case 1:
 						FlxG.save.data.downscroll = !FlxG.save.data.downscroll;
 						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll'), true, false);
 						ctrl.isMenuItem = true;
 						ctrl.targetY = curSelected - 2;
 						grpControls.add(ctrl);
-					case 3:
+					case 2:
 						FlxG.save.data.cpuStrums = !FlxG.save.data.cpuStrums;
 						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (!FlxG.save.data.cpuStrums ? 'CPU Strums Stay Static' : 'Light CPU Strums'), true, false);
 						ctrl.isMenuItem = true;

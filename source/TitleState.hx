@@ -206,7 +206,7 @@ class TitleState extends MusicBeatState
 
 		credTextShit.visible = false;
 
-		ngSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('DiscordShittyPhoto'));
+		ngSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('newgrounds_logo'));
 		add(ngSpr);
 		ngSpr.visible = false;
 		ngSpr.setGraphicSize(Std.int(ngSpr.width * 0.8));
@@ -382,9 +382,9 @@ class TitleState extends MusicBeatState
 
 		switch (curBeat)
 		{
-			case 1: 
+			case 0: 
 				deleteCoolText();
-			case 2:
+			case 1:
 				createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
 			// credTextShit.visible = true;
 			case 3:
@@ -397,9 +397,9 @@ class TitleState extends MusicBeatState
 			// credTextShit.text = 'In association \nwith';
 			// credTextShit.screenCenter();
 			case 5:
-				createCoolText(['JSW Engine', 'by']);
+				createCoolText(['In association', 'with']);
 			case 7:
-				addMoreText('This dumbass');
+				addMoreText('Newgrounds');
 				ngSpr.visible = true;
 			// credTextShit.text += '\nNewgrounds';
 			case 8:
