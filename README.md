@@ -58,4 +58,4 @@ https://ninja-muffin24.itch.io/funkin
 
 IF YOU WANT TO COMPILE THE GAME YOURSELF, GO HERE!!!
 
-[Building Stuff](https://github.com/Juanen100/JSW-Engine/tree/main/.github/BUILDING_SHIT)
+[Building Stuff](https://github.com/Juanen100/JSW-Engine/tree/main/.github/BUILDING_SHIT/building.md)
