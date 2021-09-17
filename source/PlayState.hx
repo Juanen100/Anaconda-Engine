@@ -66,6 +66,8 @@ class PlayState extends MusicBeatState
 	private var notes:FlxTypedGroup<Note>;
 	private var unspawnNotes:Array<Note> = [];
 
+	private var SplashNote:NoteSplash;
+
 	private var strumLine:FlxSprite;
 	private var curSection:Int = 0;
 
@@ -115,6 +117,10 @@ class PlayState extends MusicBeatState
 	var limo:FlxSprite;
 	var grpLimoDancers:FlxTypedGroup<BackgroundDancer>;
 	var fastCar:FlxSprite;
+	var grpNoteSplashes:FlxTypedGroup<NoteSplash>;
+	var noteSplashOp:Bool;
+
+	var daNote:Note;
 
 	var upperBoppers:FlxSprite;
 	var bottomBoppers:FlxSprite;
@@ -182,6 +188,11 @@ class PlayState extends MusicBeatState
 
 		if (SONG == null)
 			SONG = Song.loadFromJson('tutorial');
+
+		grpNoteSplashes = new FlxTypedGroup<NoteSplash>();
+		var sploosh = new NoteSplash(100, 100, 0);
+		sploosh.alpha = 0.6;
+		grpNoteSplashes.add(sploosh);
 
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
@@ -666,6 +677,7 @@ class PlayState extends MusicBeatState
 		doof.finishThing = startCountdown;
 
 		Conductor.songPosition = -5000;
+		noteSplashOp = true;
 
 		strumLine = new FlxSprite(0, 50).makeGraphic(FlxG.width, 10);
 		strumLine.scrollFactor.set();
@@ -675,6 +687,11 @@ class PlayState extends MusicBeatState
 		
 		strumLineNotes = new FlxTypedGroup<FlxSprite>();
 		add(strumLineNotes);
+
+		if (FlxG.save.data.splash && !PlayStateConfig.botPlay)	
+		{
+			add(grpNoteSplashes);
+		}
 
 		playerStrums = new FlxTypedGroup<FlxSprite>();
         cpuStrums = new FlxTypedGroup<FlxSprite>();
@@ -768,6 +785,7 @@ class PlayState extends MusicBeatState
 		add(iconP2);
 
 		strumLineNotes.cameras = [camHUD];
+		grpNoteSplashes.cameras = [camHUD];
 		notes.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
 		healthBarBG.cameras = [camHUD];
@@ -1847,7 +1865,6 @@ class PlayState extends MusicBeatState
 			var coolText:FlxText = new FlxText(0, 0, 0, placement, 32);
 			coolText.screenCenter();
 			coolText.x = FlxG.width * 0.55;
-			//
 	
 			var rating:FlxSprite = new FlxSprite();
 			var score:Int = 350;

@@ -42,7 +42,7 @@ class OptionsMenu extends MusicBeatState
 			"\n" + (FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll') +
 			"\n" + (!FlxG.save.data.cpuStrums ? 'CPU Strums Stay Static' : 'Light CPU Strums'));
 			//"\n" + (!FlxG.save.data.reset ? 'Reset Button Off' : 'Reset Button On') +
-			//"\n" + (!FlxG.save.data.middlescroll ? 'Middlescroll Off' : 'Middlescroll On') +
+			//"\n" + (!FlxG.save.data.splash ? 'Note Splash Off' : 'Note Splash On')
 			//"\n" + ("Customize Gameplay"));
 			trace("Gameplay Settings: " + controlsStrings);
 
@@ -109,13 +109,12 @@ class OptionsMenu extends MusicBeatState
 						ctrl.targetY = curSelected - 4;
 						grpControls.add(ctrl);
 					/*
-					case 4:
-						FlxG.save.data.middlescroll = !FlxG.save.data.middlescroll;
-						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (!FlxG.save.data.middlescroll ? 'Middlescroll Off' : 'Middlescroll On'), true, false);
+					case 3:
+						FlxG.save.data.splash = !FlxG.save.data.splash;
+						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (!FlxG.save.data.splash ? 'Note Splash Off' : 'Note Splash On'), true, false);
 						ctrl.isMenuItem = true;
 						ctrl.targetY = curSelected - 4;
 						grpControls.add(ctrl);
-
 					case 4:
 						FlxG.switchState(new GameplayCustomizeState());
 						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, "Customize Gameplay");
