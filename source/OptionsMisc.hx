@@ -39,7 +39,6 @@ class OptionsMisc extends MusicBeatState
 		controlsStrings = CoolUtil.coolStringFile(
 			(FlxG.save.data.health ? 'Full Health On' : 'Full Health Off') +
 			"\n" + (FlxG.save.data.botplay ? "Botplay On" : "Botplay Off"));
-			//"\n" + ("Language"));
 		trace("Misc Settings: " + controlsStrings);
 
 		

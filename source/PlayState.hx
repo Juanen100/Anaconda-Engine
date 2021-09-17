@@ -149,6 +149,10 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
+        if (FlxG.save.data.health)
+			health = 2;
+		else
+			health = 1;
 
 		theFunne = FlxG.save.data.newInput;
 		if (FlxG.sound.music != null)
@@ -158,6 +162,8 @@ class PlayState extends MusicBeatState
 		bads = 0;
 		shits = 0;
 		goods = 0;
+
+        misses = 0;
 
 		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = new FlxCamera();
@@ -659,7 +665,6 @@ class PlayState extends MusicBeatState
 
 		Conductor.songPosition = -5000;
 
-
 		strumLine = new FlxSprite(0, 50).makeGraphic(FlxG.width, 10);
 		strumLine.scrollFactor.set();
 
@@ -700,6 +705,8 @@ class PlayState extends MusicBeatState
 		FlxG.fixedTimestep = false;
 
 		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
+		if (FlxG.save.data.downscroll)
+			healthBarBG.y = 50;
 		healthBarBG.screenCenter(X);
 		healthBarBG.scrollFactor.set();
 		add(healthBarBG);
@@ -734,12 +741,12 @@ class PlayState extends MusicBeatState
 		// healthBar
 		add(healthBar);
 
-		scoreTxt = new FlxText(healthBarBG.x - 105, (FlxG.height * 0.9) + 36, 800, "", 22);
+		scoreTxt = new FlxText(healthBarBG.x - 105, healthBarBG.y + 50, (FlxG.height * 0.9) + 36, "", 22);
 		scoreTxt.setFormat("assets/fonts/vcr.ttf", 22, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
 
-		healthTxt = new FlxText(healthBarBG.x - 105, (FlxG.height * 0.9) + 36, 800, "", 22);
+		healthTxt = new FlxText(healthBarBG.x - 105, healthBarBG.y + 50, (FlxG.height * 0.9) + 36, "", 22);
 		healthTxt.setFormat("assets/fonts/vcr.ttf", 20, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		healthTxt.scrollFactor.set();
 		add(healthTxt);
@@ -1364,7 +1371,16 @@ class PlayState extends MusicBeatState
             else
             {
                 scoreTxt.text = "Score:" + songScore + " | Misses:" + misses;
-                healthTxt.text = "Health:" + Math.round(health * 50) + "%";
+                healthTxt.text = "Health: " + Math.round(health * 50) + "%";
+                if(health <= 0 && FlxG.save.data.practiceMode)
+                {
+                    healthTxt.text = "Health: 0%";
+                }
+
+                if(FlxG.save.data.practiceMode)
+                {
+                    scoreTxt.text = "Score:" + songScore;
+                }
             }
 
         botPlaytext.visible = PlayStateConfig.botPlay;
@@ -1581,7 +1597,7 @@ class PlayState extends MusicBeatState
 			trace("User is cheating!");
 		}
 
-		if (health <= 0)
+		if (health <= 0 && !FlxG.save.data.practiceMode)
 		{
 			boyfriend.stunned = true;
 
@@ -2238,6 +2254,8 @@ class PlayState extends MusicBeatState
 				gf.playAnim('sad');
 			}
 			combo = 0;
+
+            misses++;
 
 			songScore -= 10;
 
