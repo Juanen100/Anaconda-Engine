@@ -187,8 +187,8 @@ class StoryMenuState extends MusicBeatState
 		txtTracklist.alignment = CENTER;
 		txtTracklist.setFormat(Paths.font("Funkin.otf"), 32);
 		txtTracklist.color = 0xFFe55777;
-		txtTracklist.scale.x = 1.5;
-		txtTracklist.scale.y = 1.5;
+		txtTracklist.scale.x = 1;
+		txtTracklist.scale.y = 1;
 		add(txtTracklist);
 		// add(rankText);
 		add(scoreText);
