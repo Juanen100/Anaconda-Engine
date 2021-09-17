@@ -2,7 +2,6 @@ package;
 
 import flixel.util.FlxAxes;
 import flixel.FlxSubState;
-import Options.Option;
 import flixel.input.FlxInput;
 import flixel.input.keyboard.FlxKey;
 import flixel.FlxG;
