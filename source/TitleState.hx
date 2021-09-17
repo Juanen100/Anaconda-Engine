@@ -310,7 +310,7 @@ class TitleState extends MusicBeatState
 					http.onData = function (data:String)
 					{
 						returnedData[0] = data.substring(0, data.indexOf(';'));
-						  if (!MainMenuState.versionlol.contains(returnedData[0].trim()) && !OutdatedSubState.leftState)
+						if (!MainMenuState.versionlol.contains(returnedData[0].trim()) && !OutdatedSubState.leftState)
 						{
 							trace ("ur updated?, no");
 							OutdatedSubState.needVer = returnedData[0];
