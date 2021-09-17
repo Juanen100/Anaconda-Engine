@@ -128,6 +128,7 @@ class PlayState extends MusicBeatState
 	var talking:Bool = true;
 	var songScore:Int = 0;
 	var scoreTxt:FlxText;
+	var healthTxt:FlxText;
 
     var noteDiff:Float;
 	
@@ -706,14 +707,42 @@ class PlayState extends MusicBeatState
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
 			'health', 0, 2);
 		healthBar.scrollFactor.set();
-		healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
+		if(FlxG.save.data.colour)
+			{
+			 switch (SONG.player2)
+			   {
+				 case 'gf':
+				 healthBar.createFilledBar(0xFFFF0000, 0xFF0097C4);
+				 case 'dad' | 'parents-christmas':
+				 healthBar.createFilledBar(0xFF5A07F5, 0xFF0097C4);
+				 case 'mom-car':
+				 healthBar.createFilledBar(0xFFFF4DA6, 0xFF0097C4);
+				 case 'spooky':
+				  healthBar.createFilledBar(0xFFF57E07, 0xFF0097C4);
+				 case 'monster-christmas' | 'monster':
+				  healthBar.createFilledBar(0xFFF5DD07, 0xFF0097C4);
+				 case 'pico':
+				  healthBar.createFilledBar(0xFF52B514, 0xFF0097C4);
+				 case 'senpai' | 'senpai-angry':
+				  healthBar.createFilledBar(0xFFF76D6D, 0xFF0097C4);
+				 case 'spirit':
+				  healthBar.createFilledBar(0xFFAD0505, 0xFF0097C4);
+				}
+			}
+			else
+				healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
 		// healthBar
 		add(healthBar);
 
-		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 50, 0, "", 20);
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		scoreTxt = new FlxText(healthBarBG.x - 105, (FlxG.height * 0.9) + 36, 800, "", 22);
+		scoreTxt.setFormat("assets/fonts/vcr.ttf", 22, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
+
+		healthTxt = new FlxText(healthBarBG.x - 105, (FlxG.height * 0.9) + 36, 800, "", 22);
+		healthTxt.setFormat("assets/fonts/vcr.ttf", 20, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		healthTxt.scrollFactor.set();
+		add(healthTxt);
 
         botPlaytext = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (FlxG.save.data.downscroll ? 100 : -100), 0, "(BOTPLAY)", 20);
 		botPlaytext.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
@@ -736,6 +765,7 @@ class PlayState extends MusicBeatState
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
+		healthTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
 
 		// if (SONG.song == 'South')
@@ -1326,7 +1356,16 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		scoreTxt.text = "Score:" + songScore + " | Misses:" + misses;
+		if(PlayStateConfig.botPlay)
+            {
+                scoreTxt.text = "Score:" + songScore;
+                healthTxt.text = "Health:" + Math.round(health * 50) + "%";
+            }
+            else
+            {
+                scoreTxt.text = "Score:" + songScore + " | Misses:" + misses;
+                healthTxt.text = "Health:" + Math.round(health * 50) + "%";
+            }
 
         botPlaytext.visible = PlayStateConfig.botPlay;
 
@@ -1384,7 +1423,7 @@ class PlayState extends MusicBeatState
                 else
                     iconP2.animation.curAnim.curFrame = 0;
             }
-            else
+        else
             {
                 if (healthBar.percent < 20)
                     iconP1.animation.curAnim.curFrame = 1;
@@ -1396,7 +1435,7 @@ class PlayState extends MusicBeatState
                 else
                     iconP2.animation.curAnim.curFrame = 0;
             }
-            
+
 		/* if (FlxG.keys.justPressed.NINE)
 			FlxG.switchState(new Charting()); */
 
@@ -2276,7 +2315,7 @@ class PlayState extends MusicBeatState
 						totalNotesHit += 1;
 		
 					if (note.noteData >= 0)
-						health += 0.023;
+						health += 0.045;
 					else
 						health += 0.004;
 
