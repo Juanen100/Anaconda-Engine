@@ -4,7 +4,7 @@ import flixel.FlxG;
 
 class TheData 
 {
-    //This is the copy of the copy (The copy of Newb Engine, copied from Kade Engine, kade if u are seeing this dont kill me plz)
+    //Copy-paste of Kade Engine (kade, dont kill me)
     public static function saveLoad() 
     {
         if(FlxG.save.data.dfjk == null)
