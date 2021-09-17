@@ -34,6 +34,7 @@ This game was made with love to Newgrounds and its community. Extra love to Tom 
 ## New Stuff
 
 - BotPlay (WIP, the idle doesn't work)
+- Upscroll and Downscroll
 - Full Health Option if you are bad
 - KeyBinds
 - Health Bar Color by Character (Example: Pico = green)
