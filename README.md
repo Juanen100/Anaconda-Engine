@@ -56,6 +56,6 @@ IF YOU WANT TO JUST DOWNLOAD AND INSTALL AND PLAY THE GAME NORMALLY, GO TO ITCH.
 
 https://ninja-muffin24.itch.io/funkin
 
-IF YOU WANT TO COMPILE THE GAME YOURSELF, GO HERE!!!
+IF YOU WANT TO COMPILE THE GAME YOURSELF, GO TO THE BUILDING DOCUMENTATION!!!
 
 [Building Documentation](https://github.com/Juanen100/JSW-Engine/tree/main/.github/BUILDING_SHIT/building.md)
