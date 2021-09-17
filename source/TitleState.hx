@@ -387,7 +387,7 @@ class TitleState extends MusicBeatState
 
 		switch (curBeat)
 		{
-			case 0: 
+			case 0:
 				deleteCoolText();
 			case 1:
 				createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);

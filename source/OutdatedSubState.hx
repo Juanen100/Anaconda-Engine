@@ -15,7 +15,6 @@ class OutdatedSubState extends MusicBeatState
 	public static var leftState:Bool = false;
 
 	public static var needVer:String = "IDFK LOL";
-	public static var currChanges:String = "dk";
 	
 	private var bgColors:Array<String> = [
 		'#314d7f',
@@ -40,6 +39,13 @@ class OutdatedSubState extends MusicBeatState
 			+ "\nwhile the most recent version is " + needVer + "."
 			+ "\n\nPress Space to go to Github\nor ESCAPE to ignore this",
 			32);
+
+		if (MainMenuState.preRelease != "")
+			txt.text = 
+			"You are on\n"
+			+ MainMenuState.versionlol
+			+ "\nWhich is a BETA BUILD!"
+			+ "\n\nReport all bugs to the author of the pre-release.\nSpace/Escape ignores this.";
 		
 		txt.setFormat("VCR OSD Mono", 32, FlxColor.fromRGB(200, 200, 200), CENTER);
 		txt.borderColor = FlxColor.BLACK;
@@ -61,9 +67,14 @@ class OutdatedSubState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		if (controls.ACCEPT)
+		if (controls.ACCEPT && MainMenuState.preRelease == "")
 		{
 			epicOpenUrl("https://github.com/Juanen100/JWB-Engine");
+		}
+		else if (controls.ACCEPT)
+		{
+			leftState = true;
+			FlxG.switchState(new MainMenuState());
 		}
 		if (controls.BACK)
 		{
