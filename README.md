@@ -11,7 +11,7 @@ Support the project on the itch.io page: https://ninja-muffin24.itch.io/funkin
 IF YOU MAKE A MOD AND DISTRIBUTE A MODIFIED / RECOMPILED VERSION, YOU MUST OPEN SOURCE YOUR MOD AS WELL
                                                                                 -Ninjamuffin99
 
-The JSW Engine is highly inspired on Kade Engine
+The JSW Engine is highly inspired on [Kade Engine](https://github.com/KadeDev/Kade-Engine)
 
 ## Credits / shoutouts
 
