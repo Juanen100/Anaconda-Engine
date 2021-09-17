@@ -49,17 +49,7 @@ class FreeplayState extends MusicBeatState
 	private static var curSelected:Int = 0;
 	private static var curDifficulty:Int = 1;
 
-	public static var weekNumber:Array<Dynamic> = [
-		null,	
-		null,	
-		null,	
-		null,	
-		null,	
-		null,	
-		null,
-		null,
-		null	
-	];
+	public static var weekNumber:Array<Dynamic> = [null, null, null, null, null, null, null, null, null];
 
 	var scoreBG:FlxSprite;
 	var scoreText:FlxText;
