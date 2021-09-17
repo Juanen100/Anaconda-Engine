@@ -38,7 +38,8 @@ class OptionsMisc extends MusicBeatState
 
 		controlsStrings = CoolUtil.coolStringFile(
 			(FlxG.save.data.health ? 'Full Health On' : 'Full Health Off') +
-			"\n" + (FlxG.save.data.botplay ? "Botplay On" : "Botplay Off"));
+			"\n" + (FlxG.save.data.botplay ? "Botplay On" : "Botplay Off")+
+			"\n" + (FlxG.save.data.skip ? "Skip Haxeflixel Intro" : "No Skip Haxeflixel Intro"));
 		trace("Misc Settings: " + controlsStrings);
 
 		
@@ -87,6 +88,12 @@ class OptionsMisc extends MusicBeatState
 					case 1:
 						FlxG.save.data.botplay = !FlxG.save.data.botplay;
 						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (!FlxG.save.data.botplay ? 'Botplay Off' : 'Botplay On'), true, false);
+						ctrl.isMenuItem = true;
+						ctrl.targetY = curSelected - 1;
+						grpControls.add(ctrl);
+					case 2:
+						FlxG.save.data.skip = !FlxG.save.data.skip;
+						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (FlxG.save.data.skip ? "Skip Haxeflixel Intro" : "No Skip Haxeflixel Intro"), true, false);
 						ctrl.isMenuItem = true;
 						ctrl.targetY = curSelected - 1;
 						grpControls.add(ctrl);
