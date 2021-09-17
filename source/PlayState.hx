@@ -1628,8 +1628,6 @@ class PlayState extends MusicBeatState
 
 	function endSong():Void
 	{
-		if (!loadRep)
-			rep.SaveReplay();
 
 		canPause = false;
 		FlxG.sound.music.volume = 0;
@@ -2029,7 +2027,7 @@ class PlayState extends MusicBeatState
 				}
 			}
 	
-			if ((up || right || down || left) && generatedMusic || (upHold || downHold || leftHold || rightHold) && loadRep && generatedMusic)
+			if ((up || right || down || left) && generatedMusic || (upHold || downHold || leftHold || rightHold) && generatedMusic)
 			{
 				notes.forEachAlive(function(daNote:Note)
 				{
