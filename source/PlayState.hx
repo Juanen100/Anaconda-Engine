@@ -154,6 +154,8 @@ class PlayState extends MusicBeatState
 		else
 			health = 1;
 
+		FlxG.save.data.practiceMode = false;
+
 		theFunne = FlxG.save.data.newInput;
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
