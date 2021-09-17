@@ -216,10 +216,12 @@ class FreeplayState extends MusicBeatState
 	private static var vocals:FlxSound = null;
 	override function update(elapsed:Float)
 	{
+		#if release
 		if (FlxG.sound.music.volume < 0.7)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
+		#end
 
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, boundTo(elapsed * 24, 0, 1)));
 		lerpRating = FlxMath.lerp(lerpRating, intendedRating, boundTo(elapsed * 12, 0, 1));
@@ -301,7 +303,9 @@ class FreeplayState extends MusicBeatState
 			}
 			LoadingState.loadAndSwitchState(new PlayState());
 
+			#if release
 			FlxG.sound.music.volume = 0;
+			#end
 					
 			destroyFreeplayVocals();
 		}
