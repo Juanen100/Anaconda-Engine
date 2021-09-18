@@ -129,20 +129,10 @@ class MainMenuState extends MusicBeatState
 
 		// FlxG.camera.follow(camFollow, null, 0.60 * (60 / FlxG.save.data.fpsCap));
 
-		if(FlxG.save.data.watermark)
-			{
-				versionShit = new FlxText(5, FlxG.height - 18, 0, fnfVer + " FNF - " + versionlol + " JSW Engine", 12);
-				versionShit.scrollFactor.set();
-				versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-				add(versionShit);
-			}
-			else
-			{
-				versionShit = new FlxText(5, FlxG.height - 18, 0, fnfVer);
-				versionShit.scrollFactor.set();
-				versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-				add(versionShit);
-			}
+		versionShit = new FlxText(5, FlxG.height - 18, 0, fnfVer + " FNF - " + versionlol + " JSW Engine", 12);
+		versionShit.scrollFactor.set();
+		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(versionShit);
 
 		// NG.core.calls.event.logEvent('swag').send();
 

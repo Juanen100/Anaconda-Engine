@@ -38,7 +38,7 @@ class OptionsApperance extends MusicBeatState
 
 		controlsStrings = CoolUtil.coolStringFile(
 			(FlxG.save.data.colour ? 'Color bar by Character' : 'Color bar classic') +
-			"\n" + (FlxG.save.data.watermark ? "Watermark On" : "Watermark Off") +
+			//"\n" + (FlxG.save.data.watermark ? "Watermark On" : "Watermark Off") +
 			"\n" + (FlxG.save.data.betterIcons ? "Better Icons On" : "Better Icons Off") +
 			"\n" + (FlxG.save.data.flashing ? "Flashing Lights On" : "Flashing Lights Off"));
 		trace("Apperance Settings: " + controlsStrings);
@@ -86,19 +86,21 @@ class OptionsApperance extends MusicBeatState
 						ctrl.isMenuItem = true;
 						ctrl.targetY = curSelected - 1;
 						grpControls.add(ctrl);
+					/*
 					case 1:
 						FlxG.save.data.watermark = !FlxG.save.data.watermark;
 						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (!FlxG.save.data.watermark ? 'Watermark Off' : 'Watermark On'), true, false);
 						ctrl.isMenuItem = true;
 						ctrl.targetY = curSelected - 1;
 						grpControls.add(ctrl);
-					case 2:
+					*/
+					case 1:
 						FlxG.save.data.betterIcons = !FlxG.save.data.betterIcons;
 						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (!FlxG.save.data.betterIcons ? "Better Icons Off" : "Better Icons On"), true, false);
 						ctrl.isMenuItem = true;
 						ctrl.targetY = curSelected - 1;
 						grpControls.add(ctrl);
-					case 3:
+					case 2:
 						FlxG.save.data.flashing = !FlxG.save.data.flashing;
 						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (FlxG.save.data.flashing ? "Flashing Lights On" : "Flashing Lights Off"), true, false);
 						ctrl.isMenuItem = true;

@@ -21,9 +21,6 @@ class TheData
 
         if(FlxG.save.data.colour == null)
             FlxG.save.data.colour = true;
-
-        if(FlxG.save.data.watermark == null)
-            FlxG.save.data.watermark = true;
     
         if(FlxG.save.data.betterIcons == null)
             FlxG.save.data.betterIcons = true;
@@ -45,7 +42,6 @@ class TheData
         FlxG.save.data.downscroll = null;
         FlxG.save.data.cpuStrums = null;
         FlxG.save.data.colour = null;
-        FlxG.save.data.watermark = null;
         FlxG.save.data.betterIcons = null;
         FlxG.save.data.flashing = null;
         FlxG.save.data.health = null;
