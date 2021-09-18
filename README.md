@@ -18,8 +18,6 @@ If you want to build JSW Engine go [here](https://github.com/Juanen100/JSW-Engin
 
 If you want to play the game just download it from [itch.io](https://ninja-muffin24.itch.io/funkin)
 
-If you want to contribute to the JSW Engine go here (no link for now)
-
 ## Credits / shoutouts
 
 - [ninjamuffin99](https://twitter.com/ninja_muffin99) - Programmer of Friday Night Funkin
