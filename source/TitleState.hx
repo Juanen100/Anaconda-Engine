@@ -397,7 +397,7 @@ class TitleState extends MusicBeatState
 				createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
 			// credTextShit.visible = true;
 			case 3:
-				addMoreText('present');
+				addMoreText('ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er', 'present');
 			// credTextShit.text += '\npresent...';
 			// credTextShit.addText();
 			case 4:
