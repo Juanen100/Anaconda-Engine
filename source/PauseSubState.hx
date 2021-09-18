@@ -140,6 +140,7 @@ class PauseSubState extends MusicBeatSubstate
 					practiceText.visible = FlxG.save.data.practiceMode;
 				case "Exit to menu":
 					FlxG.switchState(new MainMenuState());
+					PlayState.deaths = 0;
 			}
 		}
 

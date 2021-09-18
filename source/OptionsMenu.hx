@@ -38,7 +38,7 @@ class OptionsMenu extends MusicBeatState
 
 		controlsStrings = CoolUtil.coolStringFile(
 			//("KeyBinds") + 
-			"\n" + (FlxG.save.data.newInput ? "New input" : "Old Input") + 
+			"\n" + (FlxG.save.data.newInput ? "Kade Engine Input" : "Original Input") + 
 			"\n" + (FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll') +
 			"\n" + (!FlxG.save.data.cpuStrums ? 'CPU Strums Stay Static' : 'Light CPU Strums'));
 			//"\n" + (!FlxG.save.data.reset ? 'Reset Button Off' : 'Reset Button On') +
@@ -92,7 +92,7 @@ class OptionsMenu extends MusicBeatState
 						*/
 					case 0:
 						FlxG.save.data.newInput = !FlxG.save.data.newInput;
-						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (FlxG.save.data.newInput ? "New input" : "Old Input"), true, false);
+						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (FlxG.save.data.newInput ? "Kade Engine Input" : "Original Input"), true, false);
 						ctrl.isMenuItem = true;
 						ctrl.targetY = curSelected - 1;
 						grpControls.add(ctrl);
