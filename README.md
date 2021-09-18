@@ -14,7 +14,9 @@ IF YOU MAKE A MOD AND DISTRIBUTE A MODIFIED / RECOMPILED VERSION, YOU MUST OPEN 
 The JSW Engine is highly inspired on [Kade Engine](https://github.com/KadeDev/Kade-Engine)
 
 If you want to build JSW Engine go [here](https://github.com/Juanen100/JSW-Engine/blob/main/.github/DOCS_SHIT/building.md)
+
 If you want to play the game just download it from [itch.io](https://ninja-muffin24.itch.io/funkin)
+
 If you want to contribute to the Engine go here (no link for now)
 
 ## Credits / shoutouts
@@ -51,5 +53,3 @@ This game was made with love to Newgrounds and its community. Extra love to Tom 
 - New Pause Menu
 
 More stuff on future updates
-
-[Building Documentation](https://github.com/Juanen100/JSW-Engine/blob/main/.github/DOCS_SHIT/building.md)
