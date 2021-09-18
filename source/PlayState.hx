@@ -150,6 +150,8 @@ class PlayState extends MusicBeatState
 	public static var repPresses:Int = 0;
 	public static var repReleases:Int = 0;
 
+	public static var deaths:Int = 0;
+
 	public static var timeCurrently:Float = 0;
 	public static var timeCurrentlyR:Float = 0;
 
@@ -172,6 +174,8 @@ class PlayState extends MusicBeatState
 		goods = 0;
 
         misses = 0;
+
+		deaths = 0;
 
 		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = new FlxCamera();
@@ -1620,6 +1624,8 @@ class PlayState extends MusicBeatState
 		if (health <= 0 && !FlxG.save.data.practiceMode)
 		{
 			boyfriend.stunned = true;
+
+			deaths++;
 
 			persistentUpdate = false;
 			persistentDraw = false;
