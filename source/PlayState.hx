@@ -175,8 +175,6 @@ class PlayState extends MusicBeatState
 
         misses = 0;
 
-		deaths = 0;
-
 		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = new FlxCamera();
 		camHUD = new FlxCamera();
@@ -1779,6 +1777,7 @@ class PlayState extends MusicBeatState
 	function endSong():Void
 	{
 
+		deaths = 0;
 		canPause = false;
 		FlxG.sound.music.volume = 0;
 		vocals.volume = 0;

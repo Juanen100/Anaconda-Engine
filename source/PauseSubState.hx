@@ -69,6 +69,13 @@ class PauseSubState extends MusicBeatSubstate
 		practiceText.visible = FlxG.save.data.practiceMode;
 		add(practiceText);
 
+		var blueballedTxt:FlxText = new FlxText(1000, 15 + 64, 0, "", 32);
+		blueballedTxt.text = "Blue balled: " + PlayState.deaths;
+		blueballedTxt.scrollFactor.set();
+		blueballedTxt.setFormat(Paths.font('vcr.ttf'), 32);
+		blueballedTxt.updateHitbox();
+		add(blueballedTxt);
+
 		levelDifficulty.alpha = 0;
 		levelInfo.alpha = 0;
 
