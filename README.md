@@ -13,6 +13,10 @@ IF YOU MAKE A MOD AND DISTRIBUTE A MODIFIED / RECOMPILED VERSION, YOU MUST OPEN 
 
 The JSW Engine is highly inspired on [Kade Engine](https://github.com/KadeDev/Kade-Engine)
 
+If you want to build JSW Engine go [here](https://github.com/Juanen100/JSW-Engine/blob/main/.github/DOCS_SHIT/building.md)
+If you want to play the game just download it from [itch.io](https://ninja-muffin24.itch.io/funkin)
+If you want to contribute to the Engine go here (no link for now)
+
 ## Credits / shoutouts
 
 - [ninjamuffin99](https://twitter.com/ninja_muffin99) - Programmer of Friday Night Funkin
@@ -48,14 +52,4 @@ This game was made with love to Newgrounds and its community. Extra love to Tom 
 
 More stuff on future updates
 
-## Build instructions
-
-THESE INSTRUCTIONS ARE FOR COMPILING THE GAME'S SOURCE CODE!!!
-
-IF YOU WANT TO JUST DOWNLOAD AND INSTALL AND PLAY THE GAME NORMALLY, GO TO ITCH.IO TO DOWNLOAD THE GAME FOR PC, MAC, AND LINUX!!
-
-https://ninja-muffin24.itch.io/funkin
-
-IF YOU WANT TO COMPILE THE GAME YOURSELF, GO TO THE BUILDING DOCUMENTATION!!!
-
-[Building Documentation](https://github.com/Juanen100/JSW-Engine/tree/main/.github/BUILDING_SHIT/building.md)
+[Building Documentation](https://github.com/Juanen100/JSW-Engine/blob/main/.github/DOCS_SHIT/building.md)
