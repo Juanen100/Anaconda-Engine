@@ -69,7 +69,7 @@ class OutdatedSubState extends MusicBeatState
 	{
 		if (controls.ACCEPT && MainMenuState.preRelease == "")
 		{
-			epicOpenUrl("https://github.com/Juanen100/JWB-Engine");
+			epicOpenUrl("https://github.com/Juanen100/JWB-Engine" + needVer);
 		}
 		else if (controls.ACCEPT)
 		{
