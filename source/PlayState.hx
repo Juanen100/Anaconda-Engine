@@ -770,7 +770,7 @@ class PlayState extends MusicBeatState
 		healthTxt = new FlxText(healthBarBG.x - 105, healthBarBG.y + 50, (FlxG.height * 0.9) + 36, "", 22);
 		healthTxt.setFormat("assets/fonts/vcr.ttf", 20, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		healthTxt.scrollFactor.set();
-		add(healthTxt);
+		//add(healthTxt);
 
         botPlaytext = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (FlxG.save.data.downscroll ? 100 : -100), 0, "(BOTPLAY)", 20);
 		botPlaytext.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
@@ -794,7 +794,7 @@ class PlayState extends MusicBeatState
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
-		healthTxt.cameras = [camHUD];
+		//healthTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
 
 		// if (SONG.song == 'South')
@@ -1387,16 +1387,14 @@ class PlayState extends MusicBeatState
 
 		if(PlayStateConfig.botPlay)
             {
-                scoreTxt.text = "Score:" + songScore;
-                healthTxt.text = "Health:" + Math.round(health * 50) + "%";
+                scoreTxt.text = "Score:" + songScore + " | Health: " + Math.round(health * 50) + "%";
             }
             else
             {
-                scoreTxt.text = "Score:" + songScore + " | Misses:" + misses;
-                healthTxt.text = "Health: " + Math.round(health * 50) + "%";
+                scoreTxt.text = "Score:" + songScore + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "%" + " | Health: " + Math.round(health * 50) + "%";
                 if(health <= 0 && FlxG.save.data.practiceMode)
                 {
-                    healthTxt.text = "Health: 0%";
+					scoreTxt.text = "Score:" + songScore + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "%" + " | Health: 0%";
                 }
 
                 if(FlxG.save.data.practiceMode)

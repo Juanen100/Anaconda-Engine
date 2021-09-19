@@ -49,6 +49,8 @@ class MainMenuState extends MusicBeatState
 	var camFollow:FlxObject;
 	public static var finishedFunnyMove:Bool = false;
 
+	var bg:FlxSprite;
+
 	override function create()
 	{
 		#if windows
@@ -63,7 +65,7 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		var bg:FlxSprite = new FlxSprite(-100).loadGraphic(Paths.image('menuBG'));
+		bg = new FlxSprite(-100).loadGraphic(Paths.image('menuBG'));
 		bg.scrollFactor.x = 0;
 		bg.scrollFactor.y = 0.10;
 		bg.setGraphicSize(Std.int(bg.width * 1.1));
@@ -192,33 +194,30 @@ class MainMenuState extends MusicBeatState
 
 					menuItems.forEach(function(spr:FlxSprite)
 					{
-						if (curSelected != spr.ID)
-						{
-							FlxTween.tween(spr, {alpha: 0}, 1.3, {
-								ease: FlxEase.quadOut,
-								onComplete: function(twn:FlxTween)
-								{
-									spr.kill();
-								}
-							});
-						}
-						else
-						{
-							if (FlxG.save.data.flashing)
+						FlxTween.tween(spr, {x: -600}, 0.6, {
+							ease: FlxEase.backIn,
+							onComplete: function(twn:FlxTween)
 							{
-								FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
-								{
-									goToState();
-								});
+								spr.kill();
 							}
-							else
+						});
+						new FlxTimer().start(0.5, function(tmr:FlxTimer)
+						{
+							var daChoice:String = optionShit[curSelected];
+	
+							switch (daChoice)
 							{
-								new FlxTimer().start(1, function(tmr:FlxTimer)
-								{
-									goToState();
-								});
+								case 'story mode':
+									FlxG.switchState(new StoryMenuState());
+									trace("Story Menu Selected");
+								case 'freeplay':
+									FlxG.switchState(new FreeplayState());
+									trace("Freeplay Menu Selected");
+								case 'options':
+									FlxG.switchState(new OptionsSelectState());
+									trace("You want to change options lel");
 							}
-						}
+						});
 					});
 				}
 			}
@@ -229,25 +228,6 @@ class MainMenuState extends MusicBeatState
 		menuItems.forEach(function(spr:FlxSprite)
 		{
 		});
-	}
-	
-	function goToState()
-	{
-		var daChoice:String = optionShit[curSelected];
-
-		switch (daChoice)
-		{
-			case 'story mode':
-				FlxG.switchState(new StoryMenuState());
-				trace("Story Menu Selected");
-			case 'freeplay':
-				FlxG.switchState(new FreeplayState());
-				trace("Freeplay Menu Selected");
-
-			case 'options':
-				FlxG.switchState(new OptionsSelectState());
-				trace("You want to change options lel");
-		}
 	}
 
 	function changeItem(huh:Int = 0)
