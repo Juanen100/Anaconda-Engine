@@ -32,10 +32,10 @@ This game was made with love to Newgrounds and its community. Extra love to Tom 
 
 ## Previews
 
-![2021-08-30 19-58-40_Trim](https://user-images.githubusercontent.com/65170591/131385724-8db235b5-1935-4a4a-b4e9-a219ffb62080.gif)
-![Tutorial (Hard) on Upscroll](https://user-images.githubusercontent.com/65170591/131541953-582da4c6-19af-4882-8299-2783a8b79f74.gif)
-![MainMenuThingLel](https://user-images.githubusercontent.com/65170591/131541950-a27f8e4a-6769-424a-a049-001e323e8e9c.png)
-![JAJASenpaiAngry](https://user-images.githubusercontent.com/65170591/131541945-b2515555-e3e6-486b-aaf4-11e8193a8db1.png)
+![2021-09-19 15-52-12_Trim](https://user-images.githubusercontent.com/65170591/133930211-0e1d806c-7156-46d3-bf2c-2bd0db7cce39.gif)
+![2021-09-19 16-04-59_Trim](https://user-images.githubusercontent.com/65170591/133930559-88653a59-fece-4f6f-b66e-c07eae17ddbc.gif)
+![image](https://user-images.githubusercontent.com/65170591/133929983-b9aa5789-4b46-4b0e-872d-261b1f6f63e3.png)
+![image](https://user-images.githubusercontent.com/65170591/133929973-169780fe-3f77-4811-9827-7215848f35b2.png)
 ![image](https://user-images.githubusercontent.com/65170591/133929924-893ed4c6-33d8-44ab-b9d5-a67f233896b9.png)
 
 ## New Stuff
