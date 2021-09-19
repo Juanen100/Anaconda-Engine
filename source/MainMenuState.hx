@@ -175,6 +175,9 @@ class MainMenuState extends MusicBeatState
 			if (controls.BACK)
 			{
 				FlxG.switchState(new TitleState());
+
+				FlxTween.tween(FlxG.camera, { zoom: -2}, 0.4, { ease: FlxEase.expoIn});
+				FlxTween.tween(FlxG.camera, { angle: -90}, 0.4, { ease: FlxEase.expoIn});
 			}
 
 			if (controls.ACCEPT)
@@ -215,7 +218,7 @@ class MainMenuState extends MusicBeatState
 									trace("Freeplay Menu Selected");
 								case 'options':
 									FlxG.switchState(new OptionsSelectState());
-									trace("You want to change options lel");
+									trace("Options Selected");
 							}
 						});
 					});
