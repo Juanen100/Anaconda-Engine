@@ -99,6 +99,7 @@ class PlayState extends MusicBeatState
 
 	private var generatedMusic:Bool = false;
 	private var startingSong:Bool = false;
+	public static var changedDifficulty:Bool = false;
 
 	private var iconP1:HealthIcon;
 	private var iconP2:HealthIcon;
@@ -762,8 +763,8 @@ class PlayState extends MusicBeatState
 		// healthBar
 		add(healthBar);
 
-		scoreTxt = new FlxText(healthBarBG.x - 105, healthBarBG.y + 50, (FlxG.height * 0.9) + 36, "", 22);
-		scoreTxt.setFormat("assets/fonts/vcr.ttf", 22, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 20);
+		scoreTxt.setFormat("assets/fonts/vcr.ttf", 16, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
 
@@ -1387,7 +1388,7 @@ class PlayState extends MusicBeatState
 
 		if(PlayStateConfig.botPlay)
             {
-                scoreTxt.text = "Score:" + songScore + " | Health:" + Math.round(health * 50) + "%";
+                scoreTxt.text = "Score:" + songScore + " | Accuracy: ?" + " | Health:" + Math.round(health * 50) + "%";
             }
             else
             {
@@ -1813,6 +1814,7 @@ class PlayState extends MusicBeatState
 
 				FlxG.save.data.weekUnlocked = StoryMenuState.weekUnlocked;
 				FlxG.save.flush();
+				changedDifficulty = false;
 			}
 			else
 			{
@@ -1846,12 +1848,14 @@ class PlayState extends MusicBeatState
 				FlxG.sound.music.stop();
 
 				LoadingState.loadAndSwitchState(new PlayState());
+				changedDifficulty = false;
 			}
 		}
 		else
 		{
 			trace('WENT BACK TO FREEPLAY??');
 			FlxG.switchState(new FreeplayState());
+			changedDifficulty = false;
 		}
 	}
 
@@ -2220,13 +2224,11 @@ class PlayState extends MusicBeatState
 					}
 				});
 	
-			if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && !up && !down && !right && !left)
-			{
-				if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
+			if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && !up && !down && !right && !left || PlayStateConfig.botPlay)
 				{
-					boyfriend.playAnim('idle');
+					if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss') && (boyfriend.animation.curAnim.curFrame >= 10 || boyfriend.animation.curAnim.finished))
+						boyfriend.playAnim('idle');
 				}
-			}
 	
 			playerStrums.forEach(function(spr:FlxSprite)
                 {

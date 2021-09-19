@@ -41,7 +41,7 @@ class MainMenuState extends MusicBeatState
 
 	public static var preRelease:String = "";
 
-	public static var versionlol:String = "0.0.5" + preRelease;
+	public static var versionlol:String = "0.1" + preRelease;
 	public var fnfVer:String = "v0.2.7.1";
 	var versionShit:FlxText;
 
