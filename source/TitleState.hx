@@ -324,6 +324,7 @@ class TitleState extends MusicBeatState
 						}
 						else
 						{
+							trace("Yep, ur updated");
 							FlxG.switchState(new MainMenuState());
 						}
 					}
