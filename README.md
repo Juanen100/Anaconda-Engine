@@ -36,7 +36,7 @@ This game was made with love to Newgrounds and its community. Extra love to Tom 
 ![Tutorial (Hard) on Upscroll](https://user-images.githubusercontent.com/65170591/131541953-582da4c6-19af-4882-8299-2783a8b79f74.gif)
 ![MainMenuThingLel](https://user-images.githubusercontent.com/65170591/131541950-a27f8e4a-6769-424a-a049-001e323e8e9c.png)
 ![JAJASenpaiAngry](https://user-images.githubusercontent.com/65170591/131541945-b2515555-e3e6-486b-aaf4-11e8193a8db1.png)
-![FreeplayWeird](https://user-images.githubusercontent.com/65170591/131541934-bdf0df39-a9fa-4662-98df-f984f603ab9d.png)
+![image](https://user-images.githubusercontent.com/65170591/133929924-893ed4c6-33d8-44ab-b9d5-a67f233896b9.png)
 
 ## New Stuff
 
