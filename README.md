@@ -16,7 +16,7 @@ The JSW Engine is highly inspired on [Kade Engine](https://github.com/KadeDev/Ka
 
 If you want to build JSW Engine go [here](https://github.com/Juanen100/JSW-Engine/blob/main/.github/DOCS_SHIT/building.md)
 
-If you want to play the game just download it from [itch.io](https://ninja-muffin24.itch.io/funkin)
+If you want to play the game just download it from [here](https://github.com/Juanen100/JSW-Engine/releases)
 
 ## Credits / shoutouts
 
