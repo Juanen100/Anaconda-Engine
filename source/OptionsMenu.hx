@@ -1,5 +1,8 @@
 package;
 
+import lime.math.ColorMatrix;
+import openfl.Lib;
+import Options;
 import Controls.Control;
 import flash.text.TextField;
 import flixel.FlxG;
@@ -11,154 +14,216 @@ import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
-import Controls.KeyboardScheme;
 
 class OptionsMenu extends MusicBeatState
 {
-	
 	var selector:FlxText;
 	var curSelected:Int = 0;
 
-	var controlsStrings:Array<String> = [];
+	var options:Array<OptionCatagory> = [
+		new OptionCatagory("Gameplay", [
+			new InputOption(""),
+			new DownscrollOption(""),
+			new CpuStrums("")
+		]),
+		new OptionCatagory("Appareance", [
+			new Colour(""),
+			new BetterIcon(""), 
+			new FlashingLightsOption("")
+		]),
+		new OptionCatagory("Misc", [
+			new Health(""),
+			new BotPlay(""),
+			new Haxeflixel("")
+		]),
+		new OptionCatagory("Controls", [
+			new ControlOption()
+		])
+	];
 
+	private var currentDescription:String = "";
 	private var grpControls:FlxTypedGroup<Alphabet>;
+
+	var currentSelectedCat:OptionCatagory;
 
 	override function create()
 	{
-		TheData.saveLoad();
+		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image("menuDesat"));
 
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
-		controlsStrings = CoolUtil.coolTextFile(Paths.txt('controls'));
-		menuBG.color = 0xFF003804;
+		menuBG.color = 0xFF00D310;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
 		menuBG.screenCenter();
 		menuBG.antialiasing = true;
 		add(menuBG);
 
-		controlsStrings = CoolUtil.coolStringFile(
-			//("KeyBinds") + 
-			"\n" + (FlxG.save.data.newInput ? "Kade Engine Input" : "Original Input") + 
-			"\n" + (FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll') +
-			"\n" + (!FlxG.save.data.cpuStrums ? 'CPU Strums Stay Static' : 'Light CPU Strums'));
-			//"\n" + (!FlxG.save.data.reset ? 'Reset Button Off' : 'Reset Button On') +
-			//"\n" + (!FlxG.save.data.splash ? 'Note Splash Off' : 'Note Splash On')
-			//"\n" + ("Customize Gameplay"));
-			trace("Gameplay Settings: " + controlsStrings);
-
-		
 		grpControls = new FlxTypedGroup<Alphabet>();
 		add(grpControls);
 
-		for (i in 0...controlsStrings.length)
+		for (i in 0...options.length)
 		{
-				var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30, controlsStrings[i], true, false);
-				controlLabel.isMenuItem = true;
-				controlLabel.targetY = i;
-				grpControls.add(controlLabel);
+			var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30, options[i].getName(), true, false);
+			controlLabel.isMenuItem = true;
+			controlLabel.targetY = i;
+			grpControls.add(controlLabel);
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 		}
-		 
 
 		super.create();
-
-		//openSubState(new OptionsSubState()); lol
 	}
+
+	var isCat:Bool = false;
+	
+	function truncateFloat( number : Float, precision : Int): Float {
+		var num = number;
+		num = num * Math.pow(10, precision);
+		num = Math.round( num ) / Math.pow(10, precision);
+		return num;
+		}
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
 
-		if(controls.BACK)
-			FlxG.switchState(new OptionsSelectState());
-		if (controls.UP_P)
-			changeSelection(-1);
-		if (controls.DOWN_P)
-			changeSelection(1);
-
-		if (controls.ACCEPT)
+			if (controls.BACK && !isCat)
+				FlxG.switchState(new MainMenuState());
+			else if (controls.BACK)
 			{
-				if (curSelected != 5)
-					grpControls.remove(grpControls.members[curSelected]);
-				switch(curSelected)
+				isCat = false;
+				grpControls.clear();
+				for (i in 0...options.length)
+					{
+						var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30, options[i].getName(), true, false);
+						controlLabel.isMenuItem = true;
+						controlLabel.targetY = i;
+						grpControls.add(controlLabel);
+						// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
+					}
+				curSelected = 0;
+			}
+			if (controls.UP_P)
+				changeSelection(-1);
+			if (controls.DOWN_P)
+				changeSelection(1);
+			
+			if (isCat)
+			{
+				switch(currentSelectedCat.getOptions()[curSelected].getDisplay())
 				{
-					/*
-					case 0:
-						FlxG.switchState(new KeyBindMenu());
-						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, "KeyBinds");
+					case 'FPS Cap':
+						var fps = (cast (Lib.current.getChildAt(0), Main)).getFPSCap();
+
+						if (FlxG.keys.pressed.RIGHT && fps < 285) // actual cap is 285
+						{
+							(cast (Lib.current.getChildAt(0), Main)).setFPSCap(fps + 10);
+							FlxG.save.data.fpsCap = fps + 10;
+						}
+		
+						if (FlxG.keys.pressed.LEFT && fps > 60)
+						{
+							(cast (Lib.current.getChildAt(0), Main)).setFPSCap(fps - 10);
+							FlxG.save.data.fpsCap = fps - 10;
+						}
+		
+						
+					case 'Scroll Speed':
+						if (FlxG.keys.justPressed.RIGHT)
+							FlxG.save.data.scrollSpeed += 0.1;
+		
+						if (FlxG.keys.justPressed.LEFT)
+							FlxG.save.data.scrollSpeed -= 0.1;
+
+						// caps
+
+						if (FlxG.save.data.scrollSpeed < 1)
+							FlxG.save.data.scrollSpeed = 1;
+
+						if (FlxG.save.data.scrollSpeed > 10)
+							FlxG.save.data.scrollSpeed = 10;
+					default:
+						if (FlxG.keys.pressed.RIGHT)
+							FlxG.save.data.offset += 0.01;
+		
+						if (FlxG.keys.pressed.LEFT)
+							FlxG.save.data.offset -= 0.01;
+						
+				}
+			}
+			else
+			{
+				if (FlxG.keys.pressed.RIGHT)
+					FlxG.save.data.offset+= 0.01;
+
+				if (FlxG.keys.pressed.LEFT)
+					FlxG.save.data.offset-= 0.01;
+			
+			}
+		
+
+			if (controls.ACCEPT)
+			{
+				if (isCat)
+				{
+					if (currentSelectedCat.getOptions()[curSelected].press()) {
+						grpControls.remove(grpControls.members[curSelected]);
+						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, currentSelectedCat.getOptions()[curSelected].getDisplay(), true, false);
 						ctrl.isMenuItem = true;
-						ctrl.targetY = curSelected;
 						grpControls.add(ctrl);
-						*/
-					case 0:
-						FlxG.save.data.newInput = !FlxG.save.data.newInput;
-						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (FlxG.save.data.newInput ? "Kade Engine Input" : "Original Input"), true, false);
-						ctrl.isMenuItem = true;
-						ctrl.targetY = curSelected - 1;
-						grpControls.add(ctrl);
-					case 1:
-						FlxG.save.data.downscroll = !FlxG.save.data.downscroll;
-						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll'), true, false);
-						ctrl.isMenuItem = true;
-						ctrl.targetY = curSelected - 2;
-						grpControls.add(ctrl);
-					case 2:
-						FlxG.save.data.cpuStrums = !FlxG.save.data.cpuStrums;
-						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (!FlxG.save.data.cpuStrums ? 'CPU Strums Stay Static' : 'Light CPU Strums'), true, false);
-						ctrl.isMenuItem = true;
-						ctrl.targetY = curSelected - 4;
-						grpControls.add(ctrl);
-					/*
-					case 3:
-						FlxG.save.data.splash = !FlxG.save.data.splash;
-						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (!FlxG.save.data.splash ? 'Note Splash Off' : 'Note Splash On'), true, false);
-						ctrl.isMenuItem = true;
-						ctrl.targetY = curSelected - 4;
-						grpControls.add(ctrl);
-					case 4:
-						FlxG.switchState(new GameplayCustomizeState());
-						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, "Customize Gameplay");
-						ctrl.isMenuItem = true;
-						ctrl.targetY = curSelected - 4;
-						grpControls.add(ctrl);
-					*/
+					}
+				}
+				else
+				{
+					currentSelectedCat = options[curSelected];
+					isCat = true;
+					grpControls.clear();
+					for (i in 0...currentSelectedCat.getOptions().length)
+						{
+							var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30, currentSelectedCat.getOptions()[i].getDisplay(), true, false);
+							controlLabel.isMenuItem = true;
+							controlLabel.targetY = i;
+							grpControls.add(controlLabel);
+							// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
+						}
+					curSelected = 0;
 				}
 			}
 		FlxG.save.flush();
 	}
 
+	var isSettingControl:Bool = false;
+
 	function changeSelection(change:Int = 0)
+	{
+		#if !switch
+		// NGio.logEvent("Fresh");
+		#end
+		
+		FlxG.sound.play(Paths.sound("scrollMenu"), 0.4);
+
+		curSelected += change;
+
+		if (curSelected < 0)
+			curSelected = grpControls.length - 1;
+		if (curSelected >= grpControls.length)
+			curSelected = 0;
+
+		// selector.y = (70 * curSelected) + 30;
+
+		var bullShit:Int = 0;
+
+		for (item in grpControls.members)
 		{
-			#if !switch
-			// NGio.logEvent('Fresh');
-			#end
-			
-			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-	
-			curSelected += change;
-	
-			if (curSelected < 0)
-				curSelected = grpControls.length - 1;
-			if (curSelected >= grpControls.length)
-				curSelected = 0;
-	
-			// selector.y = (70 * curSelected) + 30;
-	
-			var bullShit:Int = 0;
-	
-			for (item in grpControls.members)
+			item.targetY = bullShit - curSelected;
+			bullShit++;
+
+			item.alpha = 0.6;
+			// item.setGraphicSize(Std.int(item.width * 0.8));
+
+			if (item.targetY == 0)
 			{
-				item.targetY = bullShit - curSelected;
-				bullShit++;
-	
-				item.alpha = 0.6;
-				// item.setGraphicSize(Std.int(item.width * 0.8));
-	
-				if (item.targetY == 0)
-				{
-					item.alpha = 1;
-					// item.setGraphicSize(Std.int(item.width));
-				}
+				item.alpha = 1;
+				// item.setGraphicSize(Std.int(item.width));
 			}
 		}
+	}
 }

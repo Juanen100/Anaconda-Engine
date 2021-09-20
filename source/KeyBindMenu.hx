@@ -117,11 +117,11 @@ class KeyBindMenu extends FlxSubState
                     state = "input";
                 }
                 else if(FlxG.keys.justPressed.ESCAPE){
-                    FlxG.switchState(new OptionsSelectState());
+                    FlxG.switchState(new OptionsMenu());
                 }
 				else if (FlxG.keys.justPressed.BACKSPACE){
                     reset();
-                    FlxG.switchState(new OptionsSelectState());
+                    FlxG.switchState(new OptionsMenu());
                 }
 
             case "input":
