@@ -284,3 +284,36 @@ class Reset extends Option
 		return "Reset Button " + (!FlxG.save.data.resetButton ? "off" : "on");
 	}
 }
+
+class ResetSettings extends Option
+{
+	var confirm:Bool = false;
+
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		if (!confirm)
+		{
+			confirm = true;
+			display = updateDisplay();
+			return true;
+		}
+		
+		TheData.resetSave();
+		TheData.saveLoad();
+		confirm = false;
+		trace('All settings have been reset');
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return confirm ? "Confirm Settings Reset" : "Reset Settings";
+	}
+}
