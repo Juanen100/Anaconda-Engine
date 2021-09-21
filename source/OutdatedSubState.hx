@@ -20,7 +20,10 @@ class OutdatedSubState extends MusicBeatState
 		'#314d7f',
 		'#4e7093',
 		'#70526e',
-		'#594465'
+		'#594465',
+		'#bd06c9',
+		'#50ce73',
+		'#f4f4dc'
 	];
 	private var colorRotation:Int = 1;
 
