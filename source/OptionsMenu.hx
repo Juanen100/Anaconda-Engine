@@ -13,6 +13,8 @@ import flixel.input.keyboard.FlxKey;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
 import lime.utils.Assets;
 
 class OptionsMenu extends MusicBeatState
@@ -86,7 +88,11 @@ class OptionsMenu extends MusicBeatState
 		super.update(elapsed);
 
 			if (controls.BACK && !isCat)
+			{
 				FlxG.switchState(new MainMenuState());
+				FlxTween.tween(FlxG.camera, { zoom: -2}, 0.4, { ease: FlxEase.expoIn});
+				FlxTween.tween(FlxG.camera, { angle: -90}, 0.4, { ease: FlxEase.expoIn});
+			}
 			else if (controls.BACK)
 			{
 				isCat = false;
