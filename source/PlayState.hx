@@ -1635,6 +1635,24 @@ class PlayState extends MusicBeatState
 
 			// FlxG.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 		}
+		if (FlxG.save.data.resetButton)
+			{
+				if(FlxG.keys.justPressed.R)
+					{
+						boyfriend.stunned = true;
+	
+						persistentUpdate = false;
+						persistentDraw = false;
+						paused = true;
+			
+						vocals.stop();
+						FlxG.sound.music.stop();
+			
+						openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			
+						// FlxG.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+					}
+			}
 
 		if (unspawnNotes[0] != null)
 		{

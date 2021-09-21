@@ -26,7 +26,8 @@ class OptionsMenu extends MusicBeatState
 		new OptionCatagory("Gameplay", [
 			new InputOption(""),
 			new DownscrollOption(""),
-			new CpuStrums("")
+			new CpuStrums(""),
+			new Reset("")
 		]),
 		new OptionCatagory("Appareance", [
 			new Colour(""),
