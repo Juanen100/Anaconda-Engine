@@ -18,6 +18,8 @@ If you want to build JSW Engine go [here](https://github.com/Juanen100/JSW-Engin
 
 If you want to play the game just download it from [here](https://github.com/Juanen100/JSW-Engine/releases)
 
+Oh Yeah, this thing still a WIP, so yeah... when I finish it i probably tell or something idunno
+
 ## Credits / shoutouts
 
 - [ninjamuffin99](https://twitter.com/ninja_muffin99) - Programmer of Friday Night Funkin
