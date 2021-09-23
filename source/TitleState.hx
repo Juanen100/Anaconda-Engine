@@ -307,9 +307,7 @@ class TitleState extends MusicBeatState
 			// FlxG.sound.music.stop();
 
 			new FlxTimer().start(2, function(tmr:FlxTimer)
-				{
-					// Get current version of Kade Engine
-					
+				{	
 					var http = new haxe.Http("https://raw.githubusercontent.com/Juanen100/JSW-Engine/main/version.ver");
 					var returnedData:Array<String> = [];
 					

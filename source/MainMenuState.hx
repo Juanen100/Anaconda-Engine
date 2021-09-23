@@ -26,6 +26,7 @@ class MainMenuState extends MusicBeatState
 	var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
+	var menuStuf:FlxTypedGroup<FlxSprite>;
 
 	#if !switch
 	var optionShit:Array<String> = ['story mode', 'freeplay', 'options', 'donate'];
@@ -38,6 +39,9 @@ class MainMenuState extends MusicBeatState
 	public static var firstStart:Bool = true;
 
 	var titleText:FlxSprite;
+	var coin:FlxSprite;
+	var engranaje:FlxSprite;
+	var freeplayThing:FlxSprite;
 
 	public static var preRelease:String = "";
 
@@ -89,8 +93,12 @@ class MainMenuState extends MusicBeatState
 		add(magenta);
 		// magenta.scrollFactor.set();
 
-		var bf = Paths.getSparrowAtlas('bfMainMenu', 'shared');
+		menuStuf = new FlxTypedGroup<FlxSprite>();
+		add(menuStuf);
 
+		var bf = Paths.getSparrowAtlas('mainmenu_stuff/bfMainMenu', 'shared');
+
+		//Even tho its called "TitleText" is the bf
 		titleText = new FlxSprite(750, 0);
 		titleText.frames = bf;
 		titleText.animation.addByPrefix('idle', "BF idle dance", 24);
@@ -99,7 +107,25 @@ class MainMenuState extends MusicBeatState
 		titleText.animation.play('idle');
 		titleText.updateHitbox();
 		titleText.screenCenter(Y);
-		add(titleText);
+		menuStuf.add(titleText);
+
+		coin = new FlxSprite(100, -450).loadGraphic(Paths.image('mainmenu_stuff/coin', 'shared'));
+		coin.visible = false;
+		coin.scale.x = 0.3;
+		coin.scale.y = 0.3;
+		menuStuf.add(coin);
+
+		engranaje = new FlxSprite(100, -450).loadGraphic(Paths.image('mainmenu_stuff/things_iguess', 'shared'));
+		engranaje.visible = false;
+		engranaje.scale.x = 0.3;
+		engranaje.scale.y = 0.3;
+		menuStuf.add(engranaje);
+		
+		freeplayThing = new FlxSprite(100, -450).loadGraphic(Paths.image('mainmenu_stuff/freeplay_thing', 'shared'));
+		freeplayThing.visible = false;
+		freeplayThing.scale.x = 0.3;
+		freeplayThing.scale.y = 0.3;
+		menuStuf.add(freeplayThing);
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
@@ -222,6 +248,17 @@ class MainMenuState extends MusicBeatState
 							}
 						});
 					});
+
+					menuStuf.forEach(function(spr:FlxSprite)
+						{
+							FlxTween.tween(spr, {y: -1000}, 0.6, {
+								ease: FlxEase.backIn,
+								onComplete: function(twn:FlxTween)
+								{
+									spr.kill();
+								}
+							});
+						});
 				}
 			}
 		}
@@ -250,7 +287,31 @@ class MainMenuState extends MusicBeatState
 
 			if (spr.ID == curSelected && finishedFunnyMove)
 			{
+				var daChoice:String = optionShit[curSelected];
 				spr.animation.play('selected');
+				switch (daChoice)
+				{
+					case 'story mode':
+						titleText.visible = true;
+						coin.visible = false;
+						engranaje.visible = false;
+						freeplayThing.visible = false;
+					case 'freeplay':
+						titleText.visible = false;
+						coin.visible = false;
+						engranaje.visible = false;
+						freeplayThing.visible = true;
+					case 'options':
+						titleText.visible = false;
+						coin.visible = false;
+						engranaje.visible = true;
+						freeplayThing.visible = false;
+					case 'donate':
+						titleText.visible = false;
+						freeplayThing.visible = false;
+						coin.visible = true;
+						engranaje.visible = false;
+				}
 				// camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y);
 			}
 
