@@ -1,7 +1,5 @@
 package;
 
-import flixel.util.FlxAxes;
-import flixel.FlxSubState;
 import flixel.input.FlxInput;
 import flixel.input.keyboard.FlxKey;
 import flixel.FlxG;
@@ -24,7 +22,7 @@ import flixel.input.FlxKeyManager;
 
 using StringTools;
 
-class KeyBindMenu extends FlxSubState
+class KeyBindMenu extends MusicBeatState
 {
 
     var keyTextDisplay:FlxText;
@@ -37,57 +35,53 @@ class KeyBindMenu extends FlxSubState
     var keys:Array<String> = [FlxG.save.data.leftBind,
                               FlxG.save.data.downBind,
                               FlxG.save.data.upBind,
-                              FlxG.save.data.rightBind];
+                              FlxG.save.data.rightBind,
+                              FlxG.save.data.killBind];
 
     var tempKey:String = "";
     var blacklist:Array<String> = ["ESCAPE", "ENTER", "BACKSPACE", "SPACE"];
-
-    var infoText:FlxText;
 
     var state:String = "select";
 
 	override function create()
 	{	
-
-        for (i in 0...keys.length)
-        {
-            var k = keys[i];
-            if (k == null)
-                keys[i] = defaultKeys[i];
-        }
 	
 		//FlxG.sound.playMusic('assets/music/configurator' + TitleState.soundExt);
 
 		persistentUpdate = persistentDraw = true;
 
-        keyTextDisplay = new FlxText(-10, 0, 1280, "", 72);
+		var bg:FlxSprite = new FlxSprite(-80).loadGraphic('assets/images/menuDesat.png');
+		bg.scrollFactor.x = 0;
+		bg.scrollFactor.y = 0;
+		bg.setGraphicSize(Std.int(bg.width * 1.18));
+		bg.updateHitbox();
+		bg.screenCenter();
+		bg.antialiasing = true;
+		bg.color = 0xFF077904;
+		add(bg);
+
+        keyTextDisplay = new FlxText(0, 0, 1280, "", 72);
 		keyTextDisplay.scrollFactor.set(0, 0);
 		keyTextDisplay.setFormat("assets/fonts/Funkin.otf", 72, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		keyTextDisplay.borderSize = 2;
-		keyTextDisplay.borderQuality = 3;
-
-        var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
-		menuBG.color = 0xFFea71fd;
-		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
-		menuBG.updateHitbox();
-		menuBG.screenCenter();
-		menuBG.antialiasing = true;
-		add(menuBG);
-
-        infoText = new FlxText(-10, 580, 1280, "(Escape to save, backspace to leave without saving)", 72);
-		infoText.scrollFactor.set(0, 0);
-		infoText.setFormat("assets/fonts/Funkin.otf", 24, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		infoText.borderSize = 2;
-		infoText.borderQuality = 3;
-        infoText.alpha = 0;
-        infoText.screenCenter(FlxAxes.X);
-        add(infoText);
+		keyTextDisplay.borderSize = 3;
+		keyTextDisplay.borderQuality = 1;
         add(keyTextDisplay);
 
-        keyTextDisplay.alpha = 0;
+        keyWarning = new FlxText(0, 580, 1280, "WARNING: BIND NOT SET, TRY ANOTHER KEY", 42);
+		keyWarning.scrollFactor.set(0, 0);
+		keyWarning.setFormat("assets/fonts/vcr.ttf", 42, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        keyWarning.borderSize = 3;
+		keyWarning.borderQuality = 1;
+        keyWarning.screenCenter(X);
+        keyWarning.alpha = 0;
+        add(keyWarning);
 
-        FlxTween.tween(keyTextDisplay, {alpha: 1}, 1, {ease: FlxEase.expoInOut});
-        FlxTween.tween(infoText, {alpha: 1}, 1.4, {ease: FlxEase.expoInOut});
+        var backText = new FlxText(5, FlxG.height - 37, 0, "ESCAPE - Back to Menu\nBACKSPACE - Reset to Defaults\n", 16);
+		backText.scrollFactor.set();
+		backText.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        add(backText);
+
+        warningTween = FlxTween.tween(keyWarning, {alpha: 0}, 0);
 
         textUpdate();
 
@@ -100,28 +94,29 @@ class KeyBindMenu extends FlxSubState
         switch(state){
 
             case "select":
-                if (FlxG.keys.justPressed.UP)
+                if (controls.UP_P)
 				{
-					FlxG.sound.play(Paths.sound('scrollMenu'));
+					FlxG.sound.play('assets/sounds/scrollMenu.ogg');
 					changeItem(-1);
 				}
 
-				if (FlxG.keys.justPressed.DOWN)
+				if (controls.DOWN_P)
 				{
-					FlxG.sound.play(Paths.sound('scrollMenu'));
+					FlxG.sound.play('assets/sounds/scrollMenu.ogg');
 					changeItem(1);
 				}
 
                 if (FlxG.keys.justPressed.ENTER){
-                    FlxG.sound.play(Paths.sound('scrollMenu'));
+                    FlxG.sound.play('assets/sounds/scrollMenu.ogg');
                     state = "input";
                 }
-                else if(FlxG.keys.justPressed.ESCAPE){
-                    FlxG.switchState(new OptionsMenu());
+                else if(FlxG.keys.justPressed.ESCAPE || FlxG.gamepads.anyJustPressed(ANY)){
+                    FlxG.sound.play('assets/sounds/cancelMenu.ogg');
+                    quit();
                 }
 				else if (FlxG.keys.justPressed.BACKSPACE){
+                    FlxG.sound.play('assets/sounds/cancelMenu.ogg');
                     reset();
-                    FlxG.switchState(new OptionsMenu());
                 }
 
             case "input":
@@ -134,7 +129,7 @@ class KeyBindMenu extends FlxSubState
                 if(FlxG.keys.justPressed.ESCAPE){
                     keys[curSelected] = tempKey;
                     state = "select";
-                    FlxG.sound.play(Paths.sound('confirmMenu'));
+                    FlxG.sound.play('assets/sounds/cancelMenu.ogg');
                 }
                 else if(FlxG.keys.justPressed.ENTER){
                     addKey(defaultKeys[curSelected]);
@@ -169,10 +164,14 @@ class KeyBindMenu extends FlxSubState
 
         for(i in 0...4){
 
-            var textStart = (i == curSelected) ? "> " : "  ";
-            keyTextDisplay.text += textStart + keyText[i] + ": " + ((keys[i] != keyText[i]) ? (keys[i] + " / ") : "" ) + keyText[i] + " ARROW\n";
+            var textStart = (i == curSelected) ? ">" : "  ";
+            keyTextDisplay.text += textStart + keyText[i] + ": " + ((keys[i] != keyText[i]) ? (keys[i] + " + ") : "" ) + keyText[i] + " ARROW\n";
 
         }
+
+        var textStart = (curSelected == 4) ? ">" : "  ";
+
+        keyTextDisplay.text += textStart + "RESET: " + keys[4]  + "\n";
 
         keyTextDisplay.screenCenter();
 
@@ -184,6 +183,7 @@ class KeyBindMenu extends FlxSubState
         FlxG.save.data.downBind = keys[1];
         FlxG.save.data.leftBind = keys[0];
         FlxG.save.data.rightBind = keys[3];
+        FlxG.save.data.killBind = keys[4];
 
         FlxG.save.flush();
 
@@ -206,10 +206,10 @@ class KeyBindMenu extends FlxSubState
 
         save();
 
-        FlxTween.tween(keyTextDisplay, {alpha: 0}, 1, {ease: FlxEase.expoInOut});
-        FlxTween.tween(infoText, {alpha: 0}, 1, {ease: FlxEase.expoInOut});
-    }
+        //ConfigMenu.startSong = false;
+        FlxG.switchState(new OptionsMenu());
 
+    }
 
 	function addKey(r:String){
 
@@ -234,20 +234,15 @@ class KeyBindMenu extends FlxSubState
 
         trace(notAllowed);
 
-        for(x in 0...keys.length)
-            {
-                var oK = keys[x];
-                if(oK == r)
-                    keys[x] = null;
-            }
+        for(x in notAllowed){if(x == r){shouldReturn = false;}}
 
         if(shouldReturn){
             keys[curSelected] = r;
-            //FlxG.sound.play(Paths.sound('Hover','clown'));
+            FlxG.sound.play('assets/sounds/scrollMenu.ogg');
         }
         else{
             keys[curSelected] = tempKey;
-           // FlxG.sound.play(Paths.sound('confirm','clown'));
+            FlxG.sound.play('assets/sounds/cancelMenu.ogg');
             keyWarning.alpha = 1;
             warningTween.cancel();
             warningTween = FlxTween.tween(keyWarning, {alpha: 0}, 0.5, {ease: FlxEase.circOut, startDelay: 2});
@@ -259,9 +254,9 @@ class KeyBindMenu extends FlxSubState
     {
         curSelected += _amount;
                 
-        if (curSelected > 3)
+        if (curSelected > 4)
             curSelected = 0;
         if (curSelected < 0)
-            curSelected = 3;
+            curSelected = 4;
     }
 }
