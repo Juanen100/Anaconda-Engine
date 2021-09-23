@@ -50,7 +50,6 @@ This game was made with love to Newgrounds and its community. Extra love to Tom 
 - Better Icons (Winning Icons and Lose Icons to characters doens't have one)
 - Light CPU Strums (imitate the Player notes)
 - New Input and Old Input
-- New Freeplay Menu
-- New Pause Menu
+- New Menus
 
 More stuff on future updates
