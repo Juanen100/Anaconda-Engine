@@ -1388,7 +1388,7 @@ class PlayState extends MusicBeatState
 
 		if(PlayStateConfig.botPlay)
             {
-                scoreTxt.text = "Score:" + songScore + " | Accuracy: ?" + " | Health:" + Math.round(health * 50) + "%";
+                scoreTxt.text = "Score:" + songScore  + " | Misses:0" + " | Accuracy: ?" + " | Health:" + Math.round(health * 50) + "%";
             }
             else
             {
@@ -1396,11 +1396,6 @@ class PlayState extends MusicBeatState
                 if(health <= 0 && FlxG.save.data.practiceMode)
                 {
 					scoreTxt.text = "Score:" + songScore + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "%" + " | Health:0%";
-                }
-
-                if(FlxG.save.data.practiceMode)
-                {
-                    scoreTxt.text = "Score:" + songScore;
                 }
             }
 

@@ -124,8 +124,8 @@ class FreeplayState extends MusicBeatState
 		disc.frames = tex;
 		disc.animation.addByPrefix("idle", "Shitty_Disc", 24);
 		disc.animation.play("idle");
-		//add(disc);
-		//add(discIcon);
+		add(disc);
+		add(discIcon);
 		discIcon.antialiasing = true;
 
 		for (i in 0...songs.length)
@@ -198,7 +198,8 @@ class FreeplayState extends MusicBeatState
 		add(text);
 		super.create();
 
-		disc.scale.x = 0;
+		disc.scale.x = 0.6;
+		disc.scale.y = 0.6;
 	}
 
 	override function closeSubState() {
@@ -416,7 +417,7 @@ class FreeplayState extends MusicBeatState
 
 		remove(discIcon);
 		discIcon = new HealthIcon(songs[curSelected].songCharacter);
-		//add(discIcon);
+		add(discIcon);
 		discIcon.animation.play(songs[curSelected].songCharacter);
 
 		changeDiff();
