@@ -1,0 +1,1 @@
+The NoteSplashes files are here, but they aren't used in the Engine, cuz i couldn't added it, so thats why they aren't on the "UI_Stuff" folder

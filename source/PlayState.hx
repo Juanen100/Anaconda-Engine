@@ -726,7 +726,7 @@ class PlayState extends MusicBeatState
 
 		FlxG.fixedTimestep = false;
 
-		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
+		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('UI_Stuff/healthBar'));
 		if (FlxG.save.data.downscroll)
 			healthBarBG.y = 50;
 		healthBarBG.screenCenter(X);
@@ -968,7 +968,7 @@ class PlayState extends MusicBeatState
 			boyfriend.playAnim('idle');
 
 			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-			introAssets.set('default', ['ready', "set", "go"]);
+			introAssets.set('default', ['UI_Stuff/ready', "UI_Stuff/set", "UI_Stuff/go"]);
 			introAssets.set('school', [
 				'weeb/pixelUI/ready-pixel',
 				'weeb/pixelUI/set-pixel',
@@ -1223,7 +1223,7 @@ class PlayState extends MusicBeatState
 					}
 
 				default:
-					babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
+					babyArrow.frames = Paths.getSparrowAtlas('UI_Stuff/NOTE_assets');
 					babyArrow.animation.addByPrefix('green', 'arrowUP');
 					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
 					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
@@ -1894,13 +1894,13 @@ class PlayState extends MusicBeatState
 			var rating:FlxSprite = new FlxSprite();
 			var score:Int = 350;
 	
-			var daRating:String = "sick";
+			var daRating:String = "UI_Stuff/sick";
 	
 			if(!PlayStateConfig.botPlay)
                 {
                     if (noteDiff > Conductor.safeZoneOffset * 2)
                         {
-                            daRating = 'shit';
+                            daRating = 'UI_Stuff/shit';
                             totalNotesHit -= 2;
                             noteMiss(0);
                             score = -3000;
@@ -1910,7 +1910,7 @@ class PlayState extends MusicBeatState
                         }
                         else if (noteDiff < Conductor.safeZoneOffset * -2)
                         {
-                            daRating = 'shit';
+                            daRating = 'UI_Stuff/shit';
                             totalNotesHit -= 2;
                             noteMiss(0);
                             score = -3000;
@@ -1920,7 +1920,7 @@ class PlayState extends MusicBeatState
                         }
                         else if (noteDiff > Conductor.safeZoneOffset * 0.45)
                         {
-                            daRating = 'bad';
+                            daRating = 'UI_Stuff/bad';
                             score = -1000;
                             totalNotesHit += 0.2;
                             ss = false;
@@ -1928,13 +1928,13 @@ class PlayState extends MusicBeatState
                         }
                         else if (noteDiff > Conductor.safeZoneOffset * 0.25)
                         {
-                            daRating = 'good';
+                            daRating = 'UI_Stuff/good';
                             totalNotesHit += 0.65;
                             score = 200;
                             ss = false;
                             goods++;
                         }
-                    if (daRating == 'sick')
+                    if (daRating == 'UI_Stuff/sick')
                     {
                         totalNotesHit += 1;
                         sicks++;
@@ -1942,7 +1942,7 @@ class PlayState extends MusicBeatState
                 }
 		
 	
-			if (daRating != 'shit' || daRating != 'bad')
+			if (daRating != 'UI_Stuff/shit' || daRating != 'UI_Stuff/bad')
 				{
 	
 	
@@ -1973,7 +1973,7 @@ class PlayState extends MusicBeatState
 			rating.velocity.y -= FlxG.random.int(140, 175);
 			rating.velocity.x -= FlxG.random.int(0, 10);
 	
-			var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'combo' + pixelShitPart2));
+			var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'UI_Stuff/combo' + pixelShitPart2));
 			comboSpr.screenCenter();
 			comboSpr.x = coolText.x;
 			comboSpr.acceleration.y = 600;
@@ -2007,7 +2007,7 @@ class PlayState extends MusicBeatState
 			var daLoop:Int = 0;
 			for (i in seperatedScore)
 			{
-				var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'num' + Std.int(i) + pixelShitPart2));
+				var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'UI/num' + Std.int(i) + pixelShitPart2));
 				numScore.screenCenter();
 				numScore.x = coolText.x + (43 * daLoop) - 90;
 				numScore.y += 80;

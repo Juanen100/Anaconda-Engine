@@ -49,7 +49,7 @@ class KeyBindMenu extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		var bg:FlxSprite = new FlxSprite(-80).loadGraphic('assets/images/menuDesat.png');
+		var bg:FlxSprite = new FlxSprite(-80).loadGraphic('assets/images/main_menu/menuDesat.png');
 		bg.scrollFactor.x = 0;
 		bg.scrollFactor.y = 0;
 		bg.setGraphicSize(Std.int(bg.width * 1.18));
