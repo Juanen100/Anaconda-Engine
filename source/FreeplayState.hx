@@ -70,6 +70,9 @@ class FreeplayState extends MusicBeatState
 	var intendedColor:Int;
 	var colorTween:FlxTween;
 
+	var disc:FlxSprite = new FlxSprite(700, 100);
+	var discIcon:HealthIcon = new HealthIcon("bf");
+
 	override function create()
 	{
 		transIn = FlxTransitionableState.defaultTransIn;
@@ -116,6 +119,14 @@ class FreeplayState extends MusicBeatState
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
 		add(grpSongs);
+
+		var tex = Paths.getSparrowAtlas('freeplay_ui/da_weird_disc', 'shared');
+		disc.frames = tex;
+		disc.animation.addByPrefix("idle", "Shitty_Disc", 24);
+		disc.animation.play("idle");
+		//add(disc);
+		//add(discIcon);
+		discIcon.antialiasing = true;
 
 		for (i in 0...songs.length)
 		{
@@ -186,6 +197,8 @@ class FreeplayState extends MusicBeatState
 		text.scrollFactor.set();
 		add(text);
 		super.create();
+
+		disc.scale.x = 0;
 	}
 
 	override function closeSubState() {
@@ -313,6 +326,11 @@ class FreeplayState extends MusicBeatState
 					
 			destroyFreeplayVocals();
 		}
+
+		discIcon.x = disc.x + disc.width / 2 - discIcon.width / 2;
+		discIcon.y = disc.y + disc.height / 2 - discIcon.height / 2;
+		discIcon.scale.set(disc.scale.x, disc.scale.y);
+
 		super.update(elapsed);
 	}
 
@@ -395,6 +413,12 @@ class FreeplayState extends MusicBeatState
 				// item.setGraphicSize(Std.int(item.width));
 			}
 		}
+
+		remove(discIcon);
+		discIcon = new HealthIcon(songs[curSelected].songCharacter);
+		//add(discIcon);
+		discIcon.animation.play(songs[curSelected].songCharacter);
+
 		changeDiff();
 	}
 

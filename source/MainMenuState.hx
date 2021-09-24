@@ -173,6 +173,11 @@ class MainMenuState extends MusicBeatState
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
 
+		if (FlxG.keys.justPressed.F11)
+		{
+			FlxG.fullscreen = !FlxG.fullscreen;
+		}
+
 		if (!selectedSomethin)
 		{
 			var gamepad:FlxGamepad = FlxG.gamepads.lastActive;

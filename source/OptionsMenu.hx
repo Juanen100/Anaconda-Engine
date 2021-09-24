@@ -24,10 +24,9 @@ class OptionsMenu extends MusicBeatState
 
 	var options:Array<OptionCatagory> = [
 		new OptionCatagory("Gameplay", [
-			new InputOption(""),
+			new InputOption("it doesn't matter what u put here lol"),
 			new DownscrollOption(""),
-			new CpuStrums(""),
-			new Reset("")
+			new CpuStrums("")
 		]),
 		new OptionCatagory("Appareance", [
 			new Colour(""),
@@ -43,7 +42,8 @@ class OptionsMenu extends MusicBeatState
 			new ResetSettings("")
 		]),
 		new OptionCatagory("Controls", [
-			new ControlOption()
+			new ControlOption(),
+			new Reset("")
 		])
 	];
 
