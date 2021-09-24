@@ -106,7 +106,7 @@ class PlayState extends MusicBeatState
 	private var camHUD:FlxCamera;
 	private var camGame:FlxCamera;
 
-	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
+	var dialogue:Array<String> = ['dad: bad guygh', 'bf: ima koll kid'];
 
 	var halloweenBG:FlxSprite;
 	var isHalloween:Bool = false;
