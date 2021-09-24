@@ -37,7 +37,9 @@ class OptionsMenu extends MusicBeatState
 		new OptionCatagory("Misc", [
 			new Health(""),
 			new BotPlay(""),
-			new Haxeflixel(""), 
+			#if !web
+			new Haxeflixel(""),
+			#end
 			new ResetSettings("")
 		]),
 		new OptionCatagory("Controls", [
