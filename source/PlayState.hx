@@ -2139,7 +2139,7 @@ class PlayState extends MusicBeatState
 										if (controlArray[ignoreList[shit]])
 											inIgnoreList = true;
 									}
-									if (!inIgnoreList && !theFunne)
+									if (!inIgnoreList && !theFunne || !PlayStateConfig.botPlay)
 										badNoteCheck();
 								}
 							}
@@ -2190,7 +2190,7 @@ class PlayState extends MusicBeatState
 						daNote.destroy();
 					}
 				}
-				else if (!theFunne)
+				else if (!theFunne || !PlayStateConfig.botPlay)
 				{
 					badNoteCheck();
 				}
@@ -2351,7 +2351,7 @@ class PlayState extends MusicBeatState
 			{
 			    goodNoteHit(note);
 			}
-			else if (!theFunne)
+			else if (!theFunne || !PlayStateConfig.botPlay)
 			{
 				badNoteCheck();
 			}
