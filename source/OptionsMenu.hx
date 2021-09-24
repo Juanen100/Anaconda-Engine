@@ -111,10 +111,17 @@ class OptionsMenu extends MusicBeatState
 					}
 				curSelected = 0;
 			}
-			if (controls.UP_P)
-				changeSelection(-1);
-			if (controls.DOWN_P)
-				changeSelection(1);
+			if (FlxG.keys.justPressed.UP)
+				{
+					FlxG.sound.play(Paths.sound('scrollMenu'));
+					changeSelection(-1);
+				}
+	
+				if (FlxG.keys.justPressed.DOWN)
+				{
+					FlxG.sound.play(Paths.sound('scrollMenu'));
+					changeSelection(1);
+				}
 			
 			if (isCat)
 			{
@@ -207,8 +214,6 @@ class OptionsMenu extends MusicBeatState
 		#if !switch
 		// NGio.logEvent("Fresh");
 		#end
-		
-		FlxG.sound.play(Paths.sound("scrollMenu"), 0.4);
 
 		curSelected += change;
 

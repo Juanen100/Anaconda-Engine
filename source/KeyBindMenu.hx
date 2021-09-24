@@ -93,17 +93,17 @@ class KeyBindMenu extends MusicBeatState
         switch(state){
 
             case "select":
-                if (controls.UP_P)
-				{
-					FlxG.sound.play('assets/sounds/scrollMenu.ogg');
-					changeItem(-1);
-				}
-
-				if (controls.DOWN_P)
-				{
-					FlxG.sound.play('assets/sounds/scrollMenu.ogg');
-					changeItem(1);
-				}
+                if (FlxG.keys.justPressed.UP)
+                    {
+                        FlxG.sound.play(Paths.sound('scrollMenu'));
+                        changeItem(-1);
+                    }
+        
+                    if (FlxG.keys.justPressed.DOWN)
+                    {
+                        FlxG.sound.play(Paths.sound('scrollMenu'));
+                        changeItem(1);
+                    }
 
                 if (FlxG.keys.justPressed.ENTER){
                     FlxG.sound.play('assets/sounds/scrollMenu.ogg');

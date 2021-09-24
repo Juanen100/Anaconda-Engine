@@ -47,8 +47,8 @@ class OutdatedSubState extends MusicBeatState
 			txt.text = 
 			"You are on\n"
 			+ MainMenuState.versionlol
-			+ "\nWhich is a BETA BUILD!"
-			+ "\n\nReport all bugs to the author of the pre-release.\nSpace/Escape ignores this.";
+			+ "\nWhich is a DEVELOPER BUILD!"
+			+ "\n\nReport all bugs to the author of the Dev Release.\nSpace/Escape ignores this.";
 		
 		txt.setFormat("VCR OSD Mono", 32, FlxColor.fromRGB(200, 200, 200), CENTER);
 		txt.borderColor = FlxColor.BLACK;
