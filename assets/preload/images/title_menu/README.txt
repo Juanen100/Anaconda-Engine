@@ -1,0 +1,1 @@
+The "Juliano.png" image was a thing on beta testing of the Engine, but it was removed on the final 0.1 version. But I left it on the files cuz i thought it will be funni
