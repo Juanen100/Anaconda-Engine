@@ -243,6 +243,8 @@ class OptionsMenu extends MusicBeatState
 	}
 }
 
+//Here ends the Option Menu UI Stuff and starts the Options
+
 class OptionCatagory
 {
 	private var _options:Array<Option> = new Array<Option>();
