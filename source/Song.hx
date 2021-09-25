@@ -17,7 +17,9 @@ typedef SwagSong =
 
 	var player1:String;
 	var player2:String;
+	var gfVersion:String;
 	var validScore:Bool;
+	public var stage:String;
 }
 
 class Song
@@ -28,8 +30,11 @@ class Song
 	public var needsVoices:Bool = true;
 	public var speed:Float = 1;
 
+	public var gfVersion:String = '';
 	public var player1:String = 'bf';
 	public var player2:String = 'dad';
+
+	public var stage:String = '';
 
 	public function new(song, notes, bpm)
 	{
