@@ -121,6 +121,7 @@ class ChartingState extends MusicBeatState
 				player2: 'dad',
 				stage: 'stage',
 				gfVersion: 'gf',
+				noteStyle: 'normal',
 				speed: 1,
 				validScore: false
 			};

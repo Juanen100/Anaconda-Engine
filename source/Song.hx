@@ -20,6 +20,7 @@ typedef SwagSong =
 	var gfVersion:String;
 	var validScore:Bool;
 	public var stage:String;
+	public var noteStyle:String;
 }
 
 class Song
@@ -35,6 +36,7 @@ class Song
 	public var player2:String = 'dad';
 
 	public var stage:String = '';
+	public var noteStyle:String = 'normal';
 
 	public function new(song, notes, bpm)
 	{

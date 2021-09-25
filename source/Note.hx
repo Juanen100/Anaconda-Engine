@@ -4,6 +4,7 @@ import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
+import flixel.*;
 #if polymod
 import polymod.format.ParseRules.TargetSignatureElement;
 #end
@@ -27,6 +28,7 @@ class Note extends FlxSprite
 	public var noteScore:Float = 1;
 
 	public static var swagWidth:Float = 160 * 0.7;
+	public var dataColor:Array<String> = ['purple', 'blue', 'green', 'red'];
 	public static var PURP_NOTE:Int = 0;
 	public static var GREEN_NOTE:Int = 2;
 	public static var BLUE_NOTE:Int = 1;
@@ -49,57 +51,42 @@ class Note extends FlxSprite
 
 		this.noteData = noteData;
 
-		var daStage:String = PlayState.curStage;
-
-		switch (daStage)
+		var noteTypeCheck:String = 'normal';
+		
+		if (PlayState.SONG.noteStyle == null) {
+			switch(PlayState.storyWeek) {case 6: noteTypeCheck = 'pixel';}
+		} else {noteTypeCheck = PlayState.SONG.noteStyle;}
+		
+		switch (noteTypeCheck)
 		{
-			case 'school' | 'schoolEvil':
-				loadGraphic(Paths.image('weeb/pixelUI/arrows-pixels'), true, 17, 17);
-
-				animation.add('greenScroll', [6]);
-				animation.add('redScroll', [7]);
-				animation.add('blueScroll', [5]);
-				animation.add('purpleScroll', [4]);
-
+			case 'pixel':
+				loadGraphic(Paths.image('weeb/pixelUI/arrows-pixels', 'week6'), true, 17, 17);
 				if (isSustainNote)
+					loadGraphic(Paths.image('weeb/pixelUI/arrowEnds', 'week6'), true, 7, 6);
+
+				for (i in 0...4)
 				{
-					loadGraphic(Paths.image('weeb/pixelUI/arrowEnds'), true, 7, 6);
-
-					animation.add('purpleholdend', [4]);
-					animation.add('greenholdend', [6]);
-					animation.add('redholdend', [7]);
-					animation.add('blueholdend', [5]);
-
-					animation.add('purplehold', [0]);
-					animation.add('greenhold', [2]);
-					animation.add('redhold', [3]);
-					animation.add('bluehold', [1]);
+					animation.add(dataColor[i] + 'Scroll', [i + 4]); // Normal notes
+					animation.add(dataColor[i] + 'hold', [i]); // Holds
+					animation.add(dataColor[i] + 'holdend', [i + 4]); // Tails
 				}
 
 				setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 				updateHitbox();
-
 			default:
-				frames = Paths.getSparrowAtlas('UI_Stuff/NOTE_assets');
+				frames = Paths.getSparrowAtlas('NOTE_assets');
 
-				animation.addByPrefix('greenScroll', 'green0');
-				animation.addByPrefix('redScroll', 'red0');
-				animation.addByPrefix('blueScroll', 'blue0');
-				animation.addByPrefix('purpleScroll', 'purple0');
-
-				animation.addByPrefix('purpleholdend', 'pruple end hold');
-				animation.addByPrefix('greenholdend', 'green hold end');
-				animation.addByPrefix('redholdend', 'red hold end');
-				animation.addByPrefix('blueholdend', 'blue hold end');
-
-				animation.addByPrefix('purplehold', 'purple hold piece');
-				animation.addByPrefix('greenhold', 'green hold piece');
-				animation.addByPrefix('redhold', 'red hold piece');
-				animation.addByPrefix('bluehold', 'blue hold piece');
+				for (i in 0...4)
+				{
+					animation.addByPrefix(dataColor[i] + 'Scroll', dataColor[i] + ' alone'); // Normal notes
+					animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold'); // Hold
+					animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails
+				}
 
 				setGraphicSize(Std.int(width * 0.7));
 				updateHitbox();
-				antialiasing = true;
+				
+				antialiasing = FlxG.save.data.antialiasing;
 		}
 
 		switch (noteData)
