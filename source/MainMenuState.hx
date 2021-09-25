@@ -40,9 +40,6 @@ class MainMenuState extends MusicBeatState
 	public static var firstStart:Bool = true;
 
 	var titleText:FlxSprite;
-	var coin:FlxSprite;
-	var engranaje:FlxSprite;
-	var freeplayThing:FlxSprite;
 
 	public static var preRelease:String = "-Dev Build";
 
