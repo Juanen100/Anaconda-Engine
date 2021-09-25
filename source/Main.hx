@@ -7,6 +7,7 @@ import openfl.Lib;
 import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
+import flixel.util.FlxColor;
 
 class Main extends Sprite
 {
@@ -74,6 +75,17 @@ class Main extends Sprite
 		#end
 	}
 	
+	var fpsCounter:FPS;
+
+	public function toggleFPS(fpsEnabled:Bool):Void {
+		fpsCounter.visible = fpsEnabled;
+	}
+
+	public function changeFPSColor(color:FlxColor)
+	{
+		fpsCounter.textColor = color;
+	}
+
 	public function setFPSCap(cap:Float)
 	{
 		openfl.Lib.current.stage.frameRate = cap;
@@ -82,5 +94,10 @@ class Main extends Sprite
 	public function getFPSCap():Float
 	{
 		return openfl.Lib.current.stage.frameRate;
+	}
+
+	public function getFPS():Float
+	{
+		return fpsCounter.currentFPS;
 	}
 }
