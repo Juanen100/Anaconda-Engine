@@ -29,14 +29,13 @@ class KeyBindMenu extends MusicBeatState
     var keyWarning:FlxText;
     var warningTween:FlxTween;
     var keyText:Array<String> = ["LEFT", "DOWN", "UP", "RIGHT"];
-    var defaultKeys:Array<String> = ["A", "S", "W", "D", "R"];
+    var defaultKeys:Array<String> = ["A", "S", "W", "D"];
     var curSelected:Int = 0;
 
     var keys:Array<String> = [FlxG.save.data.leftBind,
                               FlxG.save.data.downBind,
                               FlxG.save.data.upBind,
-                              FlxG.save.data.rightBind,
-                              FlxG.save.data.killBind];
+                              FlxG.save.data.rightBind];
 
     var tempKey:String = "";
     var blacklist:Array<String> = ["ESCAPE", "ENTER", "BACKSPACE", "SPACE"];
@@ -44,7 +43,17 @@ class KeyBindMenu extends MusicBeatState
     var state:String = "select";
 
 	override function create()
-	{	
+	{
+        if(FlxG.save.data.resetButton)
+        {
+            keys = [FlxG.save.data.leftBind,
+                FlxG.save.data.downBind,
+                FlxG.save.data.upBind,
+                FlxG.save.data.rightBind,
+                FlxG.save.data.killBind];
+
+            defaultKeys = ["A", "S", "W", "D", "R"];
+        }	
 	
 		//FlxG.sound.playMusic('assets/music/configurator' + TitleState.soundExt);
 
@@ -166,12 +175,15 @@ class KeyBindMenu extends MusicBeatState
 
             var textStart = (i == curSelected) ? ">" : "  ";
             keyTextDisplay.text += textStart + keyText[i] + ": " + ((keys[i] != keyText[i]) ? (keys[i] + " + ") : "" ) + keyText[i] + " ARROW\n";
-
+    
         }
 
-        var textStart = (curSelected == 4) ? ">" : "  ";
+        if(FlxG.save.data.resetButton)
+        {
+            var textStart = (curSelected == 4) ? ">" : "  ";
 
-        keyTextDisplay.text += textStart + "RESET: " + keys[4]  + "\n";
+            keyTextDisplay.text += textStart + "RESET: " + keys[4]  + "\n";
+        }
 
         keyTextDisplay.screenCenter();
 

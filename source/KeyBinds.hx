@@ -20,7 +20,8 @@ class KeyBinds
         FlxG.save.data.downBind = "S";
         FlxG.save.data.leftBind = "A";
         FlxG.save.data.rightBind = "D";
-        FlxG.save.data.killBind = "R";
+        if(FlxG.save.data.resetButton)
+            FlxG.save.data.killBind = "R";
         FlxG.save.data.gpupBind = "DPAD_UP";
         FlxG.save.data.gpdownBind = "DPAD_DOWN";
         FlxG.save.data.gpleftBind = "DPAD_LEFT";
@@ -64,9 +65,12 @@ class KeyBinds
             FlxG.save.data.gprightBind = "DPAD_RIGHT";
             trace("No GRIGHT");
         }
-	if(FlxG.save.data.killBind == null){
-            FlxG.save.data.killBind = "R";
-            trace("No KILL");
+        if(FlxG.save.data.resetButton)
+        {
+            if(FlxG.save.data.killBind == null){
+                FlxG.save.data.killBind = "R";
+                trace("No KILL");
+            }
         }
 
         trace('${FlxG.save.data.leftBind}-${FlxG.save.data.downBind}-${FlxG.save.data.upBind}-${FlxG.save.data.rightBind}');
