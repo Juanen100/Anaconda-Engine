@@ -29,13 +29,14 @@ class KeyBindMenu extends MusicBeatState
     var keyWarning:FlxText;
     var warningTween:FlxTween;
     var keyText:Array<String> = ["LEFT", "DOWN", "UP", "RIGHT"];
-    var defaultKeys:Array<String> = ["A", "S", "W", "D"];
+    var defaultKeys:Array<String> = ["A", "S", "W", "D", "R"];
     var curSelected:Int = 0;
 
     var keys:Array<String> = [FlxG.save.data.leftBind,
                               FlxG.save.data.downBind,
                               FlxG.save.data.upBind,
-                              FlxG.save.data.rightBind];
+                              FlxG.save.data.rightBind,
+                              FlxG.save.data.killBind];
 
     var tempKey:String = "";
     var blacklist:Array<String> = ["ESCAPE", "ENTER", "BACKSPACE", "SPACE"];
@@ -93,17 +94,17 @@ class KeyBindMenu extends MusicBeatState
         switch(state){
 
             case "select":
-                if (FlxG.keys.justPressed.UP)
-                    {
-                        FlxG.sound.play(Paths.sound('scrollMenu'));
-                        changeItem(-1);
-                    }
-        
-                    if (FlxG.keys.justPressed.DOWN)
-                    {
-                        FlxG.sound.play(Paths.sound('scrollMenu'));
-                        changeItem(1);
-                    }
+                if (controls.UP_P)
+				{
+					FlxG.sound.play('assets/sounds/scrollMenu.ogg');
+					changeItem(-1);
+				}
+
+				if (controls.DOWN_P)
+				{
+					FlxG.sound.play('assets/sounds/scrollMenu.ogg');
+					changeItem(1);
+				}
 
                 if (FlxG.keys.justPressed.ENTER){
                     FlxG.sound.play('assets/sounds/scrollMenu.ogg');
@@ -170,7 +171,7 @@ class KeyBindMenu extends MusicBeatState
 
         var textStart = (curSelected == 4) ? ">" : "  ";
 
-        //keyTextDisplay.text += textStart + "RESET: " + keys[4]  + "\n";
+        keyTextDisplay.text += textStart + "RESET: " + keys[4]  + "\n";
 
         keyTextDisplay.screenCenter();
 
@@ -182,7 +183,7 @@ class KeyBindMenu extends MusicBeatState
         FlxG.save.data.downBind = keys[1];
         FlxG.save.data.leftBind = keys[0];
         FlxG.save.data.rightBind = keys[3];
-       // FlxG.save.data.killBind = keys[4];
+        FlxG.save.data.killBind = keys[4];
 
         FlxG.save.flush();
 
@@ -205,7 +206,6 @@ class KeyBindMenu extends MusicBeatState
 
         save();
 
-        //ConfigMenu.startSong = false;
         FlxG.switchState(new OptionsMenu());
 
     }

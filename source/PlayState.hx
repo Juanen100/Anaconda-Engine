@@ -694,7 +694,7 @@ class PlayState extends MusicBeatState
 
 		strumLine = new FlxSprite(0, 50).makeGraphic(FlxG.width, 10);
 		strumLine.scrollFactor.set();
-
+		
 		if (FlxG.save.data.downscroll)
 			strumLine.y = FlxG.height - 165;
 		
@@ -754,7 +754,7 @@ class PlayState extends MusicBeatState
 				songName = new FlxText(songPosBG.x + (songPosBG.width / 2) - 20,songPosBG.y,0,SONG.song, 16);
 				if (FlxG.save.data.downscroll)
 					songName.y -= 3;
-				songName.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+				songName.setFormat(Paths.font("Funkin.otf"), 24, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 				songName.scrollFactor.set();
 				add(songName);
 				songName.cameras = [camHUD];
@@ -1139,7 +1139,7 @@ class PlayState extends MusicBeatState
 				var songName = new FlxText(songPosBG.x + (songPosBG.width / 2) - 20,songPosBG.y,0,SONG.song, 16);
 				if (FlxG.save.data.downscroll)
 					songName.y -= 3;
-				songName.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+				songName.setFormat(Paths.font("Funkin.otf"), 24, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 				songName.scrollFactor.set();
 				add(songName);
 	
@@ -1812,7 +1812,7 @@ class PlayState extends MusicBeatState
 					// WIP interpolation shit? Need to fix the pause issue
 					// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
 	
-					if (daNote.y < -daNote.height && !FlxG.save.data.downscroll || daNote.y >= strumLine.y + 106 && FlxG.save.data.downscroll)
+					if ((daNote.y < -daNote.height && !FlxG.save.data.downscroll || daNote.y >= strumLine.y + 106 && FlxG.save.data.downscroll) && daNote.mustPress)
 					{
 						if (daNote.isSustainNote && daNote.wasGoodHit)
 						{
