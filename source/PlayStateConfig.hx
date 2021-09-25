@@ -1,4 +1,5 @@
 class PlayStateConfig
 {
-    //idk why I added this but ok
+    //idk why i added this but ok
     public static var botPlay:Bool;
+}
