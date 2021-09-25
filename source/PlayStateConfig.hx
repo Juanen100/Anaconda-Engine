@@ -1,5 +1,4 @@
 class PlayStateConfig
 {
-    //Just added botplay 'cause i used to the pause menu
+    //idk why I added this but ok
     public static var botPlay:Bool;
-}
