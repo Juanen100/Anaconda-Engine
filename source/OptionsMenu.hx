@@ -39,6 +39,7 @@ class OptionsMenu extends MusicBeatState
 			#if !web
 			new Haxeflixel(""),
 			#end
+			new RemixThing(""),
 			new ResetSettings("")
 		]),
 		new OptionCatagory("Controls", [
@@ -90,6 +91,16 @@ class OptionsMenu extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		if(!FlxG.sound.music.playing)
+		{
+			if(FlxG.save.data.remix)
+				{
+					FlxG.sound.playMusic(Paths.music('freakyMenuRemix'), 0);
+				}
+				else
+					FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+		}
 
 			if (controls.BACK && !isCat)
 			{
@@ -576,6 +587,28 @@ class SongTimeThing extends Option
 		return "Song Timer " + (!FlxG.save.data.songPosition ? "off" : "on");
 	}
 }
+
+class RemixThing extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+	public override function press():Bool
+	{
+		FlxG.save.data.remix = !FlxG.save.data.remix;
+		display = updateDisplay();
+		FlxG.sound.music.stop();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  !FlxG.save.data.remix ? "Gettin Freaky Original" : "Gettin Freaky Remix";
+	}
+}
+
 
 /*
 class FPSCapOption extends Option

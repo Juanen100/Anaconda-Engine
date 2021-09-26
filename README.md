@@ -32,6 +32,7 @@ This game was made with love to Newgrounds and its community. Extra love to Tom 
 
 - [Juanen100](https://twitter.com/Juanen1001) - JSW Engine Programmer (and the Logo artist)
 - [TheStrexx](https://twitter.com/TStrexx) - Main Menu Coin Desing and helper
+- [Hydra](https://www.youtube.com/channel/UCEnQefrHAncXQtU4f5jloCA) - Gettin' Freaky Remix
 
 ## Previews
 
