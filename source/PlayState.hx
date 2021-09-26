@@ -1249,7 +1249,7 @@ class PlayState extends MusicBeatState
 
 		if(PlayStateConfig.botPlay)
             {
-                scoreTxt.text = "Score:" + songScore  + " | Misses:0" + " | Accuracy: ?" + " | Health:" + Math.round(health * 50) + "%";
+                scoreTxt.text = "Score:" + songScore  + " | Misses:0" + " | Accuracy: 100%" + " | Health:" + Math.round(health * 50) + "%";
             }
             else
             {
