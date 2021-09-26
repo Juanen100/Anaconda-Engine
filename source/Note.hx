@@ -1,5 +1,6 @@
 package;
 
+import openfl.display.Stage;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.math.FlxMath;
@@ -123,18 +124,19 @@ class Note extends FlxSprite
 				animation.play('redScroll');
 		}
 
-		// Flips the end so it doesn't look weird
-		// YES I GOTTA FIX THE SPACE BETWEEN TAIL AND ITS END
-		// ITS JUST EXPERIMENTAL FOR THE 0.3-Dev Build
-		if (FlxG.save.data.downscroll && sustainNote) 
-			flipY = true;
-
 		// trace(prevNote);
 
 		if (isSustainNote && prevNote != null)
 		{
 			noteScore * 0.2;
 			alpha = 0.6;
+			
+			// Flips the end so it doesn't look weird
+			// YES I GOTTA FIX THE SPACE BETWEEN TAIL AND ITS END
+			// ITS JUST EXPERIMENTAL FOR THE 0.3-Dev Build
+			if (FlxG.save.data.downscroll) 
+				flipY = true;
+
 
 			x += width / 2;
 
@@ -154,7 +156,7 @@ class Note extends FlxSprite
 
 			x -= width / 2;
 
-			if (PlayState.curStage.startsWith('school'))
+			if (PlayState.Stage.curStage.startsWith('school'))
 				x += 30;
 
 			if (prevNote.isSustainNote)
