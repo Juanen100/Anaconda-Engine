@@ -602,14 +602,8 @@ class PlayState extends MusicBeatState
 						{
 							camHUD.visible = true;
 							remove(blackScreen);
-							FlxTween.tween(FlxG.camera, {zoom: Stage.camZoom}, 2.5, {
-								ease: FlxEase.quadInOut,
-								onComplete: function(twn:FlxTween)
-								{
-									startCountdown();
-								}
+							startCountdown();
 							});
-						});
 					});
 				case 'senpai':
 					schoolIntro(doof);
