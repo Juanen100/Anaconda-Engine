@@ -125,6 +125,7 @@ class Note extends FlxSprite
 
 		// Flips the end so it doesn't look weird
 		// YES I GOTTA FIX THE SPACE BETWEEN TAIL AND ITS END
+		// ITS JUST EXPERIMENTAL FOR THE 0.3-Dev Build
 		if (FlxG.save.data.downscroll && sustainNote) 
 			flipY = true;
 
