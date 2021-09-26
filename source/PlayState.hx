@@ -1048,7 +1048,7 @@ class PlayState extends MusicBeatState
 					}
 				
 				case 'normal':
-					babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
+					babyArrow.frames = Paths.getSparrowAtlas('UI_Stuff/NOTE_assets');
 					babyArrow.animation.addByPrefix('green', 'arrowUP');
 					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
 					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
@@ -1082,7 +1082,7 @@ class PlayState extends MusicBeatState
 						}
 
 				default:
-					babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
+					babyArrow.frames = Paths.getSparrowAtlas('UI_Stuff/NOTE_assets');
 					babyArrow.animation.addByPrefix('green', 'arrowUP');
 					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
 					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
@@ -1115,6 +1115,7 @@ class PlayState extends MusicBeatState
 							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
 					}
 			}
+
 
 
 			babyArrow.updateHitbox();
@@ -1838,7 +1839,7 @@ class PlayState extends MusicBeatState
 			comboSpr.velocity.x += FlxG.random.int(1, 10);
 			add(rating);
 	
-			if (!curStage.startsWith('school'))
+			if (!Stage.curStage.startsWith('school'))
 			{
 				rating.setGraphicSize(Std.int(rating.width * 0.7));
 				rating.antialiasing = true;

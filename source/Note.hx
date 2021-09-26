@@ -60,33 +60,51 @@ class Note extends FlxSprite
 		switch (noteTypeCheck)
 		{
 			case 'pixel':
-				loadGraphic(Paths.image('weeb/pixelUI/arrows-pixels', 'week6'), true, 17, 17);
-				if (isSustainNote)
-					loadGraphic(Paths.image('weeb/pixelUI/arrowEnds', 'week6'), true, 7, 6);
+				loadGraphic(Paths.image('weeb/pixelUI/arrows-pixels','week6'), true, 17, 17);
 
-				for (i in 0...4)
+				animation.add('greenScroll', [6]);
+				animation.add('redScroll', [7]);
+				animation.add('blueScroll', [5]);
+				animation.add('purpleScroll', [4]);
+
+				if (isSustainNote)
 				{
-					animation.add(dataColor[i] + 'Scroll', [i + 4]); // Normal notes
-					animation.add(dataColor[i] + 'hold', [i]); // Holds
-					animation.add(dataColor[i] + 'holdend', [i + 4]); // Tails
+					loadGraphic(Paths.image('weeb/pixelUI/arrowEnds','week6'), true, 7, 6);
+
+					animation.add('purpleholdend', [4]);
+					animation.add('greenholdend', [6]);
+					animation.add('redholdend', [7]);
+					animation.add('blueholdend', [5]);
+
+					animation.add('purplehold', [0]);
+					animation.add('greenhold', [2]);
+					animation.add('redhold', [3]);
+					animation.add('bluehold', [1]);
 				}
 
 				setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 				updateHitbox();
 			default:
-				frames = Paths.getSparrowAtlas('NOTE_assets');
+				frames = Paths.getSparrowAtlas('UI_Stuff/NOTE_assets');
 
-				for (i in 0...4)
-				{
-					animation.addByPrefix(dataColor[i] + 'Scroll', dataColor[i] + ' alone'); // Normal notes
-					animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold'); // Hold
-					animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails
-				}
+				animation.addByPrefix('greenScroll', 'green0');
+				animation.addByPrefix('redScroll', 'red0');
+				animation.addByPrefix('blueScroll', 'blue0');
+				animation.addByPrefix('purpleScroll', 'purple0');
+
+				animation.addByPrefix('purpleholdend', 'pruple end hold');
+				animation.addByPrefix('greenholdend', 'green hold end');
+				animation.addByPrefix('redholdend', 'red hold end');
+				animation.addByPrefix('blueholdend', 'blue hold end');
+
+				animation.addByPrefix('purplehold', 'purple hold piece');
+				animation.addByPrefix('greenhold', 'green hold piece');
+				animation.addByPrefix('redhold', 'red hold piece');
+				animation.addByPrefix('bluehold', 'blue hold piece');
 
 				setGraphicSize(Std.int(width * 0.7));
 				updateHitbox();
-				
-				antialiasing = FlxG.save.data.antialiasing;
+				antialiasing = true;
 		}
 
 		switch (noteData)
@@ -104,6 +122,11 @@ class Note extends FlxSprite
 				x += swagWidth * 3;
 				animation.play('redScroll');
 		}
+
+		// Flips the end so it doesn't look weird
+		// YES I GOTTA FIX THE SPACE BETWEEN TAIL AND ITS END
+		if (FlxG.save.data.downscroll && sustainNote) 
+			flipY = true;
 
 		// trace(prevNote);
 
