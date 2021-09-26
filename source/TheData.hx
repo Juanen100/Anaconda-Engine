@@ -7,9 +7,6 @@ class TheData
     //Copy-paste of Kade Engine (kade, dont kill me)
     public static function saveLoad() 
     {
-        if(FlxG.save.data.dfjk == null)
-            FlxG.save.data.dfjk = true;
-
         if(FlxG.save.data.newInput == null)
             FlxG.save.data.newInput = true;
     
@@ -38,12 +35,14 @@ class TheData
             FlxG.save.data.resetButton = false;
 
         if(FlxG.save.data.skip == null)
-            FlxG.save.data.skip = false;
+            FlxG.save.data.skip = true;
+
+        if(FlxG.save.data.songPosition == null)
+            FlxG.save.data.songPosition = false;
     }
 
     public static function resetSave()
     {
-        FlxG.save.data.dfjk = null;
         FlxG.save.data.newInput = null;
         FlxG.save.data.downscroll = null;
         FlxG.save.data.cpuStrums = null;
@@ -54,6 +53,7 @@ class TheData
         FlxG.save.data.botplay = null;
         FlxG.save.data.resetButton = null;
         FlxG.save.data.skip == null;
+        FlxG.save.data.songPosition == null;
 
         saveLoad();
     }
