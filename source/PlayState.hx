@@ -1253,7 +1253,14 @@ class PlayState extends MusicBeatState
             }
             else
             {
-                scoreTxt.text = "Score:" + songScore + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "%" + " | Health:" + Math.round(health * 50) + "%";
+				if(FlxG.save.data.accuracyDisplay)
+				{
+					scoreTxt.text = "Score:" + songScore + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "%" + " | Health:" + Math.round(health * 50) + "%";
+				}
+				else
+				{
+					scoreTxt.text = "Score:" + songScore + " | Health:" + Math.round(health * 50) + "%";
+				}
                 if(health <= 0 && FlxG.save.data.practiceMode)
                 {
 					scoreTxt.text = "Score:" + songScore + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "%" + " | Health:0%";
@@ -1756,6 +1763,7 @@ class PlayState extends MusicBeatState
 			var rating:FlxSprite = new FlxSprite();
 			var score:Int = 350;
 	
+			var daTiming:String = "";
 			var daRating:String = "UI_Stuff/sick";
 	
 			if(!PlayStateConfig.botPlay)
@@ -1801,6 +1809,19 @@ class PlayState extends MusicBeatState
                         totalNotesHit += 1;
                         sicks++;
                     }
+
+					if (!PlayStateConfig.botPlay)
+					{
+						if (noteDiff > Conductor.safeZoneOffset * 0.1)
+							daTiming = "early";
+						else if (noteDiff < Conductor.safeZoneOffset * -0.1)
+							daTiming = "late";
+					}
+					else
+					{
+						daTiming = "";
+						daRating = 'sick';
+					}
                 }
 		
 	

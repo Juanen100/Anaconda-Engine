@@ -30,6 +30,7 @@ class OptionsMenu extends MusicBeatState
 		new OptionCatagory("Appareance", [
 			new Colour(""),
 			new BetterIcon(""),
+			new AccuracyOption(""),
 			new SongTimeThing(""),
 			new FlashingLightsOption("")
 		]),
@@ -629,6 +630,25 @@ class RemixThing extends Option
 	}
 }
 
+class AccuracyOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+	public override function press():Bool
+	{
+		FlxG.save.data.accuracyDisplay = !FlxG.save.data.accuracyDisplay;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "Accuracy " + (!FlxG.save.data.accuracyDisplay ? "off" : "on");
+	}
+}
 
 /*
 class FPSCapOption extends Option
