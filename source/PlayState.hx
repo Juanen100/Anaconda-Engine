@@ -822,6 +822,12 @@ class PlayState extends MusicBeatState
 				case 4:
 			}
 
+			
+			if (generatedMusic)
+				{
+					notes.sort(FlxSort.byY, FlxG.save.data.downscroll ? FlxSort.ASCENDING : FlxSort.DESCENDING);
+				}
+
 			swagCounter += 1;
 			// generateSong('fresh');
 		}, 5);

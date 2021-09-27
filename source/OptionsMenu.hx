@@ -308,6 +308,7 @@ class Option
 	// Returns whether the label is to be updated.
 	public function press():Bool { return throw "stub!"; }
 	private function updateDisplay():String { return throw "stub!"; }
+	private function songThing() { return throw "stub!"; }
 }
 
 class ControlOption extends Option
@@ -600,12 +601,31 @@ class RemixThing extends Option
 		FlxG.save.data.remix = !FlxG.save.data.remix;
 		display = updateDisplay();
 		FlxG.sound.music.stop();
+		songThing();	
 		return true;
 	}
 
 	private override function updateDisplay():String
 	{
 		return  !FlxG.save.data.remix ? "Gettin Freaky Original" : "Gettin Freaky Remix";
+	}
+
+	private override function songThing()
+	{
+		if(FlxG.save.data.remix)
+		{
+			if(!FlxG.sound.music.playing)
+				{
+					FlxG.sound.playMusic(Paths.music('freakyMenuRemix'), 0);
+				}
+		}
+		else
+		{
+			if(!FlxG.sound.music.playing)
+				{
+					FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+				}
+		}
 	}
 }
 

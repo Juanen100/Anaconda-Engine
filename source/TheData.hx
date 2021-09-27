@@ -39,6 +39,9 @@ class TheData
 
         if(FlxG.save.data.songPosition == null)
             FlxG.save.data.songPosition = false;
+        
+        if(FlxG.save.data.remix == null)
+            FlxG.save.data.remix = true;
     }
 
     public static function resetSave()
@@ -54,6 +57,7 @@ class TheData
         FlxG.save.data.resetButton = null;
         FlxG.save.data.skip == null;
         FlxG.save.data.songPosition == null;
+        FlxG.save.data.remix == null;
 
         saveLoad();
     }
