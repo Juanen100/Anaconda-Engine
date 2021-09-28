@@ -44,11 +44,11 @@ This game was made with love to Newgrounds and its community. Extra love to Tom 
 
 - BotPlay
 - Upscroll and Downscroll
-- Full Health Option if you are bad
+- Full Health Option
 - KeyBinds
 - Health Bar Color by Character (Example: Pico = green)
 - Better Icons (Winning Icons and Lose Icons to characters doens't have one)
-- Light CPU Strums (imitate the Player notes)
+- Etterna Mode (WIP)
 - New Input and Old Input
 - New Menus
 
