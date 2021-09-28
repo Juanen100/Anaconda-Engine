@@ -38,6 +38,7 @@ class OptionsMenu extends MusicBeatState
 		new OptionCatagory("Misc", [
 			new Health(""),
 			new BotPlay(""),
+			new MissSoundOption(""),
 			#if !web
 			new Haxeflixel(""),
 			#end
@@ -668,6 +669,26 @@ class EtternaModeOption extends Option
 	private override function updateDisplay():String
 	{
 		return "Etterna Mode " + (!FlxG.save.data.etternaMode ? "off" : "on");
+	}
+}
+
+class MissSoundOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+	public override function press():Bool
+	{
+		FlxG.save.data.miss = !FlxG.save.data.miss;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "Play Miss Sound " + (FlxG.save.data.miss ? "on" : "off");
 	}
 }
 
