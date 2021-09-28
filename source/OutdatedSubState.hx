@@ -70,6 +70,10 @@ class OutdatedSubState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		if (FlxG.keys.justPressed.F11)
+			{
+				FlxG.fullscreen = !FlxG.fullscreen;
+			}
 		if (controls.ACCEPT && MainMenuState.preRelease == "")
 		{
 			epicOpenUrl("https://github.com/Juanen100/JWB-Engine" + needVer);
