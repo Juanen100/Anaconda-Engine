@@ -32,7 +32,7 @@ This game was made with love to Newgrounds and its community. Extra love to Tom 
 - [TheStrexx](https://twitter.com/TStrexx) - Main Menu Coin Desing and helper
 - [Hydra](https://www.youtube.com/channel/UCEnQefrHAncXQtU4f5jloCA) - Gettin' Freaky Remix
 
-## Previews
+## Previews (WARNING: THE PREVIEWS ARE OUTDATED, WAIT UNTIL I CHANGE THE PREVIEWS)
 
 ![2021-09-19 15-52-12_Trim](https://user-images.githubusercontent.com/65170591/133930211-0e1d806c-7156-46d3-bf2c-2bd0db7cce39.gif)
 ![2021-09-19 16-04-59_Trim](https://user-images.githubusercontent.com/65170591/133930559-88653a59-fece-4f6f-b66e-c07eae17ddbc.gif)
