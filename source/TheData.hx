@@ -46,15 +46,15 @@ class TheData
 
     public static function resetSave()
     {
-        FlxG.save.data.newInput = null;
-        FlxG.save.data.downscroll = null;
-        FlxG.save.data.cpuStrums = null;
-        FlxG.save.data.colour = null;
-        FlxG.save.data.betterIcons = null;
-        FlxG.save.data.flashing = null;
-        FlxG.save.data.health = null;
-        FlxG.save.data.botplay = null;
-        FlxG.save.data.resetButton = null;
+        FlxG.save.data.newInput == null;
+        FlxG.save.data.downscroll == null;
+        FlxG.save.data.cpuStrums == null;
+        FlxG.save.data.colour == null;
+        FlxG.save.data.betterIcons == null;
+        FlxG.save.data.flashing == null;
+        FlxG.save.data.health == null;
+        FlxG.save.data.botplay == null;
+        FlxG.save.data.resetButton == null;
         FlxG.save.data.skip == null;
         FlxG.save.data.songPosition == null;
         FlxG.save.data.remix == null;
