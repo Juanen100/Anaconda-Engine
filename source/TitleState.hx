@@ -393,6 +393,9 @@ class TitleState extends MusicBeatState
 
 		FlxG.log.add(curBeat);
 
+		// Cool Engine, u saved my ass
+		FlxTween.tween(FlxG.camera, {zoom:1.02}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
+
 		switch (curBeat)
 		{
 			case 1:
