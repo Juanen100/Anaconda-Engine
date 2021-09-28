@@ -25,6 +25,7 @@ class OptionsMenu extends MusicBeatState
 		new OptionCatagory("Gameplay", [
 			new InputOption("it doesn't matter what u put here lol"),
 			new DownscrollOption(""),
+			new EtternaModeOption(""),
 			new CpuStrums("")
 		]),
 		new OptionCatagory("Appareance", [
@@ -647,6 +648,26 @@ class AccuracyOption extends Option
 	private override function updateDisplay():String
 	{
 		return "Accuracy " + (!FlxG.save.data.accuracyDisplay ? "off" : "on");
+	}
+}
+
+class EtternaModeOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+	public override function press():Bool
+	{
+		FlxG.save.data.etternaMode = !FlxG.save.data.etternaMode;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "Etterna Mode " + (!FlxG.save.data.etternaMode ? "off" : "on");
 	}
 }
 

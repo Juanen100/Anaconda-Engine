@@ -169,6 +169,11 @@ class PlayState extends MusicBeatState
 	override public function create()
 	{
 		FlxG.save.data.distractions = true;
+
+		if(FlxG.save.data.etternaMode)
+			Conductor.safeFrames = 5;
+		else
+			Conductor.safeFrames = 10;
 		
         if (FlxG.save.data.health)
 			health = 2;
