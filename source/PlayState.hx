@@ -90,7 +90,7 @@ class PlayState extends MusicBeatState
 
 	private var camZooming:Bool = false;
 	private var curSong:String = "";
-
+	
 	private var gfSpeed:Int = 1;
 	private var health:Float = 1;
 	private var combo:Int = 0;
