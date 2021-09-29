@@ -40,7 +40,7 @@ class OptionsMenu extends MusicBeatState
 			new Health(""),
 			new BotPlay(""),
 			new MissSoundOption(""),
-			new RainbowFPSOption(""),
+			//new RainbowFPSOption(""),
 			#if !web
 			new Haxeflixel(""),
 			#end
