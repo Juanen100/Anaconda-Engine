@@ -31,6 +31,7 @@ class OptionsMenu extends MusicBeatState
 		new OptionCatagory("Appareance", [
 			new Colour(""),
 			new BetterIcon(""),
+			new FPSOption(""),
 			new AccuracyOption(""),
 			new SongTimeThing(""),
 			new FlashingLightsOption("")
@@ -140,23 +141,7 @@ class OptionsMenu extends MusicBeatState
 			if (isCat)
 			{
 				switch(currentSelectedCat.getOptions()[curSelected].getDisplay())
-				{
-					case 'FPS Cap':
-						var fps = (cast (Lib.current.getChildAt(0), Main)).getFPSCap();
-
-						if (FlxG.keys.pressed.RIGHT && fps < 285) // actual cap is 285
-						{
-							(cast (Lib.current.getChildAt(0), Main)).setFPSCap(fps + 10);
-							FlxG.save.data.fpsCap = fps + 10;
-						}
-		
-						if (FlxG.keys.pressed.LEFT && fps > 60)
-						{
-							(cast (Lib.current.getChildAt(0), Main)).setFPSCap(fps - 10);
-							FlxG.save.data.fpsCap = fps - 10;
-						}
-		
-						
+				{		
 					case 'Scroll Speed':
 						if (FlxG.keys.justPressed.RIGHT)
 							FlxG.save.data.scrollSpeed += 0.1;
@@ -689,6 +674,28 @@ class MissSoundOption extends Option
 	private override function updateDisplay():String
 	{
 		return "Play Miss Sound " + (FlxG.save.data.miss ? "on" : "off");
+	}
+}
+
+class FPSOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.fps = !FlxG.save.data.fps;
+		(cast (Lib.current.getChildAt(0), Main)).toggleFPS(FlxG.save.data.fps);
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "FPS Counter " + (!FlxG.save.data.fps ? "off" : "on");
 	}
 }
 

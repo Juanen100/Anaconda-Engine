@@ -328,9 +328,10 @@ class FreeplayState extends MusicBeatState
 			destroyFreeplayVocals();
 		}
 
+		
 		discIcon.x = disc.x + disc.width / 2 - discIcon.width / 2;
 		discIcon.y = disc.y + disc.height / 2 - discIcon.height / 2;
-		discIcon.scale.set(disc.scale.x, disc.scale.y);
+		discIcon.scale.set(1, 1);
 
 		super.update(elapsed);
 	}
