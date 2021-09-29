@@ -40,6 +40,7 @@ class OptionsMenu extends MusicBeatState
 			new Health(""),
 			new BotPlay(""),
 			new MissSoundOption(""),
+			new RainbowFPSOption(""),
 			#if !web
 			new Haxeflixel(""),
 			#end
@@ -699,54 +700,24 @@ class FPSOption extends Option
 	}
 }
 
-/*
-class FPSCapOption extends Option
+class RainbowFPSOption extends Option
 {
 	public function new(desc:String)
 	{
 		super();
 		description = desc;
-		acceptValues = true;
 	}
 
 	public override function press():Bool
 	{
-		return false;
+		FlxG.save.data.fpsRain = !FlxG.save.data.fpsRain;
+		(cast (Lib.current.getChildAt(0), Main)).changeFPSColor(FlxColor.WHITE);
+		display = updateDisplay();
+		return true;
 	}
 
 	private override function updateDisplay():String
 	{
-		return "FPS Cap";
-	}
-	
-	override function right():Bool {
-		if (FlxG.save.data.fpsCap >= 290)
-		{
-			FlxG.save.data.fpsCap = 290;
-			(cast (Lib.current.getChildAt(0), Main)).setFPSCap(290);
-		}
-		else
-			FlxG.save.data.fpsCap = FlxG.save.data.fpsCap + 10;
-		(cast (Lib.current.getChildAt(0), Main)).setFPSCap(FlxG.save.data.fpsCap);
-
-		return true;
-	}
-
-	override function left():Bool {
-		if (FlxG.save.data.fpsCap > 290)
-			FlxG.save.data.fpsCap = 290;
-		else if (FlxG.save.data.fpsCap < 60)
-			FlxG.save.data.fpsCap = Application.current.window.displayMode.refreshRate;
-		else
-			FlxG.save.data.fpsCap = FlxG.save.data.fpsCap - 10;
-		(cast (Lib.current.getChildAt(0), Main)).setFPSCap(FlxG.save.data.fpsCap);
-		return true;
-	}
-
-	override function getValue():String
-	{
-		return "Current FPS Cap: " + FlxG.save.data.fpsCap + 
-		(FlxG.save.data.fpsCap == Application.current.window.displayMode.refreshRate ? "Hz (Refresh Rate)" : "");
+		return "FPS Rainbow " + (!FlxG.save.data.fpsRain ? "off" : "on");
 	}
 }
-*/
