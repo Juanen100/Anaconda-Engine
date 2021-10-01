@@ -61,6 +61,9 @@ class ChartingState extends MusicBeatState
 
 	var dummyArrow:FlxSprite;
 
+	var player2TextField:FlxInputText;
+	var enemyText:FlxText;
+
 	var curRenderedNotes:FlxTypedGroup<Note>;
 	var curRenderedSustains:FlxTypedGroup<FlxSprite>;
 
@@ -226,6 +229,9 @@ class ChartingState extends MusicBeatState
 		stepperBPM.value = Conductor.bpm;
 		stepperBPM.name = 'song_bpm';
 
+		player2TextField = new FlxUIInputText(80, 100, 70, _song.player2, 8);
+		//enemyText = new FlxText(player2DropDown.x + 70, player2DropDown.y, 0, "Player2", 8, false);
+
 		var characters:Array<String> = CoolUtil.coolTextFile(Paths.txt('characterList'));
 		for (i in Reflect.fields(Json.parse(Assets.getText('mods/custom_chars/custom_chars.json'))))
 			{
@@ -269,6 +275,7 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(stageDropDown);
 		tab_group_song.add(player1DropDown);
 		tab_group_song.add(player2DropDown);
+		//tab_group_song.add(enemyText);
 
 		UI_box.addGroup(tab_group_song);
 		UI_box.scrollFactor.set();

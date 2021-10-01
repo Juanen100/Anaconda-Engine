@@ -2324,7 +2324,7 @@ class PlayState extends MusicBeatState
 						totalNotesHit += 1;
 		
 					if (note.noteData >= 0)
-						health += 0.045;
+						health += 0.030;
 					else
 						health += 0.004;
 
