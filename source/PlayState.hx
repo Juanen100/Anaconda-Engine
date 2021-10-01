@@ -1000,6 +1000,9 @@ class PlayState extends MusicBeatState
 			// FlxG.log.add(i);
 			var babyArrow:FlxSprite = new FlxSprite(0, strumLine.y);
 
+			if(FlxG.save.data.middlescroll && player==0)
+				babyArrow.visible=false;
+
 			var noteTypeCheck:String = 'normal';
 
 			if (SONG.noteStyle == null)
@@ -1146,8 +1149,10 @@ class PlayState extends MusicBeatState
 			}
 
 			babyArrow.animation.play('static');
-			babyArrow.x += 50;
-			babyArrow.x += ((FlxG.width / 2) * player);
+			if(!FlxG.save.data.middlescroll){
+				babyArrow.x += 50;
+				babyArrow.x += ((FlxG.width / 2) * player);
+			}
 		
 
 			if (FlxG.save.data.middlescroll)
@@ -1547,6 +1552,14 @@ class PlayState extends MusicBeatState
 					{
 						daNote.visible = true;
 						daNote.active = true;
+
+						if((daNote.mustPress || !daNote.mustPress && !FlxG.save.data.middlescroll)){
+							daNote.visible = true;
+						}
+					}
+
+					if(!daNote.mustPress && FlxG.save.data.middlescroll){
+						daNote.visible=false;
 					}
 	
 					if (!daNote.mustPress && daNote.wasGoodHit)
