@@ -44,7 +44,7 @@ This game was made with love to Newgrounds and its community. Extra love to Tom 
 
 - BotPlay
 - Upscroll and Downscroll
-- Full Health Option
+- Mod Support (Not Polymod and still WIP)
 - KeyBinds
 - Health Bar Color by Character (Example: Pico = green)
 - Better Icons (Winning Icons and Lose Icons to characters doens't have one)
