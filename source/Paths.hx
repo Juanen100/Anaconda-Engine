@@ -16,24 +16,27 @@ class Paths
 		currentLevel = name.toLowerCase();
 	}
 
-	static function getPath(file:String, type:AssetType, library:Null<String>)
-	{
-		if (library != null)
-			return getLibraryPath(file, library);
-
-		if (currentLevel != null)
+	public static function getPath(file:String, type:AssetType, ?library:Null<String> = null)
 		{
-			var levelPath = getLibraryPathForce(file, currentLevel);
-			if (OpenFlAssets.exists(levelPath, type))
-				return levelPath;
-
-			levelPath = getLibraryPathForce(file, "shared");
-			if (OpenFlAssets.exists(levelPath, type))
-				return levelPath;
+			if (library != null)
+				return getLibraryPath(file, library);
+	
+			if (currentLevel != null)
+			{
+				var levelPath:String = '';
+				if(currentLevel != 'shared') {
+					levelPath = getLibraryPathForce(file, currentLevel);
+					if (OpenFlAssets.exists(levelPath, type))
+						return levelPath;
+				}
+	
+				levelPath = getLibraryPathForce(file, "shared");
+				if (OpenFlAssets.exists(levelPath, type))
+					return levelPath;
+			}
+	
+			return getPreloadPath(file);
 		}
-
-		return getPreloadPath(file);
-	}
 
 	static public function getLibraryPath(file:String, library = "preload")
 	{
@@ -45,7 +48,7 @@ class Paths
 		return '$library:assets/$library/$file';
 	}
 
-	inline static function getPreloadPath(file:String)
+	static public function getPreloadPath(file:String)
 	{
 		return 'assets/$file';
 	}

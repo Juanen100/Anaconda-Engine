@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="template.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="template down0000" x="0" y="0" width="586" height="311"/>
+	<SubTexture name="template idle0000" x="586" y="0" width="369" height="301" frameX="-31" frameY="-62" frameWidth="430" frameHeight="420"/>
+	<SubTexture name="template idle0001" x="955" y="0" width="376" height="300" frameX="-46" frameY="-46" frameWidth="430" frameHeight="420"/>
+	<SubTexture name="template idle0002" x="1331" y="0" width="405" height="323" frameX="-25" frameY="-20" frameWidth="430" frameHeight="420"/>
+	<SubTexture name="template idle0003" x="0" y="323" width="341" height="350" frameX="-49" frameY="-12" frameWidth="430" frameHeight="420"/>
+	<SubTexture name="template idle0004" x="341" y="323" width="302" height="378" frameX="-82" frameY="-42" frameWidth="430" frameHeight="420"/>
+	<SubTexture name="template idle0005" x="643" y="323" width="336" height="376" frameX="-84" frameY="-31" frameWidth="430" frameHeight="420"/>
+	<SubTexture name="template idle0006" x="979" y="323" width="404" height="322" frameX="0" frameY="-80" frameWidth="430" frameHeight="420"/>
+	<SubTexture name="template idle0007" x="1383" y="323" width="312" height="393" frameX="-38" frameY="0" frameWidth="430" frameHeight="420"/>
+	<SubTexture name="template idle0008" x="0" y="716" width="369" height="301" frameX="-31" frameY="-62" frameWidth="430" frameHeight="420"/>
+	<SubTexture name="template idle0009" x="0" y="716" width="369" height="301" frameX="-31" frameY="-62" frameWidth="430" frameHeight="420"/>
+	<SubTexture name="template left0000" x="369" y="716" width="538" height="417"/>
+	<SubTexture name="template right0000" x="907" y="716" width="559" height="445"/>
+	<SubTexture name="template up0000" x="1466" y="716" width="276" height="334"/>
+</TextureAtlas>

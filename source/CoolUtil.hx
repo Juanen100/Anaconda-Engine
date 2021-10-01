@@ -5,6 +5,7 @@ import openfl.utils.Assets;
 import lime.utils.Assets as LimeAssets;
 import lime.utils.AssetLibrary;
 import lime.utils.AssetManifest;
+import tjson.TJSON;
 
 using StringTools;
 
@@ -39,6 +40,11 @@ class CoolUtil
 		}
 
 		return daList;
+	}
+
+	public static function parseJson(json:String):Dynamic {
+		// the reason we do this is to make it easy to swap out json parsers
+		return TJSON.parse(json);
 	}
 
 	public static function numberArray(max:Int, ?min = 0):Array<Int>

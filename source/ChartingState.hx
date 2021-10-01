@@ -227,6 +227,10 @@ class ChartingState extends MusicBeatState
 		stepperBPM.name = 'song_bpm';
 
 		var characters:Array<String> = CoolUtil.coolTextFile(Paths.txt('characterList'));
+		for (i in Reflect.fields(Json.parse(Assets.getText('mods/custom_chars/custom_chars.json'))))
+			{
+				characters.push(i);
+			}
 
 		var player1DropDown = new FlxUIDropDownMenu(10, 100, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
 		{
