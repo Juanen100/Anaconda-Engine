@@ -232,6 +232,15 @@ class ChartingState extends MusicBeatState
 				characters.push(i);
 			}
 
+		var stages:Array<String> = CoolUtil.coolTextFile(Paths.txt('stageList'));
+		var stageDropDown = new FlxUIDropDownMenu(140, 200, FlxUIDropDownMenu.makeStrIdLabelArray(stages, true), function(stage:String)
+			{
+				_song.stage = stages[Std.parseInt(stage)];
+			});
+		stageDropDown.selectedLabel = _song.stage;
+		
+		var stageLabel = new FlxText(140,180,64,'Stage');
+
 		var player1DropDown = new FlxUIDropDownMenu(10, 100, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
 		{
 			_song.player1 = characters[Std.parseInt(character)];
@@ -257,6 +266,7 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(loadAutosaveBtn);
 		tab_group_song.add(stepperBPM);
 		tab_group_song.add(stepperSpeed);
+		tab_group_song.add(stageDropDown);
 		tab_group_song.add(player1DropDown);
 		tab_group_song.add(player2DropDown);
 

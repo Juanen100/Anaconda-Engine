@@ -166,9 +166,13 @@ class PlayState extends MusicBeatState
 	public static var timeCurrently:Float = 0;
 	public static var timeCurrentlyR:Float = 0;
 
+	public static var startTime = 0.0;
+
 	override public function create()
 	{
 		FlxG.save.data.distractions = true;
+
+		FlxG.save.data.middlescroll = false;
 
 		if(FlxG.save.data.etternaMode)
 			Conductor.safeFrames = 5;
@@ -454,6 +458,42 @@ class PlayState extends MusicBeatState
 		generateSong(SONG.song);
 
 		// add(strumLine);
+
+		if (startTime != 0)
+			{
+				var toBeRemoved = [];
+				for(i in 0...notes.members.length)
+				{
+					var dunceNote:Note = notes.members[i];
+	
+					if (dunceNote.strumTime - startTime <= 0)
+						toBeRemoved.push(dunceNote);
+					else 
+					{
+						if (FlxG.save.data.downscroll)
+						{
+							if (dunceNote.mustPress)
+								dunceNote.y = (playerStrums.members[Math.floor(Math.abs(dunceNote.noteData))].y
+									* (startTime - dunceNote.strumTime) * FlxMath.roundDecimal(SONG.speed, 2));
+							else
+								dunceNote.y = (strumLineNotes.members[Math.floor(Math.abs(dunceNote.noteData))].y
+									* (startTime - dunceNote.strumTime) * FlxMath.roundDecimal(SONG.speed, 2));
+						}
+						else
+						{
+							if (dunceNote.mustPress)
+								dunceNote.y = (playerStrums.members[Math.floor(Math.abs(dunceNote.noteData))].y
+									* (startTime - dunceNote.strumTime) * FlxMath.roundDecimal(SONG.speed, 2));
+							else
+								dunceNote.y = (strumLineNotes.members[Math.floor(Math.abs(dunceNote.noteData))].y
+									* (startTime - dunceNote.strumTime) * FlxMath.roundDecimal(SONG.speed, 2));
+						}
+					}
+				}
+	
+				for(i in toBeRemoved)
+					notes.members.remove(i);
+			}
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 
@@ -1283,6 +1323,12 @@ class PlayState extends MusicBeatState
 			persistentUpdate = false;
 			persistentDraw = true;
 			paused = true;
+
+			playerStrums.forEach(function(spr:FlxSprite) // Idk a better way to do this, but it works, so i don't care
+                {
+                    spr.animation.play('static');
+                    spr.centerOffsets();
+                });
 
 			// 1 / 1000 chance for Gitaroo Man easter egg
 			if (FlxG.random.bool(0.1))
