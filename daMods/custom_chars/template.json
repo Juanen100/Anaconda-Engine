@@ -13,11 +13,11 @@
       "loop": true
     },
     "singLEFT": {
-      "name": "template left",
+      "name": "template right",
       "loop": true
     },
     "singRIGHT": {
-      "name": "template right",
+      "name": "template left",
       "loop": true
     }
   },
