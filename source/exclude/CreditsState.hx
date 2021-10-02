@@ -23,10 +23,9 @@ class CreditsState extends MusicBeatState
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private var iconArray:Array<AttachedSprite> = [];
 
-	private static var creditsStuff:Array<Dynamic> = [ //Name - Icon name - Description - Link - BG Color
-		['VS KNABYTIC TEAM'],
-		['Test',		'nothing',		'Nothing',					'https://twitter.com/Shadow_Mario_',	0xFF7900d6],
-		['TheReddoll',			'reddoll',		'Creator',				'https://twitter.com/river_oaken',		0xFF7900d6]
+	private static var creditsStuff:Array<Dynamic> = [ //Nombre - Icono - Descripción - Red Social - Color de fondo
+		['Can i put my balls in yo jaws'],
+		['Test',		'nothing',		'Nothing',					'https://twitter.com/Shadow_Mario_',	0xFF7900d6]
 	];
 
 	var bg:FlxSprite;
@@ -44,16 +43,6 @@ class CreditsState extends MusicBeatState
 
 		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		add(bg);
-
-        creditsThing = new FlxSprite(750, 0);
-		creditsThing.frames = Paths.getSparrowAtlas('credits/credits_thing');
-		creditsThing.animation.addByPrefix('idle', "credits white", 24);
-		creditsThing.antialiasing = true;
-		creditsThing.animation.play('idle');
-		creditsThing.updateHitbox();
-        creditsThing.scale.x = 0.5;
-        creditsThing.scale.y = 0.5;
-        add(creditsThing);
 
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
