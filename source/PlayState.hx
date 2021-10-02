@@ -76,7 +76,7 @@ class PlayState extends MusicBeatState
 	private var notes:FlxTypedGroup<Note>;
 	private var unspawnNotes:Array<Note> = [];
 
-	private var SplashNote:NoteSplash;
+	//private var SplashNote:NoteSplash;
 
 	private var strumLine:FlxSprite;
 	private var curSection:Int = 0;
@@ -129,8 +129,6 @@ class PlayState extends MusicBeatState
 	var limo:FlxSprite;
 	var grpLimoDancers:FlxTypedGroup<BackgroundDancer>;
 	var fastCar:FlxSprite;
-	var grpNoteSplashes:FlxTypedGroup<NoteSplash>;
-	var noteSplashOp:Bool;
 
 	var daNote:Note;
 
@@ -172,6 +170,17 @@ class PlayState extends MusicBeatState
 	override public function create()
 	{
 		FlxG.save.data.yes = false;
+
+	/*	var noteSplash:FlxSprite = new FlxSprite(daNote.x, playerStrums.members[daNote.noteData].y);
+        var tex:flixel.graphics.frames.FlxAtlasFrames = Paths.getSparrowAtlas('noteSplashes', 'shared');
+        noteSplash.frames = tex;
+        var colorName = ['purple', 'blue', 'green', 'red'];
+        for (i in 0...4)
+        {
+            noteSplash.animation.addByPrefix('splash 0 ' + i, 'note impact 1 ' + colorName[i], 24, false);
+            noteSplash.animation.addByPrefix('splash 1 ' + i, 'note impact 2 ' + colorName[i], 24, false);
+        }
+*/
 
 		FlxG.save.data.distractions = true;
 
@@ -215,11 +224,6 @@ class PlayState extends MusicBeatState
 
 		if (SONG == null)
 			SONG = Song.loadFromJson('tutorial');
-
-		grpNoteSplashes = new FlxTypedGroup<NoteSplash>();
-		var sploosh = new NoteSplash(100, 100, 0);
-		sploosh.alpha = 0.6;
-		grpNoteSplashes.add(sploosh);
 
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
@@ -442,7 +446,6 @@ class PlayState extends MusicBeatState
 		doof.finishThing = startCountdown;
 
 		Conductor.songPosition = -5000;
-		noteSplashOp = true;
 
 		strumLine = new FlxSprite(0, 50).makeGraphic(FlxG.width, 10);
 		strumLine.scrollFactor.set();
@@ -452,11 +455,6 @@ class PlayState extends MusicBeatState
 		
 		strumLineNotes = new FlxTypedGroup<FlxSprite>();
 		add(strumLineNotes);
-
-		if (FlxG.save.data.splash && !PlayStateConfig.botPlay)	
-		{
-			add(grpNoteSplashes);
-		}
 
 		playerStrums = new FlxTypedGroup<FlxSprite>();
         cpuStrums = new FlxTypedGroup<FlxSprite>();
@@ -612,7 +610,6 @@ class PlayState extends MusicBeatState
 		add(iconP2);
 
 		strumLineNotes.cameras = [camHUD];
-		grpNoteSplashes.cameras = [camHUD];
 		notes.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
 		healthBarBG.cameras = [camHUD];
@@ -1879,6 +1876,7 @@ class PlayState extends MusicBeatState
                     {
                         totalNotesHit += 1;
                         sicks++;
+						//spawnNoteSplashOnNote(note);
                     }
 
 					if (!PlayStateConfig.botPlay)
