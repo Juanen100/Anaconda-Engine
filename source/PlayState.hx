@@ -171,6 +171,8 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
+		FlxG.save.data.yes = false;
+
 		FlxG.save.data.distractions = true;
 
 		FlxG.save.data.middlescroll = false;
@@ -2333,6 +2335,9 @@ class PlayState extends MusicBeatState
 						health += 0.030;
 					else
 						health += 0.004;
+
+					if(FlxG.save.data.yes)
+						FlxG.sound.play(Paths.sound('hitsound'), 1.7);
 
 					switch (note.noteData)
 					{

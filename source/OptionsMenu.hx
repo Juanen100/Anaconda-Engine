@@ -40,6 +40,7 @@ class OptionsMenu extends MusicBeatState
 			new Health(""),
 			new BotPlay(""),
 			new MissSoundOption(""),
+			//new HitSoundWeird(""),
 			//new RainbowFPSOption(""),
 			#if !web
 			new Haxeflixel(""),
@@ -700,7 +701,7 @@ class FPSOption extends Option
 	}
 }
 
-class RainbowFPSOption extends Option
+class HitSoundWeird extends Option
 {
 	public function new(desc:String)
 	{
@@ -710,14 +711,13 @@ class RainbowFPSOption extends Option
 
 	public override function press():Bool
 	{
-		FlxG.save.data.fpsRain = !FlxG.save.data.fpsRain;
-		(cast (Lib.current.getChildAt(0), Main)).changeFPSColor(FlxColor.WHITE);
+		FlxG.save.data.yes = !FlxG.save.data.yes;
 		display = updateDisplay();
 		return true;
 	}
 
 	private override function updateDisplay():String
 	{
-		return "FPS Rainbow " + (!FlxG.save.data.fpsRain ? "off" : "on");
+		return "Hitsound " + (!FlxG.save.data.yes ? "on" : "off");
 	}
 }
