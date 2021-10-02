@@ -40,7 +40,7 @@ class TitleState extends MusicBeatState
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
 
-	//static public var soundExt:String = ".mp3"; litle test upsi
+	static public var soundExt:String = ".ogg";
 
 	var curWacky:Array<String> = [];
 

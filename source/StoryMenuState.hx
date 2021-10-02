@@ -47,7 +47,15 @@ class StoryMenuState extends MusicBeatState
 		['senpai', 'bf', 'gf']
 	];
 
-	var weekNames:Array<String> = CoolUtil.coolTextFile(Paths.txt('weekNames')); //added so u can change the shitty week names :)
+	var weekNames:Array<String> = [
+		"",
+		"Daddy Dearest",
+		"Spooky Month",
+		"PICO",
+		"MOMMY MUST MURDER",
+		"RED SNOW",
+		"Hating Simulator ft. Moawling"
+	];
 
 	var txtWeekTitle:FlxText;
 
