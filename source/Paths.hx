@@ -53,6 +53,16 @@ class Paths
 		return 'assets/$file';
 	}
 
+	static public function getModsShit(file:String)
+		{
+			return 'mods/$file';
+		}
+	
+	static public function getModsImages(file:String)
+	{
+		return 'mods/$file.png';
+	}
+
 	inline static public function file(file:String, type:AssetType = TEXT, ?library:String)
 	{
 		return getPath(file, type, library);

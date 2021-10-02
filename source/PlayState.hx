@@ -41,6 +41,7 @@ import lime.utils.Assets;
 import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
+import ShittyStageThing;
 
 using StringTools;
 
@@ -257,6 +258,8 @@ class PlayState extends MusicBeatState
 			{
 				switch (storyWeek)
 				{
+					case 1:
+						stageCheck = 'stage';
 					case 2:
 						stageCheck = 'halloween';
 					case 3:
@@ -288,6 +291,9 @@ class PlayState extends MusicBeatState
 			{
 				stageCheck = SONG.stage;
 			}
+
+			var stageData:StageFile = ShittyStageThing.getStageFile(curStage);
+			defaultCamZoom = stageData.defaultZoom;
 
 		var gfCheck:String = 'gf';
 
