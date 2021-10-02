@@ -33,3 +33,5 @@ Fifth: You finished creating your character HORAY! But there is another thing, t
 Sixth and final step: Actually putting you character on the game, YAY! Remember the assets folder? You gotta go to assets/data, once you are there, go to this file: characterList.txt, and replace the template thing with your character name
 
 ![character_fifth](https://raw.githubusercontent.com/Juanen100/Solar-Engine/master/art/character_fifth.png)
+
+To test the character, just press 7 in the song you want and change the player two to your character
