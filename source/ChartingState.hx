@@ -91,20 +91,6 @@ class ChartingState extends MusicBeatState
 		gridBG = FlxGridOverlay.create(GRID_SIZE, GRID_SIZE, GRID_SIZE * 8, GRID_SIZE * 16);
 		add(gridBG);
 
-		leftIcon = new HealthIcon('bf');
-		rightIcon = new HealthIcon('dad');
-		leftIcon.scrollFactor.set(1, 1);
-		rightIcon.scrollFactor.set(1, 1);
-
-		leftIcon.setGraphicSize(0, 45);
-		rightIcon.setGraphicSize(0, 45);
-
-		add(leftIcon);
-		add(rightIcon);
-
-		leftIcon.setPosition(0, -100);
-		rightIcon.setPosition(gridBG.width / 2, -100);
-
 		var gridBlackLine:FlxSprite = new FlxSprite(gridBG.x + gridBG.width / 2).makeGraphic(2, Std.int(gridBG.height), FlxColor.BLACK);
 		add(gridBlackLine);
 
@@ -134,6 +120,20 @@ class ChartingState extends MusicBeatState
 		FlxG.save.bind('funkin', 'ninjamuffin99');
 
 		tempBpm = _song.bpm;
+
+		leftIcon = new HealthIcon(_song.player1);
+		rightIcon = new HealthIcon(_song.player2);
+		leftIcon.scrollFactor.set(1, 1);
+		rightIcon.scrollFactor.set(1, 1);
+
+		leftIcon.setGraphicSize(0, 45);
+		rightIcon.setGraphicSize(0, 45);
+
+		add(leftIcon);
+		add(rightIcon);
+
+		leftIcon.setPosition(0, -100);
+		rightIcon.setPosition(gridBG.width / 2, -100);
 
 		addSection();
 
@@ -493,6 +493,8 @@ class ChartingState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		updateHeads();
+
 		curStep = recalculateSteps();
 
 		Conductor.songPosition = FlxG.sound.music.time;
@@ -798,6 +800,20 @@ class ChartingState extends MusicBeatState
 		updateGrid();
 	}
 
+	function updateHeads():Void
+		{
+			if (check_mustHitSection.checked)
+			{
+				leftIcon.animation.play('bf');
+				rightIcon.animation.play('dad');
+			}
+			else
+			{
+				leftIcon.animation.play('dad');
+				rightIcon.animation.play('bf');
+			}
+		}	
+
 	function updateSectionUI():Void
 	{
 		var sec = _song.notes[curSection];
@@ -809,20 +825,6 @@ class ChartingState extends MusicBeatState
 		stepperSectionBPM.value = sec.bpm;
 
 		updateHeads();
-	}
-
-	function updateHeads():Void
-	{
-		if (check_mustHitSection.checked)
-		{
-			leftIcon.animation.play('bf');
-			rightIcon.animation.play('dad');
-		}
-		else
-		{
-			leftIcon.animation.play('dad');
-			rightIcon.animation.play('bf');
-		}
 	}
 
 	function updateNoteUI():Void
