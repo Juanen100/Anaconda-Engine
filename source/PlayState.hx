@@ -461,6 +461,11 @@ class PlayState extends MusicBeatState
 
 		// startCountdown();
 
+		if (SONG.song == null)
+			trace('song is null lel');
+		else
+			trace('song looks epok');
+
 		generateSong(SONG.song);
 
 		// add(strumLine);
