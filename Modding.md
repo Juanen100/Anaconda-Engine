@@ -22,15 +22,19 @@ Third: On the custom_chars folder, you go into the custom_chars.jsonc file (open
 
 Were it says "bf_wrk" goes your character name, it doens't matter what numbers you put on "icons"
 
-Fourth: In the "custom_chars" folder, copy the template.json file and paste it with your characters name. Then rename the animations to whatever is on the .xml file. Like in the image!
+Fourth: In the custom_char.json file you just copy the template stuff and paste it like in the following image
+
+![character_idk](https://raw.githubusercontent.com/Juanen100/Solar-Engine/master/art/character_idk.png)
+
+Fifth: In the "custom_chars" folder, copy the template.json file and paste it with your characters name. Then rename the animations to whatever is on the .xml file. Like in the image!
 
 ![character_sixth_but_xd](https://raw.githubusercontent.com/Juanen100/Solar-Engine/master/art/character_sixth_but_xd.png)
 
-Fifth: You finished creating your character HORAY! But there is another thing, the icon. For the icon you go (outside the mods folder) to assets/images/icons/betterIcons (or nomalIcons). From here you copy what ever icon you want and draw on top of it with the name of you character
+Sixth: You finished creating your character HORAY! But there is another thing, the icon. For the icon you go (outside the mods folder) to assets/images/icons/betterIcons (or nomalIcons). From here you copy what ever icon you want and draw on top of it with the name of you character
 
 ![character_fourth](https://raw.githubusercontent.com/Juanen100/Solar-Engine/master/art/character_fourth.png) Something like this
 
-Sixth and final step: Actually putting you character on the game, YAY! Remember the assets folder? You gotta go to assets/data, once you are there, go to this file: characterList.txt, and replace the template thing with your character name
+Seventh and final step: Actually putting you character on the game, YAY! Remember the assets folder? You gotta go to assets/data, once you are there, go to this file: characterList.txt, and replace the template thing with your character name
 
 ![character_fifth](https://raw.githubusercontent.com/Juanen100/Solar-Engine/master/art/character_fifth.png)
 
