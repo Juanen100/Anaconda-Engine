@@ -1881,8 +1881,8 @@ class PlayState extends MusicBeatState
                     {
                         totalNotesHit += 1;
                         sicks++;
-						//spawnNoteSplashOnNote(note);
-                    }
+						//spawnNoteSplashOnNote(note);                    
+					}
 
 					if (!PlayStateConfig.botPlay)
 					{
