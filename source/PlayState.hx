@@ -96,7 +96,7 @@ class PlayState extends MusicBeatState
 	private var health:Float = 1;
 	private var combo:Int = 0;
 	public static var misses:Int = 0;
-	private var accuracy:Float = 0.00;
+	public static var accuracy:Float = 0.00;
 	private var totalNotesHit:Float = 0;
 	private var totalPlayed:Int = 0;
 	private var ss:Bool = false;
@@ -142,7 +142,7 @@ class PlayState extends MusicBeatState
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 
 	var talking:Bool = true;
-	var songScore:Int = 0;
+	public static var songScore:Int = 0;
 	var scoreTxt:FlxText;
 	var healthTxt:FlxText;
 
@@ -181,6 +181,10 @@ class PlayState extends MusicBeatState
             noteSplash.animation.addByPrefix('splash 1 ' + i, 'note impact 2 ' + colorName[i], 24, false);
         }
 */
+
+		accuracy = 0;
+		songScore = 0;
+		
 
 		FlxG.save.data.distractions = true;
 
@@ -1314,7 +1318,7 @@ class PlayState extends MusicBeatState
             {
 				if(FlxG.save.data.accuracyDisplay)
 				{
-					scoreTxt.text = "Score:" + songScore + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "%" + " | Health:" + Math.round(health * 50) + "%";
+					scoreTxt.text = "Score:" + songScore + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "%" + " | Health:" + Math.round(health * 50) + "% | Ranking: " + Ranks.generateLetterRank();
 				}
 				else
 				{
@@ -1322,7 +1326,7 @@ class PlayState extends MusicBeatState
 				}
                 if(health <= 0 && FlxG.save.data.practiceMode)
                 {
-					scoreTxt.text = "Score:" + songScore + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "%" + " | Health:0%";
+					scoreTxt.text = "Score:" + songScore + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "%" + " | Health:0 | Ranking: " + Ranks.generateLetterRank();
                 }
             }
 
@@ -1751,6 +1755,7 @@ class PlayState extends MusicBeatState
 
 			if (storyPlaylist.length <= 0)
 			{
+				FlxG.sound.music.stop();
 				if(FlxG.save.data.remix)
 					{
 						FlxG.sound.playMusic(Paths.music('freakyMenuRemix'), 0);
@@ -1761,7 +1766,7 @@ class PlayState extends MusicBeatState
 				transIn = FlxTransitionableState.defaultTransIn;
 				transOut = FlxTransitionableState.defaultTransOut;
 
-				FlxG.switchState(new StoryMenuState());
+				FlxG.switchState(new DaResult());
 
 				// if ()
 				StoryMenuState.weekUnlocked[Std.int(Math.min(storyWeek + 1, StoryMenuState.weekUnlocked.length - 1))] = true;
@@ -1813,8 +1818,9 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			trace('WENT BACK TO FREEPLAY??');
-			FlxG.switchState(new FreeplayState());
+			FlxG.sound.music.stop();
+			//trace('WENT BACK TO FREEPLAY??');
+			FlxG.switchState(new DaResult());
 			changedDifficulty = false;
 		}
 	}

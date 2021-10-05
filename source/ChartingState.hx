@@ -121,8 +121,8 @@ class ChartingState extends MusicBeatState
 
 		tempBpm = _song.bpm;
 
-		leftIcon = new HealthIcon(_song.player1);
-		rightIcon = new HealthIcon(_song.player2);
+		leftIcon = new HealthIcon(PlayState.SONG.player1, true);
+		rightIcon = new HealthIcon(PlayState.SONG.player2, false);
 		leftIcon.scrollFactor.set(1, 1);
 		rightIcon.scrollFactor.set(1, 1);
 
@@ -804,13 +804,13 @@ class ChartingState extends MusicBeatState
 		{
 			if (check_mustHitSection.checked)
 			{
-				leftIcon.animation.play('bf');
-				rightIcon.animation.play('dad');
+				leftIcon.animation.play(PlayState.SONG.player1);
+				rightIcon.animation.play(PlayState.SONG.player2);
 			}
 			else
 			{
-				leftIcon.animation.play('dad');
-				rightIcon.animation.play('bf');
+				leftIcon.animation.play(PlayState.SONG.player2);
+				rightIcon.animation.play(PlayState.SONG.player1);
 			}
 		}	
 
