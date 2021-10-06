@@ -2,7 +2,7 @@ import flixel.FlxG;
 
 class Ranks
 {
-    public static var ranking:String = "N/A";
+    public static var ranking:String = "NA";
     public static function generateLetterRank() // generate a letter ranking
     {
 		if(FlxG.save.data.botplay)
@@ -22,22 +22,22 @@ class Ranks
         // WIFE TIME :)))) (based on Wife3)
 
         var wifeConditions:Array<Bool> = [
-            PlayState.accuracy >= 99.9935, // AAAAA
-            PlayState.accuracy >= 99.980, // AAAA:
-            PlayState.accuracy >= 99.970, // AAAA.
-            PlayState.accuracy >= 99.955, // AAAA
-            PlayState.accuracy >= 99.90, // AAA:
-            PlayState.accuracy >= 99.80, // AAA.
-            PlayState.accuracy >= 99.70, // AAA
-            PlayState.accuracy >= 99, // AA:
-            PlayState.accuracy >= 96.50, // AA.
-            PlayState.accuracy >= 93, // AA
-            PlayState.accuracy >= 90, // A:
-            PlayState.accuracy >= 85, // A.
-            PlayState.accuracy >= 80, // A
-            PlayState.accuracy >= 70, // B
-            PlayState.accuracy >= 60, // C
-            PlayState.accuracy < 60 // D
+            PlayState.accuracy >= 99.9935, // P
+			PlayState.accuracy >= 99.980, // X
+			PlayState.accuracy >= 99.950, // X-
+			PlayState.accuracy >= 99.90, // SS+
+			PlayState.accuracy >= 99.80, // SS
+			PlayState.accuracy >= 99.70, // SS-
+			PlayState.accuracy >= 99.50, // S+
+			PlayState.accuracy >= 99, // S
+			PlayState.accuracy >= 96.50, // S-
+			PlayState.accuracy >= 93, // A+
+			PlayState.accuracy >= 90, // A
+			PlayState.accuracy >= 85, // A-
+			PlayState.accuracy >= 80, // B
+			PlayState.accuracy >= 70, // C
+			PlayState.accuracy >= 60, // D
+			PlayState.accuracy < 60 // E
         ];
 
         for(i in 0...wifeConditions.length)
@@ -85,7 +85,7 @@ class Ranks
         }
 
         if (PlayState.accuracy == 0)
-            ranking = "N/A";
+            ranking = "NA";
 		else if(FlxG.save.data.botplay)
 			ranking = "BotPlay";
 

@@ -73,13 +73,16 @@ class DaResult extends MusicBeatState
         var shits = PlayState.shits;
         var accuracy = PlayState.accuracy;
 
-        comboText = new FlxText(0,75,0,'Sicks - ${sicks}\nGoods - ${goods}\nBads - ${bads}\n\nShits: ${(shits)}\nMisses: ${(PlayState.misses)}\nScore: ${PlayState.songScore} \nAccuracy: ${truncateFloat(accuracy, 2)}%\nRanking: ${Ranks.generateLetterRank()}
+        comboText = new FlxText(0,75,0,'Sicks - ${sicks}\nGoods - ${goods}\nBads - ${bads}\n\nShits: ${(shits)}\nMisses: ${(PlayState.misses)}\nScore: ${PlayState.songScore} \nAccuracy: ${truncateFloat(accuracy, 2)}%
         ');
         comboText.size = 28;
         comboText.setFormat("assets/fonts/Funkin.otf", 36, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         comboText.color = FlxColor.WHITE;
         comboText.scrollFactor.set();
         add(comboText);
+
+        if(Ranks.ranking == 'NA')
+            comboText.text = 'Sicks - ${sicks}\nGoods - ${goods}\nBads - ${bads}\n\nShits: ${(shits)}\nMisses: ${(PlayState.misses)}\nScore: ${PlayState.songScore} \nAccuracy: ${truncateFloat(accuracy, 2)}%\nRanking: N/A';
 
         var score = PlayState.songScore;
         if (PlayState.isStoryMode)
