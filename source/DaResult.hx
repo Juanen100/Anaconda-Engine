@@ -33,9 +33,11 @@ class DaResult extends MusicBeatState
     public var text:FlxText;
     public var comboText:FlxText;
 
+    var rank:FlxSprite;
+
     //var daTextGrup:FlxTypedGroup<FlxText>; test ¯\_(ツ)_/¯
 
-    override function create() 
+    override function create()
     {
         var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image("main_menu/menuDesat"));
 
@@ -85,6 +87,14 @@ class DaResult extends MusicBeatState
             score = PlayState.campaignScore;
             text.text = "Week Finished!";
         }    
+
+        rank = new FlxSprite(-20, 40).loadGraphic(Paths.image('rankings/${Ranks.ranking}'));
+		rank.scrollFactor.set();
+		add(rank);
+		rank.antialiasing = true;
+		rank.setGraphicSize(0, 450);
+		rank.updateHitbox();
+		rank.screenCenter();
     }
 
     function truncateFloat( number : Float, precision : Int): Float {

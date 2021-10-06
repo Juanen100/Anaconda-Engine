@@ -2,9 +2,9 @@ import flixel.FlxG;
 
 class Ranks
 {
+    public static var ranking:String = "N/A";
     public static function generateLetterRank() // generate a letter ranking
     {
-        var ranking:String = "N/A";
 		if(FlxG.save.data.botplay)
 			ranking = "BotPlay";
 
@@ -45,40 +45,40 @@ class Ranks
             var b = wifeConditions[i];
             if (b)
             {
-                switch(i)
+                switch(i) //I'll change it later
                 {
                     case 0:
-                        ranking += " AAAAA";
-                    case 1:
-                        ranking += " AAAA:";
-                    case 2:
-                        ranking += " AAAA.";
-                    case 3:
-                        ranking += " AAAA";
-                    case 4:
-                        ranking += " AAA:";
-                    case 5:
-                        ranking += " AAA.";
-                    case 6:
-                        ranking += " AAA";
-                    case 7:
-                        ranking += " AA:";
-                    case 8:
-                        ranking += " AA.";
-                    case 9:
-                        ranking += " AA";
-                    case 10:
-                        ranking += " A:";
-                    case 11:
-                        ranking += " A.";
-                    case 12:
-                        ranking += " A";
-                    case 13:
-                        ranking += " B";
-                    case 14:
-                        ranking += " C";
-                    case 15:
-                        ranking += " D";
+						ranking = "P";
+					case 1:
+						ranking = "X";
+					case 2:
+						ranking = "X-";
+					case 3:
+						ranking = "SS+";
+					case 4:
+						ranking = "SS";
+					case 5:
+						ranking = "SS-";
+					case 6:
+						ranking = "S+";
+					case 7:
+						ranking = "S";
+					case 8:
+						ranking = "S-";
+					case 9:
+						ranking = "A+";
+					case 10:
+						ranking = "A";
+					case 11:
+						ranking = "A-";
+					case 12:
+						ranking = "B";
+					case 13:
+						ranking = "C";
+					case 14:
+						ranking = "D";
+					case 15:
+						ranking = "E";
                 }
                 break;
             }
