@@ -14,7 +14,7 @@ The Solar Engine (previously called JSW Engine) is highly inspired on [Kade Engi
 
 If you want to build Solar Engine go [here](https://github.com/Juanen100/JSW-Engine/blob/main/.github/DOCS_SHIT/building.md)
 
-If you wanna know about the Mod Support go [here](https://github.com/Juanen100/Solar-Engine/blob/master/Modding.md)
+If you wanna know about the Mod Support go [here](https://github.com/Juanen100/Solar-Engine/blob/master/.github/DOCS_SHIT/Modding.md)
 
 If you want to play the game just download it from [here](https://github.com/Juanen100/JSW-Engine/releases)
 
