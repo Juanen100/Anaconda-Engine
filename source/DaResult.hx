@@ -73,7 +73,7 @@ class DaResult extends MusicBeatState
         var shits = PlayState.shits;
         var accuracy = PlayState.accuracy;
 
-        comboText = new FlxText(0,75,0,'Sicks - ${sicks}\nGoods - ${goods}\nBads - ${bads}\n\nShits: ${(shits)}\nMisses: ${(PlayState.misses)}\nScore: ${PlayState.songScore} \nAccuracy: ${truncateFloat(accuracy, 2)}%
+        comboText = new FlxText(0,75,0,'Sicks: ${sicks}\nGoods: ${goods}\nBads: ${bads}\n\nShits: ${(shits)}\nMisses: ${(PlayState.misses)}\nScore: ${PlayState.songScore} \nAccuracy: ${truncateFloat(accuracy, 2)}%
         ');
         comboText.size = 28;
         comboText.setFormat("assets/fonts/Funkin.otf", 56, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -97,7 +97,7 @@ class DaResult extends MusicBeatState
 		rank.antialiasing = true;
 		rank.setGraphicSize(0, 250);
 		rank.updateHitbox();
-		//rank.screenCenter();
+		rank.screenCenter(Y);
     }
 
     function truncateFloat( number : Float, precision : Int): Float {
