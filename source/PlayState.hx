@@ -2260,6 +2260,7 @@ class PlayState extends MusicBeatState
 			combo = 0;
 
             misses++;
+			accuracy--;
 
 			songScore -= 10;
 
