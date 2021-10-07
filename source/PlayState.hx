@@ -1946,13 +1946,10 @@ class PlayState extends MusicBeatState
 			{
 				rating.setGraphicSize(Std.int(rating.width * 0.7));
 				rating.antialiasing = true;
-				comboSpr.setGraphicSize(Std.int(comboSpr.width * 0.7));
-				comboSpr.antialiasing = true;
 			}
 			else
 			{
 				rating.setGraphicSize(Std.int(rating.width * daPixelZoom * 0.7));
-				comboSpr.setGraphicSize(Std.int(comboSpr.width * daPixelZoom * 0.7));
 			}
 	
 			comboSpr.updateHitbox();
@@ -1976,10 +1973,13 @@ class PlayState extends MusicBeatState
 				{
 					numScore.antialiasing = true;
 					numScore.setGraphicSize(Std.int(numScore.width * 0.5));
+					comboSpr.setGraphicSize(Std.int(comboSpr.width * 0.7));
+					comboSpr.antialiasing = true;
 				}
 				else
 				{
 					numScore.setGraphicSize(Std.int(numScore.width * daPixelZoom));
+					comboSpr.setGraphicSize(Std.int(comboSpr.width * daPixelZoom * 0.7));
 				}
 				numScore.updateHitbox();
 	
@@ -1989,11 +1989,14 @@ class PlayState extends MusicBeatState
 	
 				if (combo >= 10 || combo == 0)
 					add(numScore);
+					add(comboSpr); //Adds the combo Sprite even tho it is just to decorate lol
+
 	
 				FlxTween.tween(numScore, {alpha: 0}, 0.2, {
 					onComplete: function(tween:FlxTween)
 					{
 						numScore.destroy();
+						comboSpr.destroy();
 					},
 					startDelay: Conductor.crochet * 0.002
 				});
@@ -2016,7 +2019,7 @@ class PlayState extends MusicBeatState
 				onComplete: function(tween:FlxTween)
 				{
 					coolText.destroy();
-					comboSpr.destroy();
+				//	comboSpr.destroy();
 	
 					rating.destroy();
 				},
