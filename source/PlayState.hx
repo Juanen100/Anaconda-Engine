@@ -1180,8 +1180,6 @@ class PlayState extends MusicBeatState
 					}
 			}
 
-
-
 			babyArrow.updateHitbox();
 			babyArrow.scrollFactor.set();
 
@@ -1207,7 +1205,6 @@ class PlayState extends MusicBeatState
 				babyArrow.x += 50;
 				babyArrow.x += ((FlxG.width / 2) * player);
 			}
-		
 
 			if (FlxG.save.data.middlescroll)
 				babyArrow.x -= 275;

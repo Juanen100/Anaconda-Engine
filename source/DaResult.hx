@@ -60,7 +60,7 @@ class DaResult extends MusicBeatState
 
         text = new FlxText(10, 0, 0,"Song Finished!");
         text.size = 34;
-        text.setFormat("assets/fonts/Funkin.otf", 42, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        text.setFormat("assets/fonts/Funkin.otf", 62, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         text.color = FlxColor.WHITE;
         //text.screenCenter(X);
        // text.screenCenter(Y);
@@ -76,7 +76,7 @@ class DaResult extends MusicBeatState
         comboText = new FlxText(0,75,0,'Sicks - ${sicks}\nGoods - ${goods}\nBads - ${bads}\n\nShits: ${(shits)}\nMisses: ${(PlayState.misses)}\nScore: ${PlayState.songScore} \nAccuracy: ${truncateFloat(accuracy, 2)}%
         ');
         comboText.size = 28;
-        comboText.setFormat("assets/fonts/Funkin.otf", 36, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        comboText.setFormat("assets/fonts/Funkin.otf", 56, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         comboText.color = FlxColor.WHITE;
         comboText.scrollFactor.set();
         add(comboText);
@@ -91,13 +91,13 @@ class DaResult extends MusicBeatState
             text.text = "Week Finished!";
         }    
 
-        rank = new FlxSprite(-20, 40).loadGraphic(Paths.image('rankings/${Ranks.ranking}'));
+        rank = new FlxSprite(600, 100).loadGraphic(Paths.image('rankings/${Ranks.ranking}'));
 		rank.scrollFactor.set();
 		add(rank);
 		rank.antialiasing = true;
-		rank.setGraphicSize(0, 450);
+		rank.setGraphicSize(0, 250);
 		rank.updateHitbox();
-		rank.screenCenter();
+		//rank.screenCenter();
     }
 
     function truncateFloat( number : Float, precision : Int): Float {
