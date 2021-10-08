@@ -45,7 +45,7 @@ class DaResult extends MusicBeatState
 
     override function create()
     {
-        FlxG.camera.fade(FlxColor.BLACK, 0.8, false);
+        FlxG.camera.fade(FlxColor.BLACK, 0.8, true);
         var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image("main_menu/menuDesat"));
 
 		menuBG.color = 0xFFEA00F9;
