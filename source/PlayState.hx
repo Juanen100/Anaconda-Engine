@@ -474,42 +474,6 @@ class PlayState extends MusicBeatState
 
 		// add(strumLine);
 
-		if (startTime != 0)
-			{
-				var toBeRemoved = [];
-				for(i in 0...notes.members.length)
-				{
-					var dunceNote:Note = notes.members[i];
-	
-					if (dunceNote.strumTime - startTime <= 0)
-						toBeRemoved.push(dunceNote);
-					else 
-					{
-						if (FlxG.save.data.downscroll)
-						{
-							if (dunceNote.mustPress)
-								dunceNote.y = (playerStrums.members[Math.floor(Math.abs(dunceNote.noteData))].y
-									* (startTime - dunceNote.strumTime) * FlxMath.roundDecimal(SONG.speed, 2));
-							else
-								dunceNote.y = (strumLineNotes.members[Math.floor(Math.abs(dunceNote.noteData))].y
-									* (startTime - dunceNote.strumTime) * FlxMath.roundDecimal(SONG.speed, 2));
-						}
-						else
-						{
-							if (dunceNote.mustPress)
-								dunceNote.y = (playerStrums.members[Math.floor(Math.abs(dunceNote.noteData))].y
-									* (startTime - dunceNote.strumTime) * FlxMath.roundDecimal(SONG.speed, 2));
-							else
-								dunceNote.y = (strumLineNotes.members[Math.floor(Math.abs(dunceNote.noteData))].y
-									* (startTime - dunceNote.strumTime) * FlxMath.roundDecimal(SONG.speed, 2));
-						}
-					}
-				}
-	
-				for(i in toBeRemoved)
-					notes.members.remove(i);
-			}
-
 		camFollow = new FlxObject(0, 0, 1, 1);
 
 		camFollow.setPosition(camPos.x, camPos.y);
@@ -1681,14 +1645,14 @@ class PlayState extends MusicBeatState
 							daNote.y -= daNote.height;
 							daNote.y += 125;
 
-							if ((!daNote.mustPress || daNote.wasGoodHit || daNote.prevNote.wasGoodHit && !daNote.canBeHit)
+							if (!daNote.mustPress || daNote.wasGoodHit || daNote.prevNote.wasGoodHit && !daNote.canBeHit
 								&& daNote.y - daNote.offset.y * daNote.scale.y + daNote.height >= (strumLine.y + Note.swagWidth / 2))
 							{
 								// Clip to strumline
 								var swagRect = new FlxRect(0, 0, daNote.frameWidth * 2, daNote.frameHeight * 2);
-								swagRect.height = (strumLineNotes.members[Math.floor(Math.abs(daNote.noteData))].y
-									+ Note.swagWidth / 2
-									- daNote.y) / daNote.scale.y;
+								//swagRect.height = (strumLineNotes.members[Math.floor(Math.abs(daNote.noteData))].y
+								//	+ Note.swagWidth / 2
+								//	- daNote.y) / daNote.scale.y;
 								swagRect.y = daNote.frameHeight - swagRect.height;
 	
 								daNote.clipRect = swagRect;
@@ -1698,23 +1662,6 @@ class PlayState extends MusicBeatState
 					}
 					else{
 						daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(PlayState.SONG.speed, 2)));
-	
-						if(daNote.isSustainNote){
-	
-							if ((!daNote.mustPress || daNote.wasGoodHit || daNote.prevNote.wasGoodHit && !daNote.canBeHit)
-								&& daNote.y + daNote.offset.y * daNote.scale.y <= (strumLine.y + Note.swagWidth / 2))
-							{
-								// Clip to strumline
-								var swagRect = new FlxRect(0, 0, daNote.width / daNote.scale.x, daNote.height / daNote.scale.y);
-								swagRect.y = (strumLineNotes.members[Math.floor(Math.abs(daNote.noteData))].y
-									+ Note.swagWidth / 2
-									- daNote.y) / daNote.scale.y;
-								swagRect.height -= swagRect.y;
-	
-								daNote.clipRect = swagRect;
-							}
-	
-						}
 					}
 					//trace(daNote.y);
 					// WIP interpolation shit? Need to fix the pause issue
@@ -2027,8 +1974,10 @@ class PlayState extends MusicBeatState
 				numScore.velocity.x = FlxG.random.float(-5, 5);
 	
 				if (combo >= 10 || combo == 0)
+				{
 					add(numScore);
 					add(comboSpr); //Adds the combo Sprite even tho it is just to decorate lol
+				}
 
 	
 				FlxTween.tween(numScore, {alpha: 0}, 0.2, {
