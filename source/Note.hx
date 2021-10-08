@@ -132,7 +132,6 @@ class Note extends FlxSprite
 			alpha = 0.6;
 			
 			// Flips the end so it doesn't look weird
-			// YES I GOTTA FIX THE SPACE BETWEEN TAIL AND ITS END
 			if (FlxG.save.data.downscroll) 
 				flipY = true;
 
