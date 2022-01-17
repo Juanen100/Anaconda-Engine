@@ -37,7 +37,7 @@ class OutdatedSubState extends MusicBeatState
 		add(bg);
 		
 		var txt:FlxText = new FlxText(0, 0, FlxG.width,
-			"Your Solar Engine is outdated!\nYou are on "
+			"Your Anaconda Engine is outdated!\nYou are on "
 			+ MainMenuState.versionlol
 			+ "\nwhile the most recent version is " + needVer + "."
 			+ "\n\nPress Space to go to Github\nor ESCAPE to ignore this",

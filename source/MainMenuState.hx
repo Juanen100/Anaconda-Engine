@@ -148,7 +148,7 @@ class MainMenuState extends MusicBeatState
 
 		FlxG.camera.follow(camFollow, null, 0.60 * (60 / FlxG.save.data.fpsCap));
 
-		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, fnfVer + " FNF - " + versionlol + " Solar Engine", 12);
+		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, fnfVer + " FNF - " + versionlol + " Anaconda Engine", 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("assets/fonts/Funkin.otf", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
