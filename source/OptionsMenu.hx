@@ -23,34 +23,34 @@ class OptionsMenu extends MusicBeatState
 
 	var options:Array<OptionCatagory> = [
 		new OptionCatagory("Gameplay", [
-			new InputOption("it doesn't matter what u put here lol"),
-			new DownscrollOption(""),
-			new EtternaModeOption(""),
-			new CpuStrums("")
+			new InputOption(),
+			new DownscrollOption(),
+			new EtternaModeOption(),
+			new CpuStrums()
 		]),
 		new OptionCatagory("Appareance", [
-			new Colour(""),
-			new BetterIcon(""),
-			new FPSOption(""),
-			new AccuracyOption(""),
-			new SongTimeThing(""),
-			new FlashingLightsOption("")
+			new Colour(),
+			new BetterIcon(),
+			new FPSOption(),
+			new AccuracyOption(),
+			new SongTimeThing(),
+			new FlashingLightsOption()
 		]),
 		new OptionCatagory("Misc", [
-			new Health(""),
-			new BotPlay(""),
-			new MissSoundOption(""),
+			new Health(),
+			new BotPlay(),
+			new MissSoundOption(),
 			//new HitSoundWeird(""),
 			//new RainbowFPSOption(""),
 			#if !web
-			new Haxeflixel(""),
+			new Haxeflixel(),
 			#end
-			new RemixThing(""),
-			new ResetSettings("")
+			new RemixThing(),
+			new ResetSettings()
 		]),
 		new OptionCatagory("Controls", [
 			new ControlOption(),
-			new Reset("")
+			new Reset()
 		])
 	];
 
@@ -283,16 +283,10 @@ class Option
 	{
 		display = updateDisplay();
 	}
-	private var description:String = "";
 	private var display:String;
 	public final function getDisplay():String
 	{
 		return display;
-	}
-
-	public final function getDescription():String
-	{
-		return description;
 	}
 
 	// Returns whether the label is to be updated.
@@ -323,10 +317,10 @@ class ControlOption extends Option
 
 class DownscrollOption extends Option
 {
-	public function new(desc:String)
+	public function new( )
 	{
 		super();
-		description = desc;
+		 
 	}
 
 	public override function press():Bool
@@ -344,10 +338,10 @@ class DownscrollOption extends Option
 
 class InputOption extends Option
 {
-	public function new(desc:String)
+	public function new( )
 	{
 		super();
-		description = desc;
+		 
 	}
 
 	public override function press():Bool
@@ -365,10 +359,10 @@ class InputOption extends Option
 
 class CpuStrums extends Option
 {
-	public function new(desc:String)
+	public function new( )
 	{
 		super();
-		description = desc;
+		 
 	}
 
 	public override function press():Bool
@@ -388,10 +382,10 @@ class CpuStrums extends Option
 
 class Colour extends Option
 {
-	public function new(desc:String)
+	public function new( )
 	{
 		super();
-		description = desc;
+		 
 	}
 	public override function press():Bool
 	{
@@ -408,10 +402,10 @@ class Colour extends Option
 
 class Health extends Option
 {
-	public function new(desc:String)
+	public function new( )
 	{
 		super();
-		description = desc;
+		 
 	}
 	public override function press():Bool
 	{
@@ -428,10 +422,10 @@ class Health extends Option
 
 class BotPlay extends Option
 {
-	public function new(desc:String)
+	public function new( )
 	{
 		super();
-		description = desc;
+		 
 	}
 	
 	public override function press():Bool
@@ -448,10 +442,10 @@ class BotPlay extends Option
 
 class Haxeflixel extends Option
 {
-	public function new(desc:String)
+	public function new( )
 	{
 		super();
-		description = desc;
+		 
 	}
 	public override function press():Bool
 	{
@@ -468,10 +462,10 @@ class Haxeflixel extends Option
 
 class BetterIcon extends Option
 {
-	public function new(desc:String)
+	public function new( )
 	{
 		super();
-		description = desc;
+		 
 	}
 	public override function press():Bool
 	{
@@ -488,10 +482,10 @@ class BetterIcon extends Option
 
 class FlashingLightsOption extends Option
 {
-	public function new(desc:String)
+	public function new( )
 	{
 		super();
-		description = desc;
+		 
 	}
 	public override function press():Bool
 	{
@@ -508,10 +502,10 @@ class FlashingLightsOption extends Option
 
 class Reset extends Option
 {
-	public function new(desc:String)
+	public function new( )
 	{
 		super();
-		description = desc;
+		 
 	}
 	public override function press():Bool
 	{
@@ -530,10 +524,10 @@ class ResetSettings extends Option
 {
 	var confirm:Bool = false;
 
-	public function new(desc:String)
+	public function new( )
 	{
 		super();
-		description = desc;
+		 
 	}
 
 	public override function press():Bool
@@ -561,10 +555,10 @@ class ResetSettings extends Option
 
 class SongTimeThing extends Option
 {
-	public function new(desc:String)
+	public function new( )
 	{
 		super();
-		description = desc;
+		 
 	}
 	public override function press():Bool
 	{
@@ -581,10 +575,10 @@ class SongTimeThing extends Option
 
 class RemixThing extends Option
 {
-	public function new(desc:String)
+	public function new( )
 	{
 		super();
-		description = desc;
+		 
 	}
 	public override function press():Bool
 	{
@@ -621,10 +615,10 @@ class RemixThing extends Option
 
 class AccuracyOption extends Option
 {
-	public function new(desc:String)
+	public function new( )
 	{
 		super();
-		description = desc;
+		 
 	}
 	public override function press():Bool
 	{
@@ -641,10 +635,10 @@ class AccuracyOption extends Option
 
 class EtternaModeOption extends Option
 {
-	public function new(desc:String)
+	public function new( )
 	{
 		super();
-		description = desc;
+		 
 	}
 	public override function press():Bool
 	{
@@ -661,10 +655,10 @@ class EtternaModeOption extends Option
 
 class MissSoundOption extends Option
 {
-	public function new(desc:String)
+	public function new( )
 	{
 		super();
-		description = desc;
+		 
 	}
 	public override function press():Bool
 	{
@@ -681,10 +675,10 @@ class MissSoundOption extends Option
 
 class FPSOption extends Option
 {
-	public function new(desc:String)
+	public function new( )
 	{
 		super();
-		description = desc;
+		 
 	}
 
 	public override function press():Bool
@@ -703,10 +697,10 @@ class FPSOption extends Option
 
 class HitSoundWeird extends Option
 {
-	public function new(desc:String)
+	public function new( )
 	{
 		super();
-		description = desc;
+		 
 	}
 
 	public override function press():Bool
