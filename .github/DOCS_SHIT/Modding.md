@@ -1,6 +1,6 @@
 ## MOD SUPPORT GUIDE (STILL WIP, MORE STUFF COMING SOON)
 
-In this document you'll find stuff related to the mod support on the Anaconda Engine.
+In this document you'll find stuff related to the mod support on the Solar Engine.
 
 ![polyNo](https://raw.githubusercontent.com/Juanen100/Solar-Engine/master/art/polyNo.png)
 
