@@ -1,6 +1,6 @@
 ### Building Documentation
 
-This is the documentation for building the Friday Night Funkin' Anaconda Engine
+This is the documentation for building the Friday Night Funkin' Solar Engine
 
 ### Installing the Required Programs
 
