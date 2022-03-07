@@ -10,9 +10,9 @@ IF YOU MAKE A MOD AND DISTRIBUTE A MODIFIED / RECOMPILED VERSION, YOU MUST OPEN 
                                                                                 
 -Ninjamuffin99
 
-The Anaconda Engine (previously called JSW Engine) is highly inspired on [Kade Engine](https://github.com/KadeDev/Kade-Engine)
+The Solar Engine (previously called JSW Engine) is highly inspired on [Kade Engine](https://github.com/KadeDev/Kade-Engine)
 
-If you want to build Anaconda Engine go [here](https://github.com/Juanen100/JSW-Engine/blob/main/.github/DOCS_SHIT/building.md)
+If you want to build Solar Engine go [here](https://github.com/Juanen100/JSW-Engine/blob/main/.github/DOCS_SHIT/building.md)
 
 If you wanna know about the Mod Support go [here](https://github.com/Juanen100/Solar-Engine/blob/master/.github/DOCS_SHIT/Modding.md)
 
@@ -28,9 +28,9 @@ Oh Yeah, this thing still a WIP, so yeah... when I finish it i probably tell or 
 
 This game was made with love to Newgrounds and its community. Extra love to Tom Fulp.
 
-## Credits of Anaconda Engine
+## Credits of Solar Engine
 
-- [Juanen100](https://twitter.com/Juanen1001) - Anaconda Engine Programmer
+- [Juanen100](https://twitter.com/Juanen1001) - Solar Engine Programmer
 - [TheStrexx](https://twitter.com/TStrexx) - Main Menu Coin Desing and helper
 - [Hydra](https://www.youtube.com/channel/UCEnQefrHAncXQtU4f5jloCA) - Gettin' Freaky Remix
 
